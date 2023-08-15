@@ -59,9 +59,7 @@ public class FlyCMD extends CustomCommand {
     }
 
     @Override
-    public void performSender(CommandSender sender, String[] args, Command command) {
-
-    }
+    public void performSender(CommandSender sender, String[] args, Command command) { }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
