@@ -45,8 +45,9 @@ public class HealthListener implements Listener {
         central.getScoreboardManager().getPlayerBoard(e.getPlayer().getUniqueId()).updateHealthPacket();
     }
 
-    @EventHandler
+    @EventHandler (priority = EventPriority.MONITOR)
     public void onConsume(PlayerItemConsumeEvent e) {
+        if (e.isCancelled()) return;
         Bukkit.getAsyncScheduler().runDelayed(central, scheduledTask -> {
             if (!central.getScoreboardManager().hasPlayerBoard(e.getPlayer().getUniqueId())) return;
             central.getScoreboardManager().getPlayerBoard(e.getPlayer().getUniqueId()).updateHealthPacket();
