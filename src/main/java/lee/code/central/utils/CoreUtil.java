@@ -47,7 +47,8 @@ public class CoreUtil {
 
     public static String convertToString(Component component) {
         final PlainTextComponentSerializer plainTextComponentSerializer = PlainTextComponentSerializer.plainText();
-        return plainTextComponentSerializer.serialize(component).replaceAll("]", "").replaceAll("\\[", "");
+        final String text = plainTextComponentSerializer.serialize(component);
+        return text.substring(1, text.length() - 1);
     }
 
     public static String stripColorCodes(String text) {
