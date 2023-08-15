@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -45,7 +44,7 @@ public class CoreUtil {
         return (Component.empty().decoration(TextDecoration.ITALIC, false)).append(serializer.deserialize(text));
     }
 
-    public static String convertToString(Component component) {
+    public static String convertComponentToString(Component component) {
         final PlainTextComponentSerializer plainTextComponentSerializer = PlainTextComponentSerializer.plainText();
         final String text = plainTextComponentSerializer.serialize(component);
         return text.substring(1, text.length() - 1);
