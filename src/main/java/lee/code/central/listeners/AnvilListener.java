@@ -21,7 +21,7 @@ public class AnvilListener implements Listener {
         if (firstSlot == null || secondSlot != null || resultStack == null) return;
         final ItemStack dupe = firstSlot.clone();
         final ItemMeta dupeMeta = dupe.getItemMeta();
-        final String name = CoreUtil.convertComponentToString(resultStack.displayName());
+        final String name = resultStack.getItemMeta().getDisplayName();
         if (!name.contains("&")) return;
         dupeMeta.displayName(CoreUtil.parseColorComponent(name));
         dupe.setItemMeta(dupeMeta);

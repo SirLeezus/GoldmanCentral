@@ -39,5 +39,7 @@ public class Central extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
         getServer().getPluginManager().registerEvents(new HeadDropListener(), this);
         getServer().getPluginManager().registerEvents(new AnvilListener(), this);
+        getServer().getPluginManager().registerEvents(new SignListener(), this);
+        getServer().getPluginManager().registerEvents(new BookListener(), this);
     }
 }

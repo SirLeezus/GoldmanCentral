@@ -44,12 +44,6 @@ public class CoreUtil {
         return (Component.empty().decoration(TextDecoration.ITALIC, false)).append(serializer.deserialize(text));
     }
 
-    public static String convertComponentToString(Component component) {
-        final PlainTextComponentSerializer plainTextComponentSerializer = PlainTextComponentSerializer.plainText();
-        final String text = plainTextComponentSerializer.serialize(component);
-        return text.substring(1, text.length() - 1);
-    }
-
     public static String stripColorCodes(String text) {
         return PlainTextComponentSerializer.plainText().serialize(LegacyComponentSerializer.legacyAmpersand().deserialize(text));
     }
