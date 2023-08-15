@@ -45,6 +45,11 @@ public class CoreUtil {
         return (Component.empty().decoration(TextDecoration.ITALIC, false)).append(serializer.deserialize(text));
     }
 
+    public static String convertToString(Component component) {
+        final PlainTextComponentSerializer plainTextComponentSerializer = PlainTextComponentSerializer.plainText();
+        return plainTextComponentSerializer.serialize(component).replaceAll("]", "").replaceAll("\\[", "");
+    }
+
     public static String stripColorCodes(String text) {
         return PlainTextComponentSerializer.plainText().serialize(LegacyComponentSerializer.legacyAmpersand().deserialize(text));
     }
