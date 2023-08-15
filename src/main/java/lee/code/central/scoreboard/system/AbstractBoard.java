@@ -32,18 +32,18 @@ public class AbstractBoard {
         sendHealthPackets(receiver);
     }
 
-    public void broadcastPackets() {
-        handle.getOptionalStructures().write(0, Optional.of((InternalStructure) structure));
-        ProtocolLibrary.getProtocolManager().broadcastServerPacket(handle);
-        broadcastHealthPackets();
-    }
-
     private void sendHealthPackets(Player receiver) {
         final Player player = Bukkit.getPlayer(uuid);
         if (player == null || !player.isOnline()) return;
         ProtocolLibrary.getProtocolManager().sendServerPacket(receiver, getHealthObjective());
         ProtocolLibrary.getProtocolManager().sendServerPacket(receiver, getHeathDisplaySlotPacket());
         ProtocolLibrary.getProtocolManager().sendServerPacket(receiver, newHeathPacket(player, (int) Math.min(Math.max(Math.ceil(player.getHealth()), 0), 20) + (int) player.getAbsorptionAmount()));
+    }
+
+    public void broadcastPackets() {
+        handle.getOptionalStructures().write(0, Optional.of((InternalStructure) structure));
+        ProtocolLibrary.getProtocolManager().broadcastServerPacket(handle);
+        broadcastHealthPackets();
     }
 
     private void broadcastHealthPackets() {
