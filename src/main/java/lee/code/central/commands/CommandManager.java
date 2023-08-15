@@ -5,6 +5,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.cmds.FlyCMD;
 import lee.code.central.commands.cmds.GameModeCMD;
 import lee.code.central.lang.Lang;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,28 +19,16 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CommandManager {
 
     private final Central central;
-    private final ConcurrentHashMap<String, CustomCommand> commands = new ConcurrentHashMap<>();
+    @Getter private final Set<CustomCommand> commands = ConcurrentHashMap.newKeySet();
 
     public CommandManager(Central central) {
         this.central = central;
         storeCommands();
     }
 
-    public CustomCommand getCommand(String cmd) {
-        return commands.get(cmd);
-    }
-
-    public Set<CustomCommand> getCommands() {
-        final Set<CustomCommand> commandList = ConcurrentHashMap.newKeySet();
-        commandList.addAll(commands.values());
-        return commandList;
-    }
-
     private void storeCommands() {
-        final CustomCommand gameMode = new GameModeCMD(central);
-        commands.put(gameMode.getName(), gameMode);
-        final CustomCommand fly = new FlyCMD(central);
-        commands.put(fly.getName(), fly);
+        commands.add(new GameModeCMD(central));
+        commands.add(new FlyCMD(central));
     }
 
     private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();
