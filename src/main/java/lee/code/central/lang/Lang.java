@@ -7,12 +7,12 @@ import net.kyori.adventure.text.Component;
 
 @AllArgsConstructor
 public enum Lang {
+    DEATH_PREFIX("&c&lDeath &6➔ &r"),
+    ADVANCEMENT_PREFIX("&a&lAdvancement &6➔ &r"),
     PLAYER_JOIN("{display-name} &ahas joined the server!"),
     PLAYER_QUIT("{display-name} &7has left the server."),
     TABLIST_HEADER("&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&#4dc462&lJourney Towns\n&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"),
     TABLIST_FOOTER("\n&#228B22&lOnline&7: &#4dc462{0}"),
-    DEATH_PREFIX("&cDeath &6➔ &r"),
-    ADVANCEMENT_PREFIX("&aAdvancement &6➔ &r"),
 
     ;
     @Getter
