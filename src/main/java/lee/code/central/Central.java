@@ -1,5 +1,8 @@
 package lee.code.central;
 
+import lee.code.central.commands.CustomCommand;
+import lee.code.central.commands.CommandManager;
+import lee.code.central.commands.TabCompletion;
 import lee.code.central.listeners.*;
 import lee.code.central.scoreboard.ScoreboardManager;
 import lombok.Getter;
@@ -8,10 +11,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Central extends JavaPlugin {
 
     @Getter private ScoreboardManager scoreboardManager;
+    @Getter private CommandManager commandManager;
 
     @Override
     public void onEnable() {
         this.scoreboardManager = new ScoreboardManager();
+        this.commandManager = new CommandManager(this);
 
         registerCommands();
         registerListeners();
@@ -24,14 +29,6 @@ public class Central extends JavaPlugin {
     }
 
     private void registerListeners() {
-
-    }
-
-    private void startSchedules() {
-
-    }
-
-    private void registerCommands() {
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new QuitListener(this), this);
         getServer().getPluginManager().registerEvents(new HealthListener(this), this);
@@ -41,5 +38,16 @@ public class Central extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AnvilListener(), this);
         getServer().getPluginManager().registerEvents(new SignListener(), this);
         getServer().getPluginManager().registerEvents(new BookListener(), this);
+    }
+
+    private void startSchedules() {
+
+    }
+
+    private void registerCommands() {
+        for (CustomCommand command : commandManager.getCommands()) {
+            getCommand(command.getName()).setExecutor(command);
+            getCommand(command.getName()).setTabCompleter(new TabCompletion(command));
+        }
     }
 }

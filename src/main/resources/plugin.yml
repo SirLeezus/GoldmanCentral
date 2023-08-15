@@ -4,3 +4,13 @@ main: lee.code.central.Central
 api-version: 1.19
 author: Lee
 folia-supported: true
+commands:
+  gamemode:
+    description: Change your gamemode.
+    permission: central.command.gamemode
+    aliases: [gm]
+    usage: "/gamemode &f<gamemode>"
+  fly:
+    description: Toggles your ability to fly.
+    permission: central.command.fly
+    usage: "/fly"
