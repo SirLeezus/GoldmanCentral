@@ -14,3 +14,11 @@ commands:
     description: Toggles your ability to fly.
     permission: central.command.fly
     usage: "/fly"
+  weather:
+    description: Changes the weather in the world you're in.
+    permission: central.command.weather
+    usage: "/weather &f<clear/thunder/rain>"
+  smite:
+    description: Summon lightning on a player or location.
+    permission: central.command.smite
+    usage: "/smite &f<player>"
