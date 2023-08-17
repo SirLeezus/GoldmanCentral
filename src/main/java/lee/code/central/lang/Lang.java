@@ -10,6 +10,7 @@ public enum Lang {
     PREFIX("&2&lJourney &6➔ "),
     USAGE("&6&lUsage: &e{0}"),
     DEATH_PREFIX("&c&lDeath &6➔ &r"),
+    DEATH_HOVER("&2&lPlayer&7: {display-name}\n&2&lTotal Deaths&7: &c{1}"),
     ADVANCEMENT_PREFIX("&a&lAdvancement &6➔ &r"),
     ON("&2&lON"),
     OFF("&c&lOFF"),
