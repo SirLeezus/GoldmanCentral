@@ -1,12 +1,18 @@
 package lee.code.central;
 
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.commands.CommandManager;
 import lee.code.central.commands.TabCompletion;
 import lee.code.central.listeners.*;
 import lee.code.central.scoreboard.ScoreboardManager;
 import lombok.Getter;
+import me.lucko.commodore.CommodoreProvider;
+import me.lucko.commodore.file.CommodoreFileReader;
+import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
@@ -48,6 +54,16 @@ public class Central extends JavaPlugin {
         for (CustomCommand command : commandManager.getCommands()) {
             getCommand(command.getName()).setExecutor(command);
             getCommand(command.getName()).setTabCompleter(new TabCompletion(command));
+            loadCommodoreData(getCommand(command.getName()));
+        }
+    }
+
+    private void loadCommodoreData(Command command) {
+        try {
+            final LiteralCommandNode<?> targetCommand = CommodoreFileReader.INSTANCE.parse(getResource("commodore/" + command.getName() + ".commodore"));
+            CommodoreProvider.getCommodore(this).register(command, targetCommand);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

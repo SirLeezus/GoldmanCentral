@@ -1,0 +1,6 @@
+gamemode {
+  creative;
+  survival;
+  adventure;
+  spectator;
+}

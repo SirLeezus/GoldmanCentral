@@ -85,6 +85,6 @@ public class SmiteCMD extends CustomCommand {
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
         if (args.length == 1)  return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
-        return null;
+        else return new ArrayList<>();
     }
 }

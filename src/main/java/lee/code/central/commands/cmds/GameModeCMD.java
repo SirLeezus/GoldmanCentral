@@ -81,7 +81,6 @@ public class GameModeCMD extends CustomCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
-        if (args.length == 1) return StringUtil.copyPartialMatches(args[0], Arrays.asList("survival", "creative", "adventure", "spectator"), new ArrayList<>());
         return new ArrayList<>();
     }
 }
