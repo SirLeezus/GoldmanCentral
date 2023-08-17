@@ -30,7 +30,15 @@ commands:
     description: Give a target user a item.
     permission: central.command.give
     usage: "/give &f<player> <material> <amount>"
+  head:
+    description: Create a player head with any username.
+    permission: central.command.head
+    usage: "/head &f<player>"
   glow:
     description: Toggle your glow.
     permission: central.command.glow
     usage: "/glow"
+  heal:
+    description: Heal yourself or a online player.
+    permission: central.command.heal
+    usage: "/heal &f<player>"

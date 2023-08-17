@@ -32,7 +32,7 @@ public class GiveCMD extends CustomCommand {
 
     @Override
     public boolean performAsync() {
-        return false;
+        return true;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class GiveCMD extends CustomCommand {
             return;
         }
         int amount = Integer.parseInt(amountString);
-        if (amount > 100) amount = 100;
+        if (amount > 1000) amount = 1000;
         ItemUtil.giveItemOrDrop(player, new ItemStack(material), amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
