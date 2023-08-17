@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -84,7 +84,7 @@ public class CoreUtil {
 
     public static String capitalize(String message) {
         final String format = message.toLowerCase().replaceAll("_", " ");
-        return StringUtils.capitalize(format);
+        return WordUtils.capitalize(format);
     }
 
     public static String parseTime(long time) {
@@ -102,6 +102,8 @@ public class CoreUtil {
     }
 
     public static boolean isPositiveIntNumber(String numbers) {
+        final String intMax = String.valueOf(Integer.MAX_VALUE);
+        if (numbers.length() > intMax.length() || (numbers.length() == intMax.length() && numbers.compareTo(intMax) > 0)) return false;
         return numberIntPattern.matcher(numbers).matches();
     }
 }

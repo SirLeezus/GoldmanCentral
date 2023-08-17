@@ -55,13 +55,13 @@ public class EnchantCMD extends CustomCommand {
         }
         final String enchantName = args[0];
         if (!central.getData().getEnchantments().contains(enchantName)) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ENCHANT_NOT_ENCHANT.getComponent(new String[] { enchantName })));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_ENCHANT.getComponent(new String[] { enchantName })));
             return;
         }
         final NamespacedKey key = NamespacedKey.minecraft(enchantName);
         final Enchantment enchantment = Enchantment.getByKey(key);
         if (enchantment == null) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ENCHANT_NOT_ENCHANT.getComponent(new String[] { enchantName })));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_ENCHANT.getComponent(new String[] { enchantName })));
             return;
         }
         final String levelString = args[1];

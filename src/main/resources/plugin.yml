@@ -26,3 +26,7 @@ commands:
     description: Enchant the item you're holding.
     permission: central.command.enchant
     usage: "/enchant &f<enchantment> <level>"
+  give:
+    description: Give a target user a item.
+    permission: central.command.give
+    usage: "/give &f<player> <material> <amount>"

@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -69,5 +70,38 @@ public class ItemUtil {
         if (itemMeta == null) return;
         itemMeta.addEnchant(enchantment, level, false);
         itemStack.setItemMeta(itemMeta);
+    }
+
+    public static void giveItemOrDrop(Player player, ItemStack item, int amount) {
+        item.setAmount(1);
+        if (canReceiveItems(player, item, amount)) {
+            if (item.getMaxStackSize() < 64) {
+                for (int i = 0; i < amount; i++) {
+                    player.getInventory().addItem(item);
+                }
+            } else {
+                item.setAmount(amount);
+                player.getInventory().addItem(item);
+            }
+        } else {
+            for (int i = 0; i < amount; i++) {
+                player.getWorld().dropItemNaturally(player.getLocation(), item);
+            }
+        }
+    }
+
+    public static boolean canReceiveItems(Player player, ItemStack item, int amount) {
+        return getFreeSpace(player, item) >= amount;
+    }
+
+    public static int getFreeSpace(Player player, ItemStack item) {
+        int freeSpaceCount = 0;
+        for (int slot = 0; slot <= 35; slot++) {
+            final ItemStack slotItem = player.getInventory().getItem(slot);
+            if (slotItem == null || slotItem.getType() == Material.AIR) {
+                freeSpaceCount += item.getMaxStackSize();
+            } else if (slotItem.isSimilar(item)) freeSpaceCount += Math.max(0, slotItem.getMaxStackSize() - slotItem.getAmount());
+        }
+        return freeSpaceCount;
     }
 }
