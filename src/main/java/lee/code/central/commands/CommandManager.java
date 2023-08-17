@@ -32,6 +32,7 @@ public class CommandManager {
         commands.add(new SmiteCMD(central));
         commands.add(new EnchantCMD(central));
         commands.add(new GiveCMD(central));
+        commands.add(new GlowCMD(central));
     }
 
     private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();

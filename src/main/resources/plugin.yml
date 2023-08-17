@@ -30,3 +30,7 @@ commands:
     description: Give a target user a item.
     permission: central.command.give
     usage: "/give &f<player> <material> <amount>"
+  glow:
+    description: Toggle your glow.
+    permission: central.command.glow
+    usage: "/glow"

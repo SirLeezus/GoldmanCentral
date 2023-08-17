@@ -24,6 +24,7 @@ public enum Lang {
     COMMAND_ENCHANT_SUCCESSFUL("&aYou successfully enchanted your hand item with enchantment &3{0} &alevel &3{1}&a."),
     COMMAND_GIVE_TARGET_SUCCESSFUL("&aYou have received &3x{0} {1}&a!"),
     COMMAND_GIVE_SUCCESSFUL("&aThe player &6{0} &ahas been given &3x{1} {2}&a!"),
+    COMMAND_GLOW_SUCCESSFUL("&aYour glow was successfully toggled {0}&a."),
     COMMAND_WEATHER_CLEAR("&aThe weather has been &ecleared&a!"),
     COMMAND_WEATHER_RAIN("&aThe weather has been changed to &erain&a."),
     COMMAND_WEATHER_THUNDER("&aThe weather has been changed to &ethunderstorm&a."),
