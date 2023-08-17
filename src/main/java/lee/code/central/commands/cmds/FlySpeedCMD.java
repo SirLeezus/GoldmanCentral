@@ -49,7 +49,7 @@ public class FlySpeedCMD extends CustomCommand {
         }
         final String speedString = args[0];
         if (!CoreUtil.isPositiveIntNumber(speedString)) {
-            player.sendMessage(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { speedString }));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { speedString })));
             return;
         }
         final int speed = Integer.parseInt(speedString);
