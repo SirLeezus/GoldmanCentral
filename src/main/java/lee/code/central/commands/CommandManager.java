@@ -28,6 +28,7 @@ public class CommandManager {
     private void storeCommands() {
         commands.add(new GameModeCMD(central));
         commands.add(new FlyCMD(central));
+        commands.add(new FlySpeedCMD(central));
         commands.add(new WeatherCMD(central));
         commands.add(new SmiteCMD(central));
         commands.add(new EnchantCMD(central));

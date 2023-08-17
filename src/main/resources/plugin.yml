@@ -14,6 +14,10 @@ commands:
     description: Toggles your ability to fly.
     permission: central.command.fly
     usage: "/fly"
+  flyspeed:
+    description: Adjust your fly speed.
+    permission: central.command.flyspeed
+    usage: "/flyspeed &f<speed>"
   weather:
     description: Changes the weather in the world you're in.
     permission: central.command.weather
