@@ -22,3 +22,7 @@ commands:
     description: Summon lightning on a player or location.
     permission: central.command.smite
     usage: "/smite &f<player>"
+  enchant:
+    description: Enchant the item you're holding.
+    permission: central.command.enchant
+    usage: "/enchant &f<enchantment> <level>"

@@ -2,10 +2,7 @@ package lee.code.central.commands;
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import lee.code.central.Central;
-import lee.code.central.commands.cmds.FlyCMD;
-import lee.code.central.commands.cmds.GameModeCMD;
-import lee.code.central.commands.cmds.SmiteCMD;
-import lee.code.central.commands.cmds.WeatherCMD;
+import lee.code.central.commands.cmds.*;
 import lee.code.central.lang.Lang;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -33,6 +30,7 @@ public class CommandManager {
         commands.add(new FlyCMD(central));
         commands.add(new WeatherCMD(central));
         commands.add(new SmiteCMD(central));
+        commands.add(new EnchantCMD(central));
     }
 
     private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();

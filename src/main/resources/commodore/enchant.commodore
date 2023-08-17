@@ -1,0 +1,5 @@
+enchant {
+  enchantment brigadier:string single_word {
+    value brigadier:integer;
+  }
+}

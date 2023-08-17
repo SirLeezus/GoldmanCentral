@@ -18,11 +18,13 @@ public class Central extends JavaPlugin {
 
     @Getter private ScoreboardManager scoreboardManager;
     @Getter private CommandManager commandManager;
+    @Getter private Data data;
 
     @Override
     public void onEnable() {
         this.scoreboardManager = new ScoreboardManager();
         this.commandManager = new CommandManager(this);
+        this.data = new Data();
 
         registerCommands();
         registerListeners();
