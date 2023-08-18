@@ -12,6 +12,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -22,6 +24,7 @@ public class CoreUtil {
     private final static DecimalFormat amountFormatter = new DecimalFormat("#,###");
     private final static Pattern numberDoublePattern = Pattern.compile("^(?=.*[1-9])(\\d*\\.?\\d*)$");
     private final static Pattern numberIntPattern = Pattern.compile("^[1-9]\\d*$");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa");
 
     public static String parseValue(int value) {
         if (value == 0) return "0";
@@ -105,5 +108,10 @@ public class CoreUtil {
         final String intMax = String.valueOf(Integer.MAX_VALUE);
         if (numbers.length() > intMax.length() || (numbers.length() == intMax.length() && numbers.compareTo(intMax) > 0)) return false;
         return numberIntPattern.matcher(numbers).matches();
+    }
+
+    public static String getDate(long date) {
+        final Date resultDate = new Date(date);
+        return dateFormat.format(resultDate);
     }
 }

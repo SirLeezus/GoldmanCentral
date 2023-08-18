@@ -33,6 +33,7 @@ public enum Lang {
     COMMAND_WEATHER_CLEAR("&aThe weather has been &ecleared&a!"),
     COMMAND_WEATHER_RAIN("&aThe weather has been changed to &erain&a."),
     COMMAND_WEATHER_THUNDER("&aThe weather has been changed to &ethunderstorm&a."),
+    COMMAND_SEEN_SUCCESSFUL("&aThe last time the player &6{0} &ajoined was &3{1}&a."),
     ERROR_ONE_COMMAND_AT_A_TIME("&cYou're currently processing another town command, please wait for it to finish."),
     ERROR_ENCHANT_NO_HAND_ITEM("&cYou're currently not holding a item to enchant."),
     ERROR_NOT_ENCHANT("&cThe input &3{0} &cis not a enchantment."),
