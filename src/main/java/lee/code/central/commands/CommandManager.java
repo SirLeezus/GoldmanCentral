@@ -37,6 +37,7 @@ public class CommandManager {
         commands.add(new HeadCMD(central));
         commands.add(new HealCMD(central));
         commands.add(new SeenCMD(central));
+        commands.add(new ColorsCMD(central));
     }
 
     private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();

@@ -50,3 +50,7 @@ commands:
     description: Last time a target player joined the server.
     permission: central.command.seen
     usage: "/seen &f<player>"
+  colors:
+    description: A list of color codes that can be used.
+    permission: central.command.colors
+    usage: "/colors"
