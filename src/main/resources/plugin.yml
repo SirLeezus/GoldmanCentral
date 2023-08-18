@@ -54,3 +54,8 @@ commands:
     description: A list of color codes that can be used.
     permission: central.command.colors
     usage: "/colors"
+  balance:
+    description: Check your balance or a target player's balance.
+    permission: central.command.balance
+    aliases: [bal]
+    usage: "/balance &f<player>"

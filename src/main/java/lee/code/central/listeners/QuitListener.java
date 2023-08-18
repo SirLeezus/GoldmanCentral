@@ -1,6 +1,7 @@
 package lee.code.central.listeners;
 
 import lee.code.central.Central;
+import lee.code.central.database.cache.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.VariableUtil;
@@ -22,8 +23,11 @@ public class QuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+        final CachePlayers cachePlayers = central.getCacheManager().getCachePlayers();
         final Player player = e.getPlayer();
         final UUID uuid = player.getUniqueId();
+        //Is Flying Check
+        if (player.isFlying()) cachePlayers.setFlying(uuid, true);
         //Update Tab list
         Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[] { String.valueOf( CoreUtil.getOnlinePlayers().size() - 1) }));
         //Set Quit Message

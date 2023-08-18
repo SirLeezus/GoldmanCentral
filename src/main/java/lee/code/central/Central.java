@@ -4,6 +4,8 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.commands.CommandManager;
 import lee.code.central.commands.TabCompletion;
+import lee.code.central.database.CacheManager;
+import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
 import lee.code.central.scoreboard.ScoreboardManager;
 import lombok.Getter;
@@ -16,12 +18,16 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private CacheManager cacheManager;
     @Getter private ScoreboardManager scoreboardManager;
     @Getter private CommandManager commandManager;
     @Getter private Data data;
+    private DatabaseManager databaseManager;
 
     @Override
     public void onEnable() {
+        this.databaseManager = new DatabaseManager(this);
+        this.cacheManager = new CacheManager(this, databaseManager);
         this.scoreboardManager = new ScoreboardManager();
         this.commandManager = new CommandManager(this);
         this.data = new Data();
@@ -29,11 +35,13 @@ public class Central extends JavaPlugin {
         registerCommands();
         registerListeners();
         startSchedules();
+
+        databaseManager.initialize(false);
     }
 
     @Override
     public void onDisable() {
-
+        databaseManager.closeConnection();
     }
 
     private void registerListeners() {
