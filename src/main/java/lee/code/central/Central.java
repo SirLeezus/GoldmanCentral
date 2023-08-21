@@ -27,17 +27,17 @@ public class Central extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
         this.databaseManager = new DatabaseManager(this);
         this.cacheManager = new CacheManager(this, databaseManager);
         this.scoreboardManager = new ScoreboardManager();
         this.commandManager = new CommandManager(this);
         this.data = new Data();
+        databaseManager.initialize(false);
 
         registerCommands();
         registerListeners();
         startSchedules();
-
-        databaseManager.initialize(false);
     }
 
     @Override
