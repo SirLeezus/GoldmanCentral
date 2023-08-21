@@ -42,6 +42,7 @@ public class CommandManager {
         commands.add(new ColorsCMD(central));
         commands.add(new BalanceCMD(central));
         commands.add(new MoneyCMD(central));
+        commands.add(new WorthCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

@@ -64,3 +64,7 @@ commands:
     permission: central.command.money
     aliases: [eco]
     usage: "/money &f<player> <set/add/remove> <amount>"
+  worth:
+    description: Check the worth of the item you're holding.
+    permission: central.command.worth
+    usage: "/worth"
