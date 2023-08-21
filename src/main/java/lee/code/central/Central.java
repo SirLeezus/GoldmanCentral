@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private static Central instance;
     @Getter private CacheManager cacheManager;
     @Getter private ScoreboardManager scoreboardManager;
     @Getter private CommandManager commandManager;

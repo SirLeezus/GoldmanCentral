@@ -19,6 +19,8 @@ public class CommandManager {
 
     private final Central central;
     @Getter private final Set<CustomCommand> commands = ConcurrentHashMap.newKeySet();
+    private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();
+    private final Object synchronizedThreadLock = new Object();
 
     public CommandManager(Central central) {
         this.central = central;
@@ -39,10 +41,8 @@ public class CommandManager {
         commands.add(new SeenCMD(central));
         commands.add(new ColorsCMD(central));
         commands.add(new BalanceCMD(central));
+        commands.add(new MoneyCMD(central));
     }
-
-    private final ConcurrentHashMap<UUID, ScheduledTask> asyncTasks = new ConcurrentHashMap<>();
-    private final Object synchronizedThreadLock = new Object();
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {
         if (sender instanceof Player player) {

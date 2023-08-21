@@ -43,6 +43,12 @@ public class CachePlayers extends DatabaseHandler {
         updatePlayerDatabase(playerTable);
     }
 
+    public void setBalance(UUID uuid, double amount) {
+        final PlayerTable playerTable = getPlayerTable(uuid);
+        playerTable.setBalance(amount);
+        updatePlayerDatabase(playerTable);
+    }
+
     public void removeBalance(UUID uuid, double amount) {
         final PlayerTable playerTable = getPlayerTable(uuid);
         playerTable.setBalance(Math.max(playerTable.getBalance() - amount, 0));

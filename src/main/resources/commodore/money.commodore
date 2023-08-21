@@ -1,0 +1,13 @@
+money {
+  player brigadier:string single_word {
+    set {
+        amount brigadier:double;
+    }
+    add {
+        amount brigadier:double;
+    }
+    remove {
+        amount brigadier:double;
+    }
+  }
+}
