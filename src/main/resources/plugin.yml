@@ -68,3 +68,7 @@ commands:
     description: Check the worth of the item you're holding.
     permission: central.command.worth
     usage: "/worth"
+  sell:
+    description: Sell the item you're holding to the server.
+    permission: central.command.sell
+    usage: "/sell"

@@ -6,7 +6,6 @@ import lee.code.central.enums.ItemValue;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,22 +16,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorthCMD extends CustomCommand {
+public class SellCMD extends CustomCommand {
 
     private final Central central;
 
-    public WorthCMD(Central central) {
+    public SellCMD(Central central) {
         this.central = central;
     }
 
     @Override
     public String getName() {
-        return "worth";
+        return "sell";
     }
 
     @Override
     public boolean performAsync() {
-        return true;
+        return false;
     }
 
     @Override
@@ -51,27 +50,24 @@ public class WorthCMD extends CustomCommand {
         final ItemStack handItem = player.getInventory().getItemInMainHand();
         final Material handMaterial = handItem.getType();
         if (handMaterial.equals(Material.AIR)) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_WORTH_NO_ITEM.getComponent(null)));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SELL_NO_ITEM.getComponent(null)));
             return;
         }
         if (!central.getData().getSellableMaterials().contains(handMaterial.name())) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_VALUE.getComponent(new String[] { CoreUtil.capitalize(handMaterial.name()) })));
             return;
         }
-        final double worth = ItemValue.valueOf(handMaterial.name()).getValue();
-        final double handWorth = worth * handItem.getAmount();
-        final double inventoryAmount = worth * ItemUtil.getItemAmount(player, handItem);
-
-        final List<Component> lines = new ArrayList<>();
-        lines.add(Lang.COMMAND_WORTH_HEADER.getComponent(null));
-        lines.add(Component.text(" "));
-        lines.add(Lang.COMMAND_WORTH_ITEM.getComponent(new String[] { CoreUtil.capitalize(handMaterial.name()) }));
-        lines.add(Lang.COMMAND_WORTH_WORTH.getComponent(new String[] { Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(worth) }) }));
-        lines.add(Lang.COMMAND_WORTH_INVENTORY.getComponent(new String[] { Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(inventoryAmount) }) }));
-        lines.add(Lang.COMMAND_WORTH_HAND.getComponent(new String[] { Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(handWorth) }) }));
-        lines.add(Component.text(" "));
-        lines.add(Lang.COMMAND_WORTH_SPLITTER.getComponent(null));
-        for (Component line : lines) player.sendMessage(line);
+        final String name = handItem.getType().name();
+        final int amount = handItem.getAmount();
+        final double worth = ItemValue.valueOf(name).getValue();
+        final double finalWorth = worth * amount;
+        ItemUtil.removePlayerItems(player, handItem, amount, true);
+        central.getCacheManager().getCachePlayers().addBalance(player.getUniqueId(), finalWorth);
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SELL_SUCCESSFUL.getComponent(new String[] {
+                CoreUtil.parseValue(amount),
+                CoreUtil.capitalize(name),
+                Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(finalWorth) })
+        })));
     }
 
     @Override

@@ -14,9 +14,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemUtil {
 
@@ -103,5 +101,43 @@ public class ItemUtil {
             } else if (slotItem.isSimilar(item)) freeSpaceCount += Math.max(0, slotItem.getMaxStackSize() - slotItem.getAmount());
         }
         return freeSpaceCount;
+    }
+
+    public static int getItemAmount(Player player, ItemStack targetItem) {
+        int amount = 0;
+        for (ItemStack item : player.getInventory().getContents()) {
+            if (item == null || !item.isSimilar(targetItem)) continue;
+            amount += item.getAmount();
+        }
+        return amount;
+    }
+
+    public static void removePlayerItems(Player player, ItemStack item, int count, boolean handOnly) {
+        if (!handOnly) {
+            final Map<Integer, ItemStack> ammo = new HashMap<>();
+            for (int i = 0; i < player.getInventory().getSize(); i++) {
+                final ItemStack stack = player.getInventory().getItem(i);
+                if (stack == null) continue;
+                if (stack.isSimilar(item)) {
+                    ammo.put(i, stack);
+                }
+            }
+            int found = 0;
+            for (ItemStack stack : ammo.values()) found += stack.getAmount();
+            if (count > found) return;
+            for (Integer index : ammo.keySet()) {
+                final ItemStack stack = ammo.get(index);
+                if (stack.isSimilar(item)) {
+                    final int removed = Math.min(count, stack.getAmount());
+                    count -= removed;
+                    if (stack.getAmount() == removed) player.getInventory().setItem(index, null);
+                    else stack.setAmount(stack.getAmount() - removed);
+                    if (count <= 0) break;
+                }
+            }
+        } else {
+            final ItemStack handItem = player.getInventory().getItemInMainHand();
+            handItem.setAmount(handItem.getAmount() - count);
+        }
     }
 }
