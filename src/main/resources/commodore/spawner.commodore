@@ -1,0 +1,7 @@
+spawner {
+  player brigadier:string single_word {
+    entity brigadier:string single_word {
+        amount brigadier:integer;
+    }
+  }
+}

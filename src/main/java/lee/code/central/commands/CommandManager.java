@@ -35,6 +35,7 @@ public class CommandManager {
         commands.add(new SmiteCMD(central));
         commands.add(new EnchantCMD(central));
         commands.add(new GiveCMD(central));
+        commands.add(new SpawnerCMD(central));
         commands.add(new GlowCMD(central));
         commands.add(new HeadCMD(central));
         commands.add(new HealCMD(central));

@@ -6,28 +6,27 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GiveCMD extends CustomCommand {
+public class SpawnerCMD extends CustomCommand {
 
     private final Central central;
 
-    public GiveCMD(Central central) {
+    public SpawnerCMD(Central central) {
         this.central = central;
     }
 
     @Override
     public String getName() {
-        return "give";
+        return "spawner";
     }
 
     @Override
@@ -72,12 +71,12 @@ public class GiveCMD extends CustomCommand {
             sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { playerString })));
             return;
         }
-        final String materialString = args[1].toUpperCase();
-        if (!central.getData().getMaterials().contains(materialString)) {
-            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_MATERIAL.getComponent(new String[] { materialString })));
+        final String entityTypeString = args[1].toUpperCase();
+        if (!central.getData().getEntityTypes().contains(entityTypeString)) {
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_ENTITY_TYPE.getComponent(new String[] { entityTypeString })));
             return;
         }
-        final Material material = Material.valueOf(materialString);
+        final EntityType entityType = EntityType.valueOf(entityTypeString);
         final String amountString = args[2];
         if (!CoreUtil.isPositiveIntNumber(amountString)) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
@@ -85,15 +84,15 @@ public class GiveCMD extends CustomCommand {
         }
         int amount = Integer.parseInt(amountString);
         if (amount > 1000) amount = 1000;
-        ItemUtil.giveItemOrDrop(player, new ItemStack(material), amount);
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
-        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
+        ItemUtil.giveItemOrDrop(player, ItemUtil.createSpawner(entityType), amount);
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[] { CoreUtil.capitalize(entityTypeString) }) })));
+        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[] { CoreUtil.capitalize(entityTypeString) }) })));
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
-        else if (args.length == 2) return StringUtil.copyPartialMatches(args[1], central.getData().getMaterials(), new ArrayList<>());
+        else if (args.length == 2) return StringUtil.copyPartialMatches(args[1], central.getData().getEntityTypes(), new ArrayList<>());
         else return new ArrayList<>();
     }
 }

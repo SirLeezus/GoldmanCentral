@@ -35,6 +35,10 @@ commands:
     description: Give a target user a item.
     permission: central.command.give
     usage: "/give &f<player> <material> <amount>"
+  spawner:
+    description: Give a target user a spawner.
+    permission: central.command.spawner
+    usage: "/spawner &f<player> <entity> <amount>"
   head:
     description: Create a player head with any username.
     permission: central.command.head

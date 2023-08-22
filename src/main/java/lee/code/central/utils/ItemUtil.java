@@ -2,13 +2,17 @@ package lee.code.central.utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import lee.code.central.lang.Lang;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Material;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -140,4 +144,17 @@ public class ItemUtil {
             handItem.setAmount(handItem.getAmount() - count);
         }
     }
+
+    public static ItemStack createSpawner(EntityType type) {
+        final ItemStack spawner = new ItemStack(Material.SPAWNER);
+        final BlockStateMeta spawnerMeta = (BlockStateMeta) spawner.getItemMeta();
+        if (spawnerMeta == null) return spawner;
+        final CreatureSpawner spawnerCS = (CreatureSpawner) spawnerMeta.getBlockState();
+        spawnerCS.setSpawnedType(type);
+        spawnerMeta.setBlockState(spawnerCS);
+        spawnerMeta.displayName(Lang.SPAWNER_NAME.getComponent(new String[] { CoreUtil.capitalize(type.name()) }));
+        spawner.setItemMeta(spawnerMeta);
+        return spawner;
+    }
+
 }
