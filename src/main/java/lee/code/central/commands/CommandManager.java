@@ -44,6 +44,7 @@ public class CommandManager {
         commands.add(new MoneyCMD(central));
         commands.add(new WorthCMD(central));
         commands.add(new SellCMD(central));
+        commands.add(new PayCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

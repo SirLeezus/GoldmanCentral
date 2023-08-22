@@ -1,0 +1,5 @@
+pay {
+  player brigadier:string single_word {
+    amount brigadier:double;
+  }
+}

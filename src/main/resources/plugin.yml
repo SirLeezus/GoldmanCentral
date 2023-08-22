@@ -73,3 +73,7 @@ commands:
     description: Sell the item you're holding to the server.
     permission: central.command.sell
     usage: "/sell"
+  pay:
+    description: Pay another player from your balance.
+    permission: central.command.pay
+    usage: "/pay &f<player> <amount>"

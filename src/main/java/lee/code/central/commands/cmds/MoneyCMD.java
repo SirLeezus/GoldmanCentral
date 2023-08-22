@@ -2,7 +2,6 @@ package lee.code.central.commands.cmds;
 
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
-import lee.code.central.database.cache.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.economy.EcoAPI;
@@ -63,7 +62,6 @@ public class MoneyCMD extends CustomCommand {
             sender.sendMessage(Lang.USAGE.getComponent(new String[] { command.getUsage() }));
             return;
         }
-        final CachePlayers cachePlayers = central.getCacheManager().getCachePlayers();
         final String targetString = args[0];
         final OfflinePlayer target = Bukkit.getOfflinePlayerIfCached(targetString);
         if (target == null) {
@@ -71,7 +69,7 @@ public class MoneyCMD extends CustomCommand {
             return;
         }
         final UUID targetID = target.getUniqueId();
-        if (!cachePlayers.hasPlayerData(targetID)) {
+        if (!EcoAPI.hasPlayerData(targetID)) {
             sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[] { targetString })));
             return;
         }

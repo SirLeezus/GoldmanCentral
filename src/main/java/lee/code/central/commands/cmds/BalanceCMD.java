@@ -2,7 +2,6 @@ package lee.code.central.commands.cmds;
 
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
-import lee.code.central.database.cache.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.economy.EcoAPI;
@@ -48,7 +47,6 @@ public class BalanceCMD extends CustomCommand {
 
     @Override
     public void perform(Player player, String[] args, Command command) {
-        final CachePlayers cachePlayers = central.getCacheManager().getCachePlayers();
         if (args.length > 0) {
             final String targetString = args[0];
             final OfflinePlayer target = Bukkit.getOfflinePlayerIfCached(targetString);
@@ -56,12 +54,13 @@ public class BalanceCMD extends CustomCommand {
                 player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { targetString })));
                 return;
             }
-            if (!cachePlayers.hasPlayerData(target.getUniqueId())) {
+            if (!EcoAPI.hasPlayerData(target.getUniqueId())) {
                 player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[] { targetString })));
                 return;
             }
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_BALANCE_TARGET_SUCCESSFUL.getComponent(new String[] {
-                    target.getName(), Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(EcoAPI.getBalance(target.getUniqueId())) })
+                    target.getName(),
+                    Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(EcoAPI.getBalance(target.getUniqueId())) })
             })));
             return;
         }
