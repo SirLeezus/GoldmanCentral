@@ -39,6 +39,7 @@ public class CommandManager {
         commands.add(new GlowCMD(central));
         commands.add(new HeadCMD(central));
         commands.add(new HealCMD(central));
+        commands.add(new FeedCMD(central));
         commands.add(new SeenCMD(central));
         commands.add(new ColorsCMD(central));
         commands.add(new BalanceCMD(central));

@@ -81,3 +81,7 @@ commands:
     description: Pay another player from your balance.
     permission: central.command.pay
     usage: "/pay &f<player> <amount>"
+  feed:
+    description: Feed yourself or another player.
+    permission: central.command.feed
+    usage: "/feed &f<player>"
