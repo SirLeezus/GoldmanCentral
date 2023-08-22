@@ -74,22 +74,21 @@ public class ItemUtil {
         itemStack.setItemMeta(itemMeta);
     }
 
-    public static void giveItemOrDrop(Player player, ItemStack item, int amount) {
-        item.setAmount(1);
-        if (canReceiveItems(player, item, amount)) {
-            if (item.getMaxStackSize() < 64) {
-                for (int i = 0; i < amount; i++) {
-                    player.getInventory().addItem(item);
-                }
-            } else {
-                item.setAmount(amount);
+    public static void giveItem(Player player, ItemStack item, int amount) {
+        if (item.getMaxStackSize() < 64) {
+            for (int i = 0; i < amount; i++) {
                 player.getInventory().addItem(item);
             }
         } else {
-            for (int i = 0; i < amount; i++) {
-                player.getWorld().dropItemNaturally(player.getLocation(), item);
-            }
+            item.setAmount(amount);
+            player.getInventory().addItem(item);
         }
+    }
+
+    public static void giveItemOrDrop(Player player, ItemStack item, int amount) {
+        item.setAmount(1);
+        if (canReceiveItems(player, item, amount)) giveItem(player, item, amount);
+        else for (int i = 0; i < amount; i++) player.getWorld().dropItemNaturally(player.getLocation(), item);
     }
 
     public static boolean canReceiveItems(Player player, ItemStack item, int amount) {

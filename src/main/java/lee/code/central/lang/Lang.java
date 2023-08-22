@@ -72,6 +72,7 @@ public enum Lang {
     ERROR_NO_PLAYER_DATA("&cCould not find any player data for &6{0}&c."),
     ERROR_PLAYER_NOT_ONLINE("&cThe player &6{0} &cis not online."),
     ERROR_VALUE_INVALID("&cThe input &3{0} &cis not an acceptable value."),
+    ERROR_NO_INVENTORY_SPACE("&cThe player &6{0} &cdoes not have enough inventory space."),
 
     ;
     @Getter

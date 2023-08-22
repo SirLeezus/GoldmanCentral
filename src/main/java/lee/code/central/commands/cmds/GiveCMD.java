@@ -80,12 +80,17 @@ public class GiveCMD extends CustomCommand {
         final Material material = Material.valueOf(materialString);
         final String amountString = args[2];
         if (!CoreUtil.isPositiveIntNumber(amountString)) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
             return;
         }
+        final ItemStack item = new ItemStack(material);
         int amount = Integer.parseInt(amountString);
         if (amount > 1000) amount = 1000;
-        ItemUtil.giveItemOrDrop(player, new ItemStack(material), amount);
+        if (!ItemUtil.canReceiveItems(player, item, amount)) {
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[] { playerString })));
+            return;
+        }
+        ItemUtil.giveItem(player, new ItemStack(material), amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
     }

@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -79,12 +80,17 @@ public class SpawnerCMD extends CustomCommand {
         final EntityType entityType = EntityType.valueOf(entityTypeString);
         final String amountString = args[2];
         if (!CoreUtil.isPositiveIntNumber(amountString)) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
             return;
         }
         int amount = Integer.parseInt(amountString);
         if (amount > 1000) amount = 1000;
-        ItemUtil.giveItemOrDrop(player, ItemUtil.createSpawner(entityType), amount);
+        final ItemStack item = ItemUtil.createSpawner(entityType);
+        if (!ItemUtil.canReceiveItems(player, item, amount)) {
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[] { playerString })));
+            return;
+        }
+        ItemUtil.giveItem(player, item, amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[] { CoreUtil.capitalize(entityTypeString) }) })));
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[] { CoreUtil.capitalize(entityTypeString) }) })));
     }
