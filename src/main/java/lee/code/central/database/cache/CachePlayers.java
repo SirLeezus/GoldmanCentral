@@ -33,28 +33,6 @@ public class CachePlayers extends DatabaseHandler {
         createPlayerDatabase(playerTable);
     }
 
-    public double getBalance(UUID uuid) {
-        return getPlayerTable(uuid).getBalance();
-    }
-
-    public void addBalance(UUID uuid, double amount) {
-        final PlayerTable playerTable = getPlayerTable(uuid);
-        playerTable.setBalance(playerTable.getBalance() + amount);
-        updatePlayerDatabase(playerTable);
-    }
-
-    public void setBalance(UUID uuid, double amount) {
-        final PlayerTable playerTable = getPlayerTable(uuid);
-        playerTable.setBalance(amount);
-        updatePlayerDatabase(playerTable);
-    }
-
-    public void removeBalance(UUID uuid, double amount) {
-        final PlayerTable playerTable = getPlayerTable(uuid);
-        playerTable.setBalance(Math.max(playerTable.getBalance() - amount, 0));
-        updatePlayerDatabase(playerTable);
-    }
-
     public boolean isFlying(UUID uuid) {
         return getPlayerTable(uuid).isFlying();
     }

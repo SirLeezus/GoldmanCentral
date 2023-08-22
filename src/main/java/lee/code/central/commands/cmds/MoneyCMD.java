@@ -5,6 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.database.cache.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.economy.EcoAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -83,19 +84,19 @@ public class MoneyCMD extends CustomCommand {
         final double amount = Double.parseDouble(amountString);
         switch (option) {
             case "set" -> {
-                cachePlayers.setBalance(targetID, amount);
+                EcoAPI.setBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_SET_SUCCESSFUL.getComponent(new String[] {
                         target.getName(), Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) })
                 })));
             }
             case "add" -> {
-                cachePlayers.addBalance(targetID, amount);
+                EcoAPI.addBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_ADDED_SUCCESSFUL.getComponent(new String[] {
                         Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }), target.getName()
                 })));
             }
             case "remove" -> {
-                cachePlayers.removeBalance(targetID, amount);
+                EcoAPI.removeBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_REMOVED_SUCCESSFUL.getComponent(new String[] {
                         Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }), target.getName()
                 })));

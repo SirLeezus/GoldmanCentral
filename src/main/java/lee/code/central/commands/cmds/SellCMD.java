@@ -6,6 +6,7 @@ import lee.code.central.enums.ItemValue;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
+import lee.code.economy.EcoAPI;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -62,7 +63,7 @@ public class SellCMD extends CustomCommand {
         final double worth = ItemValue.valueOf(name).getValue();
         final double finalWorth = worth * amount;
         ItemUtil.removePlayerItems(player, handItem, amount, true);
-        central.getCacheManager().getCachePlayers().addBalance(player.getUniqueId(), finalWorth);
+        EcoAPI.addBalance(player.getUniqueId(), finalWorth);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SELL_SUCCESSFUL.getComponent(new String[] {
                 CoreUtil.parseValue(amount),
                 CoreUtil.capitalize(name),

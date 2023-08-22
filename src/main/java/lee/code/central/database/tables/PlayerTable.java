@@ -11,14 +11,11 @@ import java.util.UUID;
 @Setter
 @Getter
 @NoArgsConstructor
-@DatabaseTable(tableName = "towns")
+@DatabaseTable(tableName = "players")
 public class PlayerTable {
 
     @DatabaseField(id = true, canBeNull = false)
     private UUID uniqueId;
-
-    @DatabaseField(columnName = "balance")
-    private double balance;
 
     @DatabaseField(columnName = "flying")
     private boolean flying;

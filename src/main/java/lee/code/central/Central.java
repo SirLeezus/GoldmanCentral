@@ -18,7 +18,6 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
-    @Getter private static Central instance;
     @Getter private CacheManager cacheManager;
     @Getter private ScoreboardManager scoreboardManager;
     @Getter private CommandManager commandManager;
@@ -27,7 +26,6 @@ public class Central extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;
         this.databaseManager = new DatabaseManager(this);
         this.cacheManager = new CacheManager(this, databaseManager);
         this.scoreboardManager = new ScoreboardManager();

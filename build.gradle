@@ -7,6 +7,7 @@ group 'lee.code.central'
 version '1.0.0'
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven {
         name = "paper-repo"
@@ -47,6 +48,9 @@ dependencies {
     //commodore
     implementation 'me.lucko:commodore:2.2'
     implementation 'me.lucko:commodore-file:1.0'
+
+    //goldman economy
+    compileOnly 'lee.code.economy:economy:1.0.0'
 }
 
 shadowJar {
