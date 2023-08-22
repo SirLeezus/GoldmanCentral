@@ -85,3 +85,11 @@ commands:
     description: Feed yourself or another player.
     permission: central.command.feed
     usage: "/feed &f<player>"
+  spawn:
+    description: Teleport to the server spawn.
+    permission: central.command.spawn
+    usage: "/spawn"
+  setspawn:
+    description: Set the server spawn.
+    permission: central.command.setspawn
+    usage: "/setspawn"

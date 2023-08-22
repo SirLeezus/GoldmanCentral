@@ -35,6 +35,9 @@ public enum Lang {
     COMMAND_FEED_SUCCESSFUL("&aYou are no longer hungry."),
     COMMAND_FEED_TARGET_SUCCESSFUL("&aYou are no longer hungry thanks to player &6{0}&a!"),
     COMMAND_FEED_PLAYER_TARGET_SUCCESSFUL("&aYou fully fed the player &6{0}&a!"),
+    COMMAND_SPAWN_SUCCESSFUL("&aYou successfully teleported to the server spawn."),
+    COMMAND_SPAWN_FAILED("&cFailed to teleport to server spawn."),
+    COMMAND_SET_SPAWN_SUCCESSFUL("&aYou successfully set the server spawn to your location."),
     COMMAND_HEAL_PLAYER_TARGET_SUCCESSFUL("&aYou healed the player &6{0} &afully!"),
     COMMAND_GLOW_SUCCESSFUL("&aYour glow was successfully toggled {0}&a."),
     COMMAND_PAY_SUCCESSFUL("&aYou successfully sent {0} &ato the player &6{1}&a!"),
@@ -74,6 +77,7 @@ public enum Lang {
     ERROR_PLAYER_NOT_FOUND("&cThe player &6{0} &ccould not be found."),
     ERROR_NO_PLAYER_DATA("&cCould not find any player data for &6{0}&c."),
     ERROR_PLAYER_NOT_ONLINE("&cThe player &6{0} &cis not online."),
+    ERROR_SPAWN_NOT_SET("&cCurrently there is no server spawn set."),
     ERROR_VALUE_INVALID("&cThe input &3{0} &cis not an acceptable value."),
     ERROR_NO_INVENTORY_SPACE("&cThe player &6{0} &cdoes not have enough inventory space."),
 

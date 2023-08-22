@@ -10,6 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import lee.code.central.Central;
 import lee.code.central.database.tables.PlayerTable;
+import lee.code.central.database.tables.ServerTable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ public class DatabaseManager {
 
     private final Central central;
     private Dao<PlayerTable, String> playerDao;
+    private Dao<ServerTable, Integer> serverDao;
 
     @Getter(AccessLevel.NONE)
     private ConnectionSource connectionSource;
@@ -45,6 +47,7 @@ public class DatabaseManager {
                     "test",
                     DatabaseTypeUtils.createDatabaseType(databaseURL));
             createOrCacheTables();
+            createDefaultServerData();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,6 +61,14 @@ public class DatabaseManager {
         }
     }
 
+    private void createDefaultServerData() {
+        if (central.getCacheManager().getCacheServer().getServerTable() == null) {
+            final ServerTable serverTable = new ServerTable();
+            central.getCacheManager().getCacheServer().setServerTable(serverTable);
+            createServerTable(serverTable);
+        }
+    }
+
     private void createOrCacheTables() throws SQLException {
         final CacheManager cacheManager = central.getCacheManager();
 
@@ -67,6 +78,13 @@ public class DatabaseManager {
 
         for (PlayerTable playerTable : playerDao.queryForAll()) {
             cacheManager.getCachePlayers().setPlayerTable(playerTable);
+        }
+
+        //Server data
+        TableUtils.createTableIfNotExists(connectionSource, ServerTable.class);
+        serverDao = DaoManager.createDao(connectionSource, ServerTable.class);
+        for (ServerTable serverTable : serverDao.queryForAll()) {
+            cacheManager.getCacheServer().setServerTable(serverTable);
         }
     }
 
@@ -99,4 +117,24 @@ public class DatabaseManager {
             }
         });
     }
+    private synchronized void createServerTable(ServerTable serverTable) {
+        Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+            try {
+                serverDao.createIfNotExists(serverTable);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public synchronized void updateServerTable(ServerTable serverTable) {
+        Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+            try {
+                serverDao.update(serverTable);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
 }

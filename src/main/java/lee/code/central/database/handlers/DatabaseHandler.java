@@ -3,6 +3,7 @@ package lee.code.central.database.handlers;
 
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.database.tables.PlayerTable;
+import lee.code.central.database.tables.ServerTable;
 
 public class DatabaseHandler {
 
@@ -22,6 +23,10 @@ public class DatabaseHandler {
 
     public void deletePlayerDatabase(PlayerTable playerTable) {
         databaseManager.deletePlayerTable(playerTable);
+    }
+
+    public void updateServerDatabase(ServerTable serverTable) {
+        databaseManager.updateServerTable(serverTable);
     }
 
 }
