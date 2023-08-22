@@ -49,6 +49,7 @@ public class CommandManager {
         commands.add(new PayCMD(central));
         commands.add(new SpawnCMD(central));
         commands.add(new SetSpawnCMD(central));
+        commands.add(new ClearCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

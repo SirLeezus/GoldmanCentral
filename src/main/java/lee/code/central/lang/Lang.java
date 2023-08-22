@@ -38,6 +38,7 @@ public enum Lang {
     COMMAND_SPAWN_SUCCESSFUL("&aYou successfully teleported to the server spawn."),
     COMMAND_SPAWN_FAILED("&cFailed to teleport to server spawn."),
     COMMAND_SET_SPAWN_SUCCESSFUL("&aYou successfully set the server spawn to your location."),
+    COMMAND_CLEAR_SUCCESSFUL("&aYou successfully cleared your inventory."),
     COMMAND_HEAL_PLAYER_TARGET_SUCCESSFUL("&aYou healed the player &6{0} &afully!"),
     COMMAND_GLOW_SUCCESSFUL("&aYour glow was successfully toggled {0}&a."),
     COMMAND_PAY_SUCCESSFUL("&aYou successfully sent {0} &ato the player &6{1}&a!"),

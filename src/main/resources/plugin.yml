@@ -93,3 +93,7 @@ commands:
     description: Set the server spawn.
     permission: central.command.setspawn
     usage: "/setspawn"
+  clear:
+    description: Clear your inventory.
+    permission: central.command.clear
+    usage: "/clear"
