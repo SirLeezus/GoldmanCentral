@@ -47,7 +47,7 @@ public enum Lang {
     COMMAND_WORTH_WORTH("&3&lWorth&7: {0}"),
     COMMAND_WORTH_INVENTORY("&3&lInventory&7: {0}"),
     COMMAND_WORTH_HAND("&3&lHand&7: {0}"),
-    COMMAND_WORTH_SPLITTER("&a-------------------"),
+    COMMAND_WORTH_SPLITTER("&a--------------------"),
     COMMAND_SELL_SUCCESSFUL("&aYou successfully sold &3x{0} {1} &afor {2}&a!"),
     COMMAND_COLORS_TITLE("&a---- &e[ &2&lColors &e] &a----"),
     COMMAND_COLORS_SPLITTER("&a--------------------"),
