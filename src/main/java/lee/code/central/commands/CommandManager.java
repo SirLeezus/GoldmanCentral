@@ -51,6 +51,7 @@ public class CommandManager {
         commands.add(new SetSpawnCMD(central));
         commands.add(new ClearCMD(central));
         commands.add(new TimeCMD(central));
+        commands.add(new WorldCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

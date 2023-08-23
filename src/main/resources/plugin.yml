@@ -101,3 +101,7 @@ commands:
     description: Set the time of day in your world.
     permission: central.command.time
     usage: "/time &f<day/noon/midnight/night>"
+  world:
+    description: Teleport to a world.
+    permission: central.command.world
+    usage: "/world &f<world>"
