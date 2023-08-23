@@ -1,6 +1,8 @@
 package lee.code.central.utils;
 
+import lee.code.central.lang.Lang;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -13,8 +15,7 @@ import org.bukkit.entity.Player;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -113,5 +114,20 @@ public class CoreUtil {
     public static String getDate(long date) {
         final Date resultDate = new Date(date);
         return dateFormat.format(resultDate);
+    }
+
+    public static <K, V extends Comparable<? super V>> HashMap<K, V> sortByValue(Map<K, V> hm, Comparator<V> comparator) {
+        final HashMap<K, V> temp = new LinkedHashMap<>();
+        hm.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(comparator))
+                .forEachOrdered(entry -> temp.put(entry.getKey(), entry.getValue()));
+        return temp;
+    }
+
+    public static Component createPageSelectionComponent(String command, int page) {
+        final Component next = Lang.NEXT_PAGE_TEXT.getComponent(null).hoverEvent(Lang.NEXT_PAGE_HOVER.getComponent(null)).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " " + (page + 1)));
+        final Component split = Lang.PAGE_SPACER_TEXT.getComponent(null);
+        final Component prev = Lang.PREVIOUS_PAGE_TEXT.getComponent(null).hoverEvent(Lang.PREVIOUS_PAGE_HOVER.getComponent(null)).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " " + (page - 1)));
+        return prev.append(split).append(next);
     }
 }

@@ -43,6 +43,7 @@ public class CommandManager {
         commands.add(new SeenCMD(central));
         commands.add(new ColorsCMD(central));
         commands.add(new BalanceCMD(central));
+        commands.add(new BalanceTopCMD(central));
         commands.add(new MoneyCMD(central));
         commands.add(new WorthCMD(central));
         commands.add(new SellCMD(central));

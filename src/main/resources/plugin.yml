@@ -105,3 +105,8 @@ commands:
     description: Teleport to a world.
     permission: central.command.world
     usage: "/world &f<world>"
+  balancetop:
+    description: Server balance leaderboard.
+    permission: central.command.balance
+    aliases: [baltop]
+    usage: "/balancetop"
