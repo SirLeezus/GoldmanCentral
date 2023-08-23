@@ -109,4 +109,12 @@ commands:
     description: Server balance leaderboard.
     permission: central.command.balance
     aliases: [baltop]
-    usage: "/balancetop"
+    usage: "/balancetop <page>"
+  stat:
+    description: Check one of your stats.
+    permission: central.command.stats
+    usage: "/stat &f<stat> <option>"
+  stattop:
+    description: Server stat leaderboard.
+    permission: central.command.stattop
+    usage: "/stattop &f<stat> <option/page> <page>"

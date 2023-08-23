@@ -1,0 +1,5 @@
+stat {
+  stat brigadier:string single_word {
+    option brigadier:string single_word;
+  }
+}

@@ -1,0 +1,7 @@
+stattop {
+  stat brigadier:string single_word {
+    option brigadier:string single_word {
+        page brigadier:integer;
+    }
+  }
+}

@@ -1,1 +1,3 @@
-balancetop;
+balancetop {
+    page brigadier:integer;
+}

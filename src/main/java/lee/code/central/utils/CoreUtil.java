@@ -8,9 +8,7 @@ import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.apache.commons.lang3.text.WordUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.text.DecimalFormat;
@@ -129,5 +127,18 @@ public class CoreUtil {
         final Component split = Lang.PAGE_SPACER_TEXT.getComponent(null);
         final Component prev = Lang.PREVIOUS_PAGE_TEXT.getComponent(null).hoverEvent(Lang.PREVIOUS_PAGE_HOVER.getComponent(null)).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " " + (page - 1)));
         return prev.append(split).append(next);
+    }
+
+    public static String getStatFormat(Statistic statistic, int value) {
+        switch (statistic) {
+            case PLAY_ONE_MINUTE, TIME_SINCE_DEATH, TIME_SINCE_REST, TOTAL_WORLD_TIME, SNEAK_TIME -> {
+                final long secondsPlayed = value / 20;
+                final long millisecondsPlayed = secondsPlayed * 1000;
+                return CoreUtil.parseTime(millisecondsPlayed);
+            }
+            default -> {
+                return CoreUtil.parseValue(value);
+            }
+        }
     }
 }

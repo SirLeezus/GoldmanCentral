@@ -4,6 +4,7 @@ import lee.code.central.database.DatabaseManager;
 import lee.code.central.database.handlers.DatabaseHandler;
 import lee.code.central.database.tables.PlayerTable;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -41,5 +42,9 @@ public class CachePlayers extends DatabaseHandler {
         final PlayerTable playerTable = getPlayerTable(uuid);
         playerTable.setFlying(isFlying);
         updatePlayerDatabase(playerTable);
+    }
+
+    public ArrayList<UUID> getPlayers() {
+        return new ArrayList<>(playersCache.keySet());
     }
 }
