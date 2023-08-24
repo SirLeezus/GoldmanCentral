@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -66,7 +67,10 @@ public class SeenCMD extends CustomCommand {
             sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { playerString })));
             return;
         }
-        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SEEN_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.getDate(offlinePlayer.getLastSeen()) })));
+        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SEEN_SUCCESSFUL.getComponent(new String[] {
+                ColorAPI.getColorChar(offlinePlayer.getUniqueId()) + playerString,
+                CoreUtil.getDate(offlinePlayer.getLastSeen())
+        })));
     }
 
     @Override

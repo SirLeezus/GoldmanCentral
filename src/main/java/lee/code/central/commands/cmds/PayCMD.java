@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -91,14 +92,14 @@ public class PayCMD extends CustomCommand {
         EcoAPI.addBalance(targetID, amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_SUCCESSFUL.getComponent(new String[] {
                 Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
-                target.getName()
+                ColorAPI.getColorChar(targetID) + target.getName()
         })));
         if (target.isOnline()) {
             final Player onlineTarget = target.getPlayer();
             if (onlineTarget == null) return;
             onlineTarget.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_TARGET_SUCCESSFUL.getComponent(new String[] {
                     Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
-                    player.getName()
+                    ColorAPI.getColorChar(player.getUniqueId()) + player.getName()
             })));
         }
     }

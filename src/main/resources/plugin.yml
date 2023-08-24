@@ -107,7 +107,7 @@ commands:
     usage: "/world &f<world>"
   balancetop:
     description: Server balance leaderboard.
-    permission: central.command.balance
+    permission: central.command.balancetop
     aliases: [baltop]
     usage: "/balancetop <page>"
   stat:

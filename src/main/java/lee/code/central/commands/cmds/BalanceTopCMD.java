@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -68,7 +69,7 @@ public class BalanceTopCMD extends CustomCommand {
             if (offlineTarget.hasPlayedBefore()) {
                 lines.add(Lang.COMMAND_BALANCE_TOP_LINE.getComponent(new String[] {
                         String.valueOf(position),
-                        offlineTarget.getName(),
+                        ColorAPI.getColorChar(targetID) + offlineTarget.getName(),
                         Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(sortedBalances.get(targetID)) })
                 }));
                 position++;

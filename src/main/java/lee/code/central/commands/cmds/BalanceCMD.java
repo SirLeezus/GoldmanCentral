@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -59,7 +60,7 @@ public class BalanceCMD extends CustomCommand {
                 return;
             }
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_BALANCE_TARGET_SUCCESSFUL.getComponent(new String[] {
-                    target.getName(),
+                    ColorAPI.getColorChar(target.getUniqueId()) + target.getName(),
                     Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(EcoAPI.getBalance(target.getUniqueId())) })
             })));
             return;

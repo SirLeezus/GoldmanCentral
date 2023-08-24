@@ -84,6 +84,7 @@ public class CoreUtil {
         return new Location(Bukkit.getWorld(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]), Double.parseDouble(split[3]), (float) Double.parseDouble(split[4]), (float) Double.parseDouble(split[5]));
     }
 
+    @SuppressWarnings("deprecation")
     public static String capitalize(String message) {
         final String format = message.toLowerCase().replaceAll("_", " ");
         return WordUtils.capitalize(format);
