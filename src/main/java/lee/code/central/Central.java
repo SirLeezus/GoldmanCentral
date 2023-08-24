@@ -56,6 +56,7 @@ public class Central extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SignListener(), this);
         getServer().getPluginManager().registerEvents(new BookListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnerListener(), this);
+        getServer().getPluginManager().registerEvents(new HopperFilterListener(), this);
     }
 
     private void startSchedules() {
