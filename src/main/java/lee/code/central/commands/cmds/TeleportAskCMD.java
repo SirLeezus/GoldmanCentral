@@ -70,31 +70,31 @@ public class TeleportAskCMD extends CustomCommand {
             switch (option) {
                 case "accept" -> {
                     if (!teleportRequestManager.hasActiveRequest(targetID, playerID)) {
-                        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_NO_REQUEST.getComponent(new String[] { ColorAPI.getColorChar(targetID) + targetString })));
+                        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_NO_REQUEST.getComponent(new String[] { ColorAPI.getNameColor(targetID, targetString) })));
                         return;
                     }
                     teleportRequestManager.removeActiveRequest(targetID, playerID);
-                    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_PLAYER_SUCCESSFUL.getComponent(new String[] { ColorAPI.getColorChar(targetID) + targetString })));
+                    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_PLAYER_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(targetID, targetString) })));
                     target.teleportAsync(player.getLocation()).thenAccept(result -> {
-                        if (result) target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_SUCCESSFUL.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() })));
-                        else target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_FAILED.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() })));
+                        if (result) target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_SUCCESSFUL.getComponent(new String[] {  ColorAPI.getNameColor(playerID, player.getName()) })));
+                        else target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_FAILED.getComponent(new String[] { ColorAPI.getNameColor(playerID, player.getName()) })));
                     });
                 }
                 case "deny" -> {
                     if (!teleportRequestManager.hasActiveRequest(targetID, playerID)) {
-                        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_NO_REQUEST.getComponent(new String[] { ColorAPI.getColorChar(targetID) + targetString })));
+                        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_NO_REQUEST.getComponent(new String[] { ColorAPI.getNameColor(targetID, targetString )})));
                         return;
                     }
                     teleportRequestManager.removeActiveRequest(targetID, playerID);
-                    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_DENY_PLAYER_SUCCESSFUL.getComponent(new String[] { ColorAPI.getColorChar(targetID) + target.getName() })));
-                    target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_DENY_TARGET_SUCCESSFUL.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() })));
+                    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_DENY_PLAYER_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(targetID, target.getName()) })));
+                    target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_DENY_TARGET_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(playerID, player.getName()) })));
                 }
                 default -> player.sendMessage(Lang.USAGE.getComponent(new String[] { command.getUsage() }));
             }
             return;
         }
         if (teleportRequestManager.hasActiveRequest(playerID, targetID)) {
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_ALREADY_REQUESTED.getComponent(new String[] { ColorAPI.getColorChar(targetID) + target.getName() })));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_ALREADY_REQUESTED.getComponent(new String[] { ColorAPI.getNameColor(targetID, target.getName()) })));
             return;
         }
         if (target.equals(player)) {
@@ -102,12 +102,12 @@ public class TeleportAskCMD extends CustomCommand {
             return;
         }
         teleportRequestManager.setActiveRequest(playerID, targetID);
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_SUCCESS.getComponent(new String[] { ColorAPI.getColorChar(targetID) + target.getName() })));
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_SUCCESS.getComponent(new String[] { ColorAPI.getNameColor(targetID, target.getName()) })));
         CoreUtil.sendConfirmMessage(target,
-                Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_TARGET_SUCCESS.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() })),
+                Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_TARGET_SUCCESS.getComponent(new String[] { ColorAPI.getNameColor(playerID, player.getName()) })),
                 "/teleportask " + player.getName(),
-                Lang.COMMAND_TELEPORT_ASK_ACCEPT_HOVER.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() }),
-                Lang.COMMAND_TELEPORT_ASK_DENY_HOVER.getComponent(new String[] { ColorAPI.getColorChar(playerID) + player.getName() }),
+                Lang.COMMAND_TELEPORT_ASK_ACCEPT_HOVER.getComponent(new String[] { ColorAPI.getNameColor(playerID, player.getName()) }),
+                Lang.COMMAND_TELEPORT_ASK_DENY_HOVER.getComponent(new String[] { ColorAPI.getNameColor(playerID, player.getName()) }),
                 false
         );
     }

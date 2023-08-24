@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -84,19 +85,22 @@ public class MoneyCMD extends CustomCommand {
             case "set" -> {
                 EcoAPI.setBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_SET_SUCCESSFUL.getComponent(new String[] {
-                        target.getName(), Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) })
+                        ColorAPI.getNameColor(targetID, target.getName()),
+                        Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) })
                 })));
             }
             case "add" -> {
                 EcoAPI.addBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_ADDED_SUCCESSFUL.getComponent(new String[] {
-                        Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }), target.getName()
+                        Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
+                        ColorAPI.getNameColor(targetID, target.getName())
                 })));
             }
             case "remove" -> {
                 EcoAPI.removeBalance(targetID, amount);
                 sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_REMOVED_SUCCESSFUL.getComponent(new String[] {
-                        Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }), target.getName()
+                        Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
+                        ColorAPI.getNameColor(targetID, target.getName())
                 })));
             }
             default -> sender.sendMessage(Lang.USAGE.getComponent(new String[] { command.getUsage() }));

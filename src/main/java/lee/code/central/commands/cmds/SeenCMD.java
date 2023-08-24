@@ -68,7 +68,7 @@ public class SeenCMD extends CustomCommand {
             return;
         }
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SEEN_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getColorChar(offlinePlayer.getUniqueId()) + playerString,
+                ColorAPI.getNameColor(offlinePlayer.getUniqueId(), playerString),
                 CoreUtil.getDate(offlinePlayer.getLastSeen())
         })));
     }

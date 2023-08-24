@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -61,7 +62,7 @@ public class SmiteCMD extends CustomCommand {
             }
             location = targetPlayer.getLocation();
             location.getWorld().strikeLightning(location);
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SMITE_TARGET_SUCCESSFUL.getComponent(new String[] { targetName })));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SMITE_TARGET_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(targetPlayer.getUniqueId(), targetName) })));
         } else {
             final Block block = player.getTargetBlockExact(100);
             if (block == null) {

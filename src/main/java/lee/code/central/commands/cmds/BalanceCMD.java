@@ -60,7 +60,7 @@ public class BalanceCMD extends CustomCommand {
                 return;
             }
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_BALANCE_TARGET_SUCCESSFUL.getComponent(new String[] {
-                    ColorAPI.getColorChar(target.getUniqueId()) + target.getName(),
+                    ColorAPI.getNameColor(target.getUniqueId(), target.getName()),
                     Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(EcoAPI.getBalance(target.getUniqueId())) })
             })));
             return;

@@ -7,21 +7,21 @@ public class ReplyManager {
 
     private final ConcurrentHashMap<UUID, UUID> lastMessage = new ConcurrentHashMap<>();
 
-    public void setLastMessage(UUID owner, UUID target) {
-        lastMessage.put(owner, target);
-        lastMessage.put(target, owner);
+    public void setLastMessage(UUID playerID, UUID targetID) {
+        lastMessage.put(playerID, targetID);
+        lastMessage.put(targetID, playerID);
     }
 
-    public boolean hasLastMessage(UUID owner) {
-        return lastMessage.containsKey(owner);
+    public boolean hasLastMessage(UUID playerID) {
+        return lastMessage.containsKey(playerID);
     }
 
-    public void removeLastMessage(UUID owner) {
-        lastMessage.remove(owner);
+    public void removeLastMessage(UUID playerID) {
+        lastMessage.remove(playerID);
     }
 
-    public UUID getLastMessage(UUID owner) {
-        return lastMessage.get(owner);
+    public UUID getLastMessage(UUID playerID) {
+        return lastMessage.get(playerID);
     }
 
 }

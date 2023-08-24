@@ -5,6 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
+import lee.code.colors.ColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -92,7 +93,7 @@ public class GiveCMD extends CustomCommand {
         }
         ItemUtil.giveItem(player, new ItemStack(material), amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[] { CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
-        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { playerString, CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
+        sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(player.getUniqueId(), playerString), CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString) })));
     }
 
     @Override

@@ -92,14 +92,14 @@ public class PayCMD extends CustomCommand {
         EcoAPI.addBalance(targetID, amount);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_SUCCESSFUL.getComponent(new String[] {
                 Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
-                ColorAPI.getColorChar(targetID) + target.getName()
+                ColorAPI.getNameColor(targetID, target.getName())
         })));
         if (target.isOnline()) {
             final Player onlineTarget = target.getPlayer();
             if (onlineTarget == null) return;
             onlineTarget.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_TARGET_SUCCESSFUL.getComponent(new String[] {
                     Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(amount) }),
-                    ColorAPI.getColorChar(player.getUniqueId()) + player.getName()
+                    ColorAPI.getNameColor(player.getUniqueId(), player.getName())
             })));
         }
     }

@@ -54,12 +54,12 @@ public class ReplyCMD extends CustomCommand {
             return;
         }
         final ReplyManager replyManager = central.getReplyManager();
-        final UUID ownerID = player.getUniqueId();
-        if (!replyManager.hasLastMessage(ownerID)) {
+        final UUID playerID = player.getUniqueId();
+        if (!replyManager.hasLastMessage(playerID)) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_REPLY_NONE.getComponent(null)));
             return;
         }
-        final UUID targetID = replyManager.getLastMessage(ownerID);
+        final UUID targetID = replyManager.getLastMessage(playerID);
         final OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetID);
         if (!targetOfflinePlayer.isOnline()) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[] { targetOfflinePlayer.getName() })));
@@ -70,14 +70,14 @@ public class ReplyCMD extends CustomCommand {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { targetOfflinePlayer.getName() })));
             return;
         }
-        central.getReplyManager().setLastMessage(ownerID, targetID);
+        central.getReplyManager().setLastMessage(playerID, targetID);
         final String message = CoreUtil.buildStringFromArgs(args, 0);
         player.sendMessage(Lang.COMMAND_MESSAGE_SENT_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getColorChar(targetID) + targetPlayer.getName(),
+                ColorAPI.getNameColor(targetID, targetPlayer.getName()),
                 message
         }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + targetPlayer.getName() + " ")));
         targetPlayer.sendMessage(Lang.COMMAND_MESSAGE_RECEIVED_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getColorChar(ownerID) + player.getName(),
+                ColorAPI.getNameColor(playerID, player.getName()),
                 message
         }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + player.getName() + " ")));
     }

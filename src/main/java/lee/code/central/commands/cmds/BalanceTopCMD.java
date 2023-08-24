@@ -69,7 +69,7 @@ public class BalanceTopCMD extends CustomCommand {
             if (offlineTarget.hasPlayedBefore()) {
                 lines.add(Lang.COMMAND_BALANCE_TOP_LINE.getComponent(new String[] {
                         String.valueOf(position),
-                        ColorAPI.getColorChar(targetID) + offlineTarget.getName(),
+                        ColorAPI.getNameColor(targetID, offlineTarget.getName()),
                         Lang.VALUE_FORMAT.getString(new String[] { CoreUtil.parseValue(sortedBalances.get(targetID)) })
                 }));
                 position++;

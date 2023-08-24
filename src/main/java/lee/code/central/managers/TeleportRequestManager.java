@@ -54,11 +54,11 @@ public class TeleportRequestManager {
                 final OfflinePlayer oTarget = Bukkit.getOfflinePlayer(targetID);
                 if (oPlayer.isOnline()) {
                     final Player player = oPlayer.getPlayer();
-                    if (player != null) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_REQUEST_TIMEOUT_PLAYER.getComponent(new String[] { ColorAPI.getColorChar(targetID) + oTarget.getName() })));
+                    if (player != null) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_REQUEST_TIMEOUT_PLAYER.getComponent(new String[] { ColorAPI.getNameColor(targetID, oTarget.getName()) })));
                 }
                 if (oTarget.isOnline()) {
                     final Player target = oTarget.getPlayer();
-                    if (target != null) target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_REQUEST_TIMEOUT_TARGET.getComponent(new String[] { ColorAPI.getColorChar(playerID) + oPlayer.getName() })));
+                    if (target != null) target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_TELEPORT_ASK_REQUEST_TIMEOUT_TARGET.getComponent(new String[] { ColorAPI.getNameColor(playerID, oPlayer.getName()) })));
                 }
                 removeActiveRequest(playerID, targetID);
             }

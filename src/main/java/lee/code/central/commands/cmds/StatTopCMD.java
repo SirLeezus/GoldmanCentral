@@ -137,7 +137,7 @@ public class StatTopCMD extends CustomCommand {
             final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
             lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[] {
                     String.valueOf(position),
-                    ColorAPI.getColorChar(targetID) + offlinePlayer.getName(),
+                    ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
                     statFormat
             }));
             position++;

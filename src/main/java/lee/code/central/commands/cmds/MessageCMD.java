@@ -67,15 +67,15 @@ public class MessageCMD extends CustomCommand {
             return;
         }
         final UUID targetID = targetPlayer.getUniqueId();
-        final UUID ownerID = player.getUniqueId();
-        central.getReplyManager().setLastMessage(ownerID, targetID);
+        final UUID playerID = player.getUniqueId();
+        central.getReplyManager().setLastMessage(playerID, targetID);
         final String message = CoreUtil.buildStringFromArgs(args, 1);
         player.sendMessage(Lang.COMMAND_MESSAGE_SENT_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getColorChar(targetID) + targetPlayer.getName(),
+                ColorAPI.getNameColor(targetID, targetPlayer.getName()),
                 message
         }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + targetPlayer.getName() + " ")));
         targetPlayer.sendMessage(Lang.COMMAND_MESSAGE_RECEIVED_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getColorChar(ownerID) + player.getName(),
+                ColorAPI.getNameColor(playerID, player.getName()),
                 message
         }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + player.getName() + " ")));
     }
