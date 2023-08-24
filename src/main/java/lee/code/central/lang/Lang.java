@@ -70,7 +70,7 @@ public enum Lang {
     COMMAND_COLOR_SUCCESSFUL("&aYou successfully set your color to {0}&a!"),
     COMMAND_CLEAR_SUCCESSFUL("&aYou successfully cleared your inventory."),
     COMMAND_TIME_SUCCESSFUL("&aYou successfully set the time to &3{0}&a!"),
-    COMMAND_HEAL_PLAYER_TARGET_SUCCESSFUL("&aYou healed the player &6{0} &afully!"),
+    COMMAND_HEAL_PLAYER_SUCCESSFUL("&aYou healed the player &6{0} &afully!"),
     COMMAND_GLOW_SUCCESSFUL("&aYour glow was successfully toggled {0}&a."),
     COMMAND_PAY_SUCCESSFUL("&aYou successfully sent {0} &ato the player &6{1}&a!"),
     COMMAND_PAY_TARGET_SUCCESSFUL("&aYou have been sent {0} &afrom the player &6{1}&a!"),

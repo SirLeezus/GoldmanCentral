@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
+import lee.code.colors.ColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -64,8 +65,8 @@ public class HealCMD extends CustomCommand {
                 return;
             }
             target.setHealth(attribute.getValue());
-            target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HEAL_TARGET_SUCCESSFUL.getComponent(new String[] { player.getName() })));
-            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HEAL_PLAYER_TARGET_SUCCESSFUL.getComponent(new String[] { targetString })));
+            target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HEAL_TARGET_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(player.getUniqueId(), player.getName()) })));
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HEAL_PLAYER_SUCCESSFUL.getComponent(new String[] { ColorAPI.getNameColor(target.getUniqueId(), targetString) })));
             return;
         }
         final AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
