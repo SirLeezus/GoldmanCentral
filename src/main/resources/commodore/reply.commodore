@@ -1,0 +1,3 @@
+reply {
+    message brigadier:string greedy_phrase;
+}

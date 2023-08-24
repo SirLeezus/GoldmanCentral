@@ -122,3 +122,13 @@ commands:
     description: Set your player name color.
     permission: central.command.color
     usage: "/color &f<color>"
+  message:
+    description: Message another online player.
+    permission: central.command.message
+    aliases: [msg, tell, whisper]
+    usage: "/message &f<player> <message>"
+  reply:
+    description: Reply to your last private messenger.
+    permission: central.command.reply
+    aliases: [r]
+    usage: "/reply &f<message>"
