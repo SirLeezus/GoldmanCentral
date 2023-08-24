@@ -1,6 +1,5 @@
 package lee.code.central.database.handlers;
 
-
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.database.tables.PlayerTable;
 import lee.code.central.database.tables.ServerTable;
