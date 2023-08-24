@@ -8,6 +8,7 @@ import lee.code.central.database.CacheManager;
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
 import lee.code.central.managers.ReplyManager;
+import lee.code.central.managers.TeleportRequestManager;
 import lombok.Getter;
 import me.lucko.commodore.CommodoreProvider;
 import me.lucko.commodore.file.CommodoreFileReader;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private TeleportRequestManager teleportRequestManager;
     @Getter private ReplyManager replyManager;
     @Getter private CacheManager cacheManager;
     @Getter private CommandManager commandManager;
@@ -31,6 +33,7 @@ public class Central extends JavaPlugin {
         this.commandManager = new CommandManager(this);
         this.data = new Data();
         this.replyManager = new ReplyManager();
+        this.teleportRequestManager = new TeleportRequestManager(this);
 
         databaseManager.initialize(false);
         registerCommands();

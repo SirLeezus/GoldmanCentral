@@ -1,0 +1,6 @@
+teleportask {
+  player brigadier:string single_word {
+    accept;
+    deny;
+  }
+}

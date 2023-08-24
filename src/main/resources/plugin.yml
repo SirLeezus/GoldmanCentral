@@ -132,3 +132,8 @@ commands:
     permission: central.command.reply
     aliases: [r]
     usage: "/reply &f<message>"
+  teleportask:
+    description: Ask another player if they can teleport to you.
+    permission: central.command.teleportask
+    aliases: [tpa]
+    usage: "/teleportask &f<player> <accept/deny>"

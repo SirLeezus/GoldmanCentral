@@ -58,6 +58,7 @@ public class CommandManager {
         commands.add(new ColorCMD(central));
         commands.add(new MessageCMD(central));
         commands.add(new ReplyCMD(central));
+        commands.add(new TeleportAskCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

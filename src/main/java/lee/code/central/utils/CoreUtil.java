@@ -142,4 +142,25 @@ public class CoreUtil {
             }
         }
     }
+
+    public static void sendConfirmMessage(Player player, Component message, String command, Component hoverYes, Component hoverNo, boolean isConfirm) {
+        final ArrayList<Component> lines = new ArrayList<>();
+        final Component yes;
+        if (isConfirm) {
+            yes = Lang.CONFIRM.getComponent(null)
+                    .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " confirm"))
+                    .hoverEvent(hoverYes);
+        } else {
+            yes = Lang.ACCEPT.getComponent(null)
+                    .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " accept"))
+                    .hoverEvent(hoverYes);
+        }
+        final Component no = Lang.DENY.getComponent(null)
+                .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, command + " deny"))
+                .hoverEvent(hoverNo);
+        final Component click = Lang.CLICK.getComponent(null);
+        lines.add(message);
+        lines.add(click.append(yes.append(Component.text("  ")).append(no)));
+        for (Component line : lines) player.sendMessage(line);
+    }
 }
