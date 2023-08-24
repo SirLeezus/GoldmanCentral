@@ -5,6 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
+import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -72,11 +73,11 @@ public class MessageCMD extends CustomCommand {
         player.sendMessage(Lang.COMMAND_MESSAGE_SENT_SUCCESSFUL.getComponent(new String[] {
                 ColorAPI.getColorChar(targetID) + targetPlayer.getName(),
                 message
-        }));
+        }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + targetPlayer.getName() + " ")));
         targetPlayer.sendMessage(Lang.COMMAND_MESSAGE_RECEIVED_SUCCESSFUL.getComponent(new String[] {
                 ColorAPI.getColorChar(ownerID) + player.getName(),
                 message
-        }));
+        }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + player.getName() + " ")));
     }
 
     @Override
