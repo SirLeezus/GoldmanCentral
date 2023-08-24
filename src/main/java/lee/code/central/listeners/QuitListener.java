@@ -32,7 +32,5 @@ public class QuitListener implements Listener {
         Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[] { String.valueOf( CoreUtil.getOnlinePlayers().size() - 1) }));
         //Set Quit Message
         e.quitMessage(VariableUtil.parseVariables(player, Lang.PLAYER_QUIT.getComponent(null)));
-        //Remove Player Color Data
-        central.getScoreboardManager().removePlayerBoard(uuid);
     }
 }

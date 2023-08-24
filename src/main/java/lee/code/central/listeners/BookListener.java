@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class BookListener implements Listener {
 
     @EventHandler (priority = EventPriority.MONITOR)

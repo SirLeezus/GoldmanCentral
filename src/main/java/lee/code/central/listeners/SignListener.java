@@ -9,7 +9,9 @@ import org.bukkit.event.block.SignChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class SignListener implements Listener {
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onSignChange(SignChangeEvent e) {
         if (e.isCancelled()) return;

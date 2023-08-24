@@ -118,3 +118,7 @@ commands:
     description: Server stat leaderboard.
     permission: central.command.stattop
     usage: "/stattop &f<stat> <option/page> <page>"
+  color:
+    description: Set your player name color.
+    permission: central.command.color
+    usage: "/color &f<color>"

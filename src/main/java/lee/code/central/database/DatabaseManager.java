@@ -11,8 +11,6 @@ import com.j256.ormlite.table.TableUtils;
 import lee.code.central.Central;
 import lee.code.central.database.tables.PlayerTable;
 import lee.code.central.database.tables.ServerTable;
-import lombok.AccessLevel;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 
 import java.io.File;
@@ -23,8 +21,6 @@ public class DatabaseManager {
     private final Central central;
     private Dao<PlayerTable, String> playerDao;
     private Dao<ServerTable, Integer> serverDao;
-
-    @Getter(AccessLevel.NONE)
     private ConnectionSource connectionSource;
 
     public DatabaseManager(Central central) {

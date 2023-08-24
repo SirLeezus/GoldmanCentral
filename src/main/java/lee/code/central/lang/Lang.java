@@ -52,6 +52,7 @@ public enum Lang {
     COMMAND_WORLD_SUCCESSFUL("&aYou successfully teleported to world &3{0}&a!"),
     COMMAND_WORLD_FAILED("&cFailed to teleport to world."),
     COMMAND_SET_SPAWN_SUCCESSFUL("&aYou successfully set the server spawn to your location."),
+    COMMAND_COLOR_SUCCESSFUL("&aYou successfully set your color to {0}&a!"),
     COMMAND_CLEAR_SUCCESSFUL("&aYou successfully cleared your inventory."),
     COMMAND_TIME_SUCCESSFUL("&aYou successfully set the time to &3{0}&a!"),
     COMMAND_HEAL_PLAYER_TARGET_SUCCESSFUL("&aYou healed the player &6{0} &afully!"),
@@ -98,6 +99,7 @@ public enum Lang {
     ERROR_STAT_DOES_NOT_EXIST("&cThe stat &3{0} &ccould not be found."),
     ERROR_SPAWN_NOT_SET("&cCurrently there is no server spawn set."),
     ERROR_VALUE_INVALID("&cThe input &3{0} &cis not an acceptable value."),
+    ERROR_COLOR_INVALID("&cThe input &3{0} &cis not an acceptable color."),
     ERROR_NO_INVENTORY_SPACE("&cThe player &6{0} &cdoes not have enough inventory space."),
 
     ;

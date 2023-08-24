@@ -7,7 +7,6 @@ import lee.code.central.commands.TabCompletion;
 import lee.code.central.database.CacheManager;
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
-import lee.code.central.scoreboard.ScoreboardManager;
 import lombok.Getter;
 import me.lucko.commodore.CommodoreProvider;
 import me.lucko.commodore.file.CommodoreFileReader;
@@ -19,7 +18,6 @@ import java.io.IOException;
 public class Central extends JavaPlugin {
 
     @Getter private CacheManager cacheManager;
-    @Getter private ScoreboardManager scoreboardManager;
     @Getter private CommandManager commandManager;
     @Getter private Data data;
     private DatabaseManager databaseManager;
@@ -28,11 +26,10 @@ public class Central extends JavaPlugin {
     public void onEnable() {
         this.databaseManager = new DatabaseManager(this);
         this.cacheManager = new CacheManager(this, databaseManager);
-        this.scoreboardManager = new ScoreboardManager();
         this.commandManager = new CommandManager(this);
         this.data = new Data();
-        databaseManager.initialize(false);
 
+        databaseManager.initialize(false);
         registerCommands();
         registerListeners();
         startSchedules();
@@ -46,7 +43,6 @@ public class Central extends JavaPlugin {
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new QuitListener(this), this);
-        getServer().getPluginManager().registerEvents(new HealthListener(this), this);
         getServer().getPluginManager().registerEvents(new DeathListener(), this);
         getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
         getServer().getPluginManager().registerEvents(new HeadDropListener(), this);

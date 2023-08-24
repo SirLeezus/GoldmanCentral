@@ -55,6 +55,7 @@ public class CommandManager {
         commands.add(new WorldCMD(central));
         commands.add(new StatCMD(central));
         commands.add(new StatTopCMD(central));
+        commands.add(new ColorCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {
