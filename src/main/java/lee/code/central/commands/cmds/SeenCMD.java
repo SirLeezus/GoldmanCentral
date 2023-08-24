@@ -61,14 +61,18 @@ public class SeenCMD extends CustomCommand {
             sender.sendMessage(Lang.USAGE.getComponent(new String[] { command.getUsage() }));
             return;
         }
-        final String playerString = args[0];
-        final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayerIfCached(playerString);
+        final String targetString = args[0];
+        final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayerIfCached(targetString);
         if (offlinePlayer == null) {
-            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { playerString })));
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[] { targetString })));
+            return;
+        }
+        if (!central.getCacheManager().getCachePlayers().hasPlayerData(offlinePlayer.getUniqueId())) {
+            sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[] { targetString })));
             return;
         }
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SEEN_SUCCESSFUL.getComponent(new String[] {
-                ColorAPI.getNameColor(offlinePlayer.getUniqueId(), playerString),
+                ColorAPI.getNameColor(offlinePlayer.getUniqueId(), targetString),
                 CoreUtil.getDate(offlinePlayer.getLastSeen())
         })));
     }
