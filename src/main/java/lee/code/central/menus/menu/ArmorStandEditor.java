@@ -12,10 +12,12 @@ import lee.code.central.menus.system.MenuPlayerData;
 import lee.code.central.utils.CoreUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
@@ -40,6 +42,7 @@ public class ArmorStandEditor extends MenuGUI {
 
     @Override
     public void decorate(Player player) {
+        addFillerGlass();
         for (ArmorStandItem armorStandItem : ArmorStandItem.values()) {
             addButton(armorStandItem.getSlot(), createButton(armorStandItem));
         }
@@ -91,6 +94,15 @@ public class ArmorStandEditor extends MenuGUI {
                         if (item == null) return;
                         final ItemStack newItem = armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation());
                         item.setItemMeta(newItem.getItemMeta());
+                    });
+        }
+        if (armorStandItem.getEquipmentSlot() != null) {
+            return new MenuButton().creator(p -> armorStandItem.createSlot(armorStand.getEquipment().getItem(armorStandItem.getEquipmentSlot())))
+                    .consumer(e -> {
+                        if (e.getCurrentItem() == null) return;
+                        final Player player = (Player) e.getWhoClicked();
+                        if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) return;
+                        equipmentChange(player, armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
                     });
         }
         return null;
@@ -256,5 +268,31 @@ public class ArmorStandEditor extends MenuGUI {
 
     private void updateArmorStandDirection(double amount) {
         armorStand.teleport(new Location(armorStand.getWorld(), armorStand.getLocation().getX(), armorStand.getLocation().getY(), armorStand.getLocation().getZ(), armorStand.getLocation().getYaw() + (float) amount, armorStand.getLocation().getPitch()));
+    }
+
+    private void equipmentChange(Player player, ArmorStandItem armorStandItem, EquipmentSlot equipmentSlot, ItemStack currentItem, ItemStack cursorItem) {
+        if (currentItem.getType().equals(Material.STRUCTURE_VOID) && !cursorItem.getType().isAir()) {
+            final ItemStack newCursorItem = new ItemStack(cursorItem);
+            currentItem.setType(newCursorItem.getType());
+            currentItem.setItemMeta(newCursorItem.getItemMeta());
+            currentItem.setAmount(newCursorItem.getAmount());
+            armorStand.getEquipment().setItem(equipmentSlot, newCursorItem);
+            player.setItemOnCursor(new ItemStack(Material.AIR));
+        } else if (!currentItem.getType().equals(Material.STRUCTURE_VOID) && cursorItem.getType().isAir()) {
+            player.setItemOnCursor(new ItemStack(currentItem));
+            armorStand.getEquipment().setItem(equipmentSlot, new ItemStack(Material.AIR));
+            final ItemStack noneItem = armorStandItem.createSlot(null);
+            currentItem.setType(noneItem.getType());
+            currentItem.setItemMeta(noneItem.getItemMeta());
+            currentItem.setAmount(1);
+        } else if (!currentItem.getType().equals(Material.STRUCTURE_VOID) && !cursorItem.getType().isAir()) {
+            final ItemStack newCursorItem = new ItemStack(cursorItem);
+            final ItemStack newCurrentItem = new ItemStack(currentItem);
+            currentItem.setType(newCursorItem.getType());
+            currentItem.setItemMeta(newCursorItem.getItemMeta());
+            currentItem.setAmount(newCursorItem.getAmount());
+            armorStand.getEquipment().setItem(equipmentSlot, newCursorItem);
+            player.setItemOnCursor(newCurrentItem);
+        }
     }
 }

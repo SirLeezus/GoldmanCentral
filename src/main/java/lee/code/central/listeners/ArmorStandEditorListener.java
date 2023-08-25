@@ -24,14 +24,15 @@ public class ArmorStandEditorListener implements Listener {
     public void onEditArmorStand(PlayerInteractAtEntityEvent e) {
         if (e.isCancelled()) return;
         final Player player = e.getPlayer();
-        if (!player.isSneaking()) return;
         if (e.getRightClicked() instanceof ArmorStand armorStand) {
-            e.setCancelled(true);
             final ArmorStandManager armorStandManager = central.getArmorStandManager();
             if (armorStandManager.isBeingEdited(armorStand.getUniqueId())) {
+                e.setCancelled(true);
                 player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ARMOR_STAND_BEING_EDITED.getComponent(null)));
                 return;
             }
+            if (!player.isSneaking()) return;
+            e.setCancelled(true);
             armorStandManager.setEditingArmorStand(armorStand.getUniqueId());
             final MenuPlayerData menuPlayerData = central.getMenuManager().getMenuPlayerData(player.getUniqueId());
             central.getMenuManager().openMenu(new ArmorStandEditor(armorStandManager, armorStand, menuPlayerData), player);
