@@ -137,3 +137,7 @@ commands:
     permission: central.command.teleportask
     aliases: [tpa]
     usage: "/teleportask &f<player> <accept/deny>"
+  restartwarning:
+    description: Restart the server with a warning.
+    permission: central.command.restartwarning
+    usage: "/restartwarning"

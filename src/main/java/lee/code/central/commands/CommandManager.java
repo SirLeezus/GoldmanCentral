@@ -59,6 +59,7 @@ public class CommandManager {
         commands.add(new MessageCMD(central));
         commands.add(new ReplyCMD(central));
         commands.add(new TeleportAskCMD(central));
+        commands.add(new RestartWarningCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

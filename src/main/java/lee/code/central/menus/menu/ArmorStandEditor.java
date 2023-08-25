@@ -66,14 +66,12 @@ public class ArmorStandEditor extends MenuGUI {
                         item.setItemMeta(newItem.getItemMeta());
                         item.setType(newItem.getType());
                     });
-        }
-        if (armorStandItem.getArmorStandPosition() != null) {
+        } else if (armorStandItem.getArmorStandPosition() != null) {
             return new MenuButton().creator(p -> armorStandItem.createPosition(CoreUtil.parseShortDecimalValue(checkArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate()))))
                     .consumer(e -> {
                         double amount = 0.01;
                         if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) amount = 0.10;
                         if (e.getClick().isLeftClick()) amount = -amount;
-                        System.out.println("Amount: " + amount);
                         updateArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate(), amount);
                         final ItemStack item = e.getCurrentItem();
                         if (item == null) return;
@@ -81,28 +79,24 @@ public class ArmorStandEditor extends MenuGUI {
                         item.setItemMeta(newItem.getItemMeta());
                         item.setType(newItem.getType());
                     });
-        }
-        if (armorStandItem.isDirection()) {
+        } else if (armorStandItem.isDirection()) {
             return new MenuButton().creator(p -> armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation()))
                     .consumer(e -> {
                         double amount = 1;
                         if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) amount = 10;
                         if (e.getClick().isLeftClick()) amount = -amount;
-                        System.out.println("Amount: " + amount);
                         updateArmorStandDirection(amount);
                         final ItemStack item = e.getCurrentItem();
                         if (item == null) return;
                         final ItemStack newItem = armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation());
                         item.setItemMeta(newItem.getItemMeta());
                     });
-        }
-        if (armorStandItem.getEquipmentSlot() != null) {
+        } else if (armorStandItem.getEquipmentSlot() != null) {
             return new MenuButton().creator(p -> armorStandItem.createSlot(armorStand.getEquipment().getItem(armorStandItem.getEquipmentSlot())))
                     .consumer(e -> {
                         if (e.getCurrentItem() == null) return;
-                        final Player player = (Player) e.getWhoClicked();
                         if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) return;
-                        equipmentChange(player, armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
+                        equipmentChange((Player) e.getWhoClicked(), armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
                     });
         }
         return null;
