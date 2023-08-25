@@ -95,6 +95,8 @@ public enum Lang {
     COMMAND_COLORS_TITLE("&a---- &e[ &2&lColors &e] &a----"),
     COMMAND_COLORS_SPLITTER("&a--------------------"),
     COMMAND_GOD_SUCCESSFUL("&aYou successfully toggled god mode {0}&a!"),
+    COMMAND_ENDER_CHEST_SUCCESSFUL("&aYou successfully opened your ender chest!"),
+    COMMAND_ENDER_CHEST_TARGET_SUCCESSFUL("&aYou successfully opened &6{0}'s &aender chest!"),
     MENU_ARMOR_STAND_POSITION_LORE("&7» Left-Click -0.01\n&7» Right-Click +0.01\n&7» Shift-Click x10"),
     MENU_ARMOR_STAND_DIRECTION_LORE("&7» Left-Click -1.00\n&7» Right-Click +1.00\n&7» Shift-Click x10"),
     MENU_ARMOR_STAND_SETTING("&6&l{0}&7: {1}"),

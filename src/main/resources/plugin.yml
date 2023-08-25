@@ -145,3 +145,7 @@ commands:
     description: Toggle god mode on or off.
     permission: central.command.god
     usage: "/god"
+  enderchest:
+    description: Open your ender chest or a target player.
+    permission: central.command.enderchest
+    usage: "/enderchest &f<player>"

@@ -61,6 +61,7 @@ public class CommandManager {
         commands.add(new TeleportAskCMD(central));
         commands.add(new RestartWarningCMD(central));
         commands.add(new GodCMD(central));
+        commands.add(new EnderChestCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {
