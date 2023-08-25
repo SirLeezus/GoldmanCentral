@@ -94,6 +94,7 @@ public enum Lang {
     COMMAND_SELL_SUCCESSFUL("&aYou successfully sold &3x{0} {1} &afor {2}&a!"),
     COMMAND_COLORS_TITLE("&a---- &e[ &2&lColors &e] &a----"),
     COMMAND_COLORS_SPLITTER("&a--------------------"),
+    COMMAND_GOD_SUCCESSFUL("&aYou successfully toggled god mode {0}&a!"),
     MENU_ARMOR_STAND_POSITION_LORE("&7» Left-Click -0.01\n&7» Right-Click +0.01\n&7» Shift-Click x10"),
     MENU_ARMOR_STAND_DIRECTION_LORE("&7» Left-Click -1.00\n&7» Right-Click +1.00\n&7» Shift-Click x10"),
     MENU_ARMOR_STAND_SETTING("&6&l{0}&7: {1}"),

@@ -66,6 +66,7 @@ public class Central extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HopperFilterListener(), this);
         getServer().getPluginManager().registerEvents(new MenuListener(menuManager), this);
         getServer().getPluginManager().registerEvents(new ArmorStandEditorListener(this), this);
+        getServer().getPluginManager().registerEvents(new GodListener(this), this);
     }
 
     private void startSchedules() {

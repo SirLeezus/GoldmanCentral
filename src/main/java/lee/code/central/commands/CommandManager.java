@@ -60,6 +60,7 @@ public class CommandManager {
         commands.add(new ReplyCMD(central));
         commands.add(new TeleportAskCMD(central));
         commands.add(new RestartWarningCMD(central));
+        commands.add(new GodCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

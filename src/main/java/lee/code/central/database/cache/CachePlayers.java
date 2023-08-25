@@ -47,4 +47,14 @@ public class CachePlayers extends DatabaseHandler {
     public ArrayList<UUID> getPlayers() {
         return new ArrayList<>(playersCache.keySet());
     }
+
+    public boolean isGod(UUID uuid) {
+        return getPlayerTable(uuid).isGod();
+    }
+
+    public void setGod(UUID uuid, boolean result) {
+        final PlayerTable playerTable = getPlayerTable(uuid);
+        playerTable.setGod(result);
+        updatePlayerDatabase(playerTable);
+    }
 }

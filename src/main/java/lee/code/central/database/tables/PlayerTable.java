@@ -20,6 +20,9 @@ public class PlayerTable {
     @DatabaseField(columnName = "flying")
     private boolean flying;
 
+    @DatabaseField(columnName = "god")
+    private boolean god;
+
     public PlayerTable(UUID uniqueId) {
         this.uniqueId = uniqueId;
     }

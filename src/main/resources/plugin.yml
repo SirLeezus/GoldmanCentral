@@ -141,3 +141,7 @@ commands:
     description: Restart the server with a warning.
     permission: central.command.restartwarning
     usage: "/restartwarning"
+  god:
+    description: Toggle god mode on or off.
+    permission: central.command.god
+    usage: "/god"
