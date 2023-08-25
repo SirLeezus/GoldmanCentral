@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class CoreUtil {
 
     private final static DecimalFormat amountFormatter = new DecimalFormat("#,###.##");
+    private static final DecimalFormat shortDecimalFormatter = new DecimalFormat("#.##");
     private final static Pattern numberDoublePattern = Pattern.compile("^(?=.*[1-9])(\\d*\\.?\\d*)$");
     private final static Pattern numberIntPattern = Pattern.compile("^[1-9]\\d*$");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa");
@@ -108,6 +109,10 @@ public class CoreUtil {
         final String intMax = String.valueOf(Integer.MAX_VALUE);
         if (numbers.length() > intMax.length() || (numbers.length() == intMax.length() && numbers.compareTo(intMax) > 0)) return false;
         return numberIntPattern.matcher(numbers).matches();
+    }
+
+    public static String parseShortDecimalValue(double value) {
+        return shortDecimalFormatter.format(value);
     }
 
     public static String getDate(long date) {

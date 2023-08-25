@@ -7,8 +7,11 @@ import lee.code.central.commands.TabCompletion;
 import lee.code.central.database.CacheManager;
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
+import lee.code.central.managers.ArmorStandManager;
 import lee.code.central.managers.ReplyManager;
 import lee.code.central.managers.TeleportRequestManager;
+import lee.code.central.menus.system.MenuListener;
+import lee.code.central.menus.system.MenuManager;
 import lombok.Getter;
 import me.lucko.commodore.CommodoreProvider;
 import me.lucko.commodore.file.CommodoreFileReader;
@@ -19,6 +22,8 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private ArmorStandManager armorStandManager;
+    @Getter private MenuManager menuManager;
     @Getter private TeleportRequestManager teleportRequestManager;
     @Getter private ReplyManager replyManager;
     @Getter private CacheManager cacheManager;
@@ -34,6 +39,8 @@ public class Central extends JavaPlugin {
         this.data = new Data();
         this.replyManager = new ReplyManager();
         this.teleportRequestManager = new TeleportRequestManager(this);
+        this.menuManager = new MenuManager();
+        this.armorStandManager = new ArmorStandManager();
 
         databaseManager.initialize(false);
         registerCommands();
@@ -57,6 +64,8 @@ public class Central extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BookListener(), this);
         getServer().getPluginManager().registerEvents(new SpawnerListener(), this);
         getServer().getPluginManager().registerEvents(new HopperFilterListener(), this);
+        getServer().getPluginManager().registerEvents(new MenuListener(menuManager), this);
+        getServer().getPluginManager().registerEvents(new ArmorStandEditorListener(this), this);
     }
 
     private void startSchedules() {

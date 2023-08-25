@@ -90,6 +90,12 @@ public enum Lang {
     COMMAND_SELL_SUCCESSFUL("&aYou successfully sold &3x{0} {1} &afor {2}&a!"),
     COMMAND_COLORS_TITLE("&a---- &e[ &2&lColors &e] &a----"),
     COMMAND_COLORS_SPLITTER("&a--------------------"),
+    MENU_ARMOR_STAND_POSITION_LORE("&7» Left-Click -0.01\n&7» Right-Click +0.01\n&7» Shift-Click x10"),
+    MENU_ARMOR_STAND_DIRECTION_LORE("&7» Left-Click -1.00\n&7» Right-Click +1.00\n&7» Shift-Click x10"),
+    MENU_ARMOR_STAND_SETTING("&6&l{0}&7: {1}"),
+    MENU_ARMOR_STAND_POSITION("&6&l{0} {1}&7: &e{2}"),
+    MENU_ARMOR_STAND_DIRECTION("&6&lDirection&7: &e{0}°"),
+    MENU_ARMOR_STAND_EDITOR_TITLE("&2&lArmor Stand Editor"),
     ERROR_WORTH_NO_ITEM("&cYou need to be holding the item you want to check the value of."),
     ERROR_SELL_NO_ITEM("&cYou need to be holding the item you want to sell."),
     ERROR_NO_VALUE("&cThe item &3{0} &ccannot be sold to the server."),
@@ -123,6 +129,7 @@ public enum Lang {
     ERROR_VALUE_INVALID("&cThe input &3{0} &cis not an acceptable value."),
     ERROR_COLOR_INVALID("&cThe input &3{0} &cis not an acceptable color."),
     ERROR_NO_INVENTORY_SPACE("&cThe player &6{0} &cdoes not have enough inventory space."),
+    ERROR_ARMOR_STAND_BEING_EDITED("&cThat armor stand is currently being edited by another player."),
 
     ;
     @Getter
