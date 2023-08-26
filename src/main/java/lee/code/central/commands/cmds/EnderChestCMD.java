@@ -46,7 +46,6 @@ public class EnderChestCMD extends CustomCommand {
 
     @Override
     public void perform(Player player, String[] args, Command command) {
-        //enderchest <player>
         if (args.length > 0) {
             final String playerString = args[0];
             if (!CoreUtil.getOnlinePlayers().contains(playerString)) {

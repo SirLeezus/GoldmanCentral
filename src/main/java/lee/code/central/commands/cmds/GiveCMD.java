@@ -84,9 +84,9 @@ public class GiveCMD extends CustomCommand {
             sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_VALUE_INVALID.getComponent(new String[] { amountString })));
             return;
         }
-        final ItemStack item = new ItemStack(material);
         int amount = Integer.parseInt(amountString);
         if (amount > 1000) amount = 1000;
+        final ItemStack item = new ItemStack(material);
         if (!ItemUtil.canReceiveItems(player, item, amount)) {
             sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[] { playerString })));
             return;

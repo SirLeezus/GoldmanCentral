@@ -148,4 +148,9 @@ commands:
   enderchest:
     description: Open your ender chest or a target player.
     permission: central.command.enderchest
+    aliases: [echest]
     usage: "/enderchest &f<player>"
+  summon:
+    description: Summon a entity.
+    permission: central.command.summon
+    usage: "/summon &f<entity> <amount>"
