@@ -154,3 +154,8 @@ commands:
     description: Summon a entity.
     permission: central.command.summon
     usage: "/summon &f<entity> <amount>"
+  randomteleport:
+    description: Randomly teleport to a location.
+    permission: central.command.randomteleport
+    aliases: [rtp]
+    usage: "/randomteleport"

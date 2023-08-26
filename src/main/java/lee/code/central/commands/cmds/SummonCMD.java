@@ -72,7 +72,7 @@ public class SummonCMD extends CustomCommand {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SUMMON_NO_BLOCK.getComponent(null)));
             return;
         }
-        final Location targetLocation = new Location(block.getLocation().getWorld(), block.getLocation().getX(), block.getLocation().getY() + 1, block.getLocation().getZ());
+        final Location targetLocation = new Location(block.getLocation().getWorld(), block.getLocation().getX(), block.getLocation().getY() + 0.5, block.getLocation().getZ());
         for (int i = 0; i < amount; i++) targetLocation.getWorld().spawnEntity(targetLocation, entityType);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SUMMON_SUCCESSFUL.getComponent(new String[] { String.valueOf(amount), CoreUtil.capitalize(entityTypeString) })));
     }

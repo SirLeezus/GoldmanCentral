@@ -63,13 +63,14 @@ public class CommandManager {
         commands.add(new GodCMD(central));
         commands.add(new EnderChestCMD(central));
         commands.add(new SummonCMD(central));
+        commands.add(new RandomTeleportCMD(central));
     }
 
     public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {
         if (sender instanceof Player player) {
             final UUID uuid = player.getUniqueId();
             if (asyncTasks.containsKey(uuid)) {
-                player.sendMessage(Lang.ERROR_ONE_COMMAND_AT_A_TIME.getComponent(null));
+                player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ONE_COMMAND_AT_A_TIME.getComponent(null)));
                 return;
             }
             if (customCommand.performAsync()) {

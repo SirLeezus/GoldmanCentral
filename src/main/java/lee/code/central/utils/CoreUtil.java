@@ -168,4 +168,8 @@ public class CoreUtil {
         lines.add(click.append(yes.append(Component.text("  ")).append(no)));
         for (Component line : lines) player.sendMessage(line);
     }
+
+    public static void teleportRandomlyWithinWorldBorder(Player player) {
+
+    }
 }

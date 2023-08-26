@@ -64,6 +64,7 @@ public enum Lang {
     COMMAND_SPAWN_SUCCESSFUL("&aYou successfully teleported to the server spawn."),
     COMMAND_SPAWN_FAILED("&cFailed to teleport to server spawn."),
     COMMAND_SUMMON_SUCCESSFUL("&aYou successfully summoned &3x{0} {1}&a!"),
+    COMMAND_RANDOM_TELEPORT_SUCCESSFUL("&aYou successfully randomly teleported!"),
     COMMAND_TELEPORT_ASK_ACCEPT_FAILED("&cFailed to teleport to player &6{0}&c."),
     COMMAND_TELEPORT_ASK_ACCEPT_SUCCESSFUL("&aYou successfully teleported to &6{0}&a!"),
     COMMAND_TELEPORT_ASK_ACCEPT_PLAYER_SUCCESSFUL("&aYou successfully accepted &6{0}'s &ateleport request!"),
@@ -108,7 +109,7 @@ public enum Lang {
     ERROR_SELL_NO_ITEM("&cYou need to be holding the item you want to sell."),
     ERROR_NO_VALUE("&cThe item &3{0} &ccannot be sold to the server."),
     ERROR_SELL_NOT_ENOUGH("&cYou need at least &3x{0} {1} to sell this item."),
-    ERROR_ONE_COMMAND_AT_A_TIME("&cYou're currently processing another town command, please wait for it to finish."),
+    ERROR_ONE_COMMAND_AT_A_TIME("&cYou're currently processing another command, please wait for it to finish."),
     ERROR_ENCHANT_NO_HAND_ITEM("&cYou're currently not holding a item to enchant."),
     ERROR_NOT_ENCHANT("&cThe input &3{0} &cis not a enchantment."),
     ERROR_PAY_INSUFFICIENT_FUNDS("&cYou only have {0} &cso you can't pay someone {1}&c."),
@@ -140,6 +141,8 @@ public enum Lang {
     ERROR_COLOR_INVALID("&cThe input &3{0} &cis not an acceptable color."),
     ERROR_NO_INVENTORY_SPACE("&cThe player &6{0} &cdoes not have enough inventory space."),
     ERROR_ARMOR_STAND_BEING_EDITED("&cThat armor stand is currently being edited by another player."),
+    ERROR_RANDOM_TELEPORT_FAILED("&cRandom teleport failed, please try again."),
+    ERROR_RANDOM_TELEPORT_WORLD("&cThis command can only be ran in the main world."),
 
     ;
     @Getter
