@@ -3,6 +3,7 @@ package lee.code.central.commands.cmds;
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
+import lee.code.central.managers.DelayManager;
 import lee.code.central.utils.CoreUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RandomTeleportCMD extends CustomCommand {
 
@@ -48,7 +50,12 @@ public class RandomTeleportCMD extends CustomCommand {
 
     @Override
     public void perform(Player player, String[] args, Command command) {
-        //TODO maybe add delay for how many times you can run this command
+        final DelayManager delayManager = central.getDelayManager();
+        final UUID uuid = player.getUniqueId();
+        if (delayManager.isOnDelay(uuid)) {
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ON_COMMAND_DELAY.getComponent(new String[] { delayManager.getRemainingTime(uuid) })));
+            return;
+        }
         final World world = player.getWorld();
         if (!world.getName().equalsIgnoreCase("world")) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_RANDOM_TELEPORT_WORLD.getComponent(null)));
@@ -64,6 +71,7 @@ public class RandomTeleportCMD extends CustomCommand {
             final Material material = randomLocation.getBlock().getType();
             if (!material.equals(Material.WATER) && !material.equals(Material.LAVA)) {
                 final Vector box = randomLocation.getBlock().getBoundingBox().getCenter();
+                delayManager.setOnDelay(uuid, 15000);
                 player.teleportAsync(new Location(randomLocation.getWorld(), box.getX(), box.getY() + 0.5, box.getZ()));
                 player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_RANDOM_TELEPORT_SUCCESSFUL.getComponent(null)));
                 return;

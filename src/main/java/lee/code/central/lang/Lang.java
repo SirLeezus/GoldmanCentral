@@ -143,6 +143,7 @@ public enum Lang {
     ERROR_ARMOR_STAND_BEING_EDITED("&cThat armor stand is currently being edited by another player."),
     ERROR_RANDOM_TELEPORT_FAILED("&cRandom teleport failed, please try again."),
     ERROR_RANDOM_TELEPORT_WORLD("&cThis command can only be ran in the main world."),
+    ERROR_ON_COMMAND_DELAY("&cYou'll have to wait another {0} &cbefore you can run this command again."),
 
     ;
     @Getter

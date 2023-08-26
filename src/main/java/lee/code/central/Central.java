@@ -8,6 +8,7 @@ import lee.code.central.database.CacheManager;
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
 import lee.code.central.managers.ArmorStandManager;
+import lee.code.central.managers.DelayManager;
 import lee.code.central.managers.ReplyManager;
 import lee.code.central.managers.TeleportRequestManager;
 import lee.code.central.menus.system.MenuListener;
@@ -22,6 +23,7 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private DelayManager delayManager;
     @Getter private ArmorStandManager armorStandManager;
     @Getter private MenuManager menuManager;
     @Getter private TeleportRequestManager teleportRequestManager;
@@ -41,6 +43,7 @@ public class Central extends JavaPlugin {
         this.teleportRequestManager = new TeleportRequestManager(this);
         this.menuManager = new MenuManager();
         this.armorStandManager = new ArmorStandManager();
+        this.delayManager = new DelayManager(this);
 
         databaseManager.initialize(false);
         registerCommands();
