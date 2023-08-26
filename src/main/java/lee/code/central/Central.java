@@ -7,10 +7,7 @@ import lee.code.central.commands.TabCompletion;
 import lee.code.central.database.CacheManager;
 import lee.code.central.database.DatabaseManager;
 import lee.code.central.listeners.*;
-import lee.code.central.managers.ArmorStandManager;
-import lee.code.central.managers.DelayManager;
-import lee.code.central.managers.ReplyManager;
-import lee.code.central.managers.TeleportRequestManager;
+import lee.code.central.managers.*;
 import lee.code.central.menus.system.MenuListener;
 import lee.code.central.menus.system.MenuManager;
 import lombok.Getter;
@@ -23,6 +20,7 @@ import java.io.IOException;
 
 public class Central extends JavaPlugin {
 
+    @Getter private MOTDManager motdManager;
     @Getter private DelayManager delayManager;
     @Getter private ArmorStandManager armorStandManager;
     @Getter private MenuManager menuManager;
@@ -38,12 +36,13 @@ public class Central extends JavaPlugin {
         this.databaseManager = new DatabaseManager(this);
         this.cacheManager = new CacheManager(this, databaseManager);
         this.commandManager = new CommandManager(this);
-        this.data = new Data();
         this.replyManager = new ReplyManager();
         this.teleportRequestManager = new TeleportRequestManager(this);
         this.menuManager = new MenuManager();
         this.armorStandManager = new ArmorStandManager();
         this.delayManager = new DelayManager(this);
+        this.motdManager = new MOTDManager(this);
+        this.data = new Data();
 
         databaseManager.initialize(false);
         registerCommands();

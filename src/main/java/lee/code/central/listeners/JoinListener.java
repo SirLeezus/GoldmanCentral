@@ -44,5 +44,7 @@ public class JoinListener implements Listener {
         e.joinMessage(VariableUtil.parseVariables(player, Lang.PLAYER_JOIN.getComponent(null)));
         //Send Tab List
         Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[] { String.valueOf( CoreUtil.getOnlinePlayers().size()) }));
+        //Message of the day
+        central.getMotdManager().sendMOTD(player);
     }
 }
