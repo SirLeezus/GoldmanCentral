@@ -16,9 +16,8 @@ import java.util.List;
 
 public class RestartWarningCMD extends CustomCommand {
 
-    private CountdownUtil countdownUtil;
-
     private final Central central;
+    private CountdownUtil countdownUtil;
 
     public RestartWarningCMD(Central central) {
         this.central = central;
