@@ -13,17 +13,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @DatabaseTable(tableName = "players")
 public class PlayerTable {
+  @DatabaseField(id = true, canBeNull = false)
+  private UUID uniqueId;
 
-    @DatabaseField(id = true, canBeNull = false)
-    private UUID uniqueId;
+  @DatabaseField(columnName = "flying")
+  private boolean flying;
 
-    @DatabaseField(columnName = "flying")
-    private boolean flying;
+  @DatabaseField(columnName = "god")
+  private boolean god;
 
-    @DatabaseField(columnName = "god")
-    private boolean god;
-
-    public PlayerTable(UUID uniqueId) {
-        this.uniqueId = uniqueId;
-    }
+  public PlayerTable(UUID uniqueId) {
+    this.uniqueId = uniqueId;
+  }
 }

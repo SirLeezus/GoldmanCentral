@@ -7,19 +7,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class GodListener implements Listener {
+  private final Central central;
 
-    private final Central central;
+  public GodListener(Central central) {
+    this.central = central;
+  }
 
-    public GodListener(Central central) {
-        this.central = central;
+  @EventHandler
+  public void onHeadDrop(EntityDamageEvent e) {
+    if (e.getEntity() instanceof Player player) {
+      if (central.getCacheManager().getCachePlayers().isGod(player.getUniqueId())) {
+        e.setCancelled(true);
+      }
     }
-
-    @EventHandler
-    public void onHeadDrop(EntityDamageEvent e) {
-        if (e.getEntity() instanceof Player player) {
-            if (central.getCacheManager().getCachePlayers().isGod(player.getUniqueId())) {
-                e.setCancelled(true);
-            }
-        }
-    }
+  }
 }

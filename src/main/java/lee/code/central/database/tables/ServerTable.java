@@ -9,14 +9,13 @@ import lombok.Setter;
 @Getter
 @DatabaseTable(tableName = "server")
 public class ServerTable {
+  @DatabaseField(generatedId = true)
+  private int id;
 
-    @DatabaseField(generatedId = true)
-    private int id;
+  @DatabaseField(columnName = "spawn")
+  private String spawn;
 
-    @DatabaseField(columnName = "spawn")
-    private String spawn;
+  public ServerTable() {
 
-    public ServerTable() {
-
-    }
+  }
 }

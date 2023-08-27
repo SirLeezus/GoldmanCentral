@@ -19,59 +19,59 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class HeadCMD extends CustomCommand {
+  private final Central central;
 
-    private final Central central;
+  public HeadCMD(Central central) {
+    this.central = central;
+  }
 
-    public HeadCMD(Central central) {
-        this.central = central;
+  @Override
+  public String getName() {
+    return "head";
+  }
+
+  @Override
+  public boolean performAsync() {
+    return true;
+  }
+
+  @Override
+  public boolean performAsyncSynchronized() {
+    return false;
+  }
+
+  @Override
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    central.getCommandManager().perform(sender, args, this, command);
+    return true;
+  }
+
+  @Override
+  public void perform(Player player, String[] args, Command command) {
+    if (args.length < 1) {
+      player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
+      return;
     }
+    final String playerString = args[0];
+    final ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+    final SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
+    skullMeta.setOwner(playerString);
+    head.setItemMeta(skullMeta);
+    ItemUtil.giveItemOrDrop(player, head, 1);
+  }
 
-    @Override
-    public String getName() {
-        return "head";
-    }
+  @Override
+  public void performConsole(CommandSender console, String[] args, Command command) {
+    console.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_CONSOLE_COMMAND.getComponent(null)));
+  }
 
-    @Override
-    public boolean performAsync() {
-        return true;
-    }
+  @Override
+  public void performSender(CommandSender sender, String[] args, Command command) {
+  }
 
-    @Override
-    public boolean performAsyncSynchronized() {
-        return false;
-    }
-
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        central.getCommandManager().perform(sender, args, this, command);
-        return true;
-    }
-
-    @Override
-    public void perform(Player player, String[] args, Command command) {
-        if (args.length < 1) {
-            player.sendMessage(Lang.USAGE.getComponent(new String[] { command.getUsage() }));
-            return;
-        }
-        final String playerString = args[0];
-        final ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-        final SkullMeta skullMeta = (SkullMeta) head.getItemMeta();
-        skullMeta.setOwner(playerString);
-        head.setItemMeta(skullMeta);
-        ItemUtil.giveItemOrDrop(player, head, 1);
-    }
-
-    @Override
-    public void performConsole(CommandSender console, String[] args, Command command) {
-        console.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NOT_CONSOLE_COMMAND.getComponent(null)));
-    }
-
-    @Override
-    public void performSender(CommandSender sender, String[] args, Command command) { }
-
-    @Override
-    public List<String> onTabComplete(CommandSender sender, String[] args) {
-        if (args.length == 1) return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
-        return new ArrayList<>();
-    }
+  @Override
+  public List<String> onTabComplete(CommandSender sender, String[] args) {
+    if (args.length == 1) return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
+    return new ArrayList<>();
+  }
 }

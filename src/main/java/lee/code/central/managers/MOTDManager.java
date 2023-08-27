@@ -10,39 +10,38 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class MOTDManager {
+  private final Central central;
+  private final ArrayList<Component> lines = new ArrayList<>();
 
-    private final Central central;
-    private final ArrayList<Component> lines = new ArrayList<>();
+  public MOTDManager(Central central) {
+    this.central = central;
+    loadAndStoreFileData();
+  }
 
-    public MOTDManager(Central central) {
-        this.central = central;
-        loadAndStoreFileData();
+  private void loadAndStoreFileData() {
+    final File file = new File(central.getDataFolder(), "motd.txt");
+    createFile(file);
+    try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+      String line;
+      while ((line = bufferedReader.readLine()) != null) {
+        lines.add(CoreUtil.parseColorComponent(line));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    private void loadAndStoreFileData() {
-        final File file = new File(central.getDataFolder(), "motd.txt");
-        createFile(file);
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                lines.add(CoreUtil.parseColorComponent(line));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  private void createFile(File file) {
+    if (!file.exists()) {
+      try {
+        file.createNewFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
+  }
 
-    private void createFile(File file) {
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void sendMOTD(Player player) {
-        for (Component line : lines) player.sendMessage(line);
-    }
+  public void sendMOTD(Player player) {
+    for (Component line : lines) player.sendMessage(line);
+  }
 }

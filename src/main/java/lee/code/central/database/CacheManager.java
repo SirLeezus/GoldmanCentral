@@ -6,15 +6,14 @@ import lee.code.central.database.cache.CacheServer;
 import lombok.Getter;
 
 public class CacheManager {
+  private final Central central;
 
-    private final Central central;
+  @Getter private final CachePlayers cachePlayers;
+  @Getter private final CacheServer cacheServer;
 
-    @Getter private final CachePlayers cachePlayers;
-    @Getter private final CacheServer cacheServer;
-
-    public CacheManager(Central central, DatabaseManager databaseManager) {
-        this.central = central;
-        this.cachePlayers = new CachePlayers(databaseManager);
-        this.cacheServer = new CacheServer(databaseManager);
-    }
+  public CacheManager(Central central, DatabaseManager databaseManager) {
+    this.central = central;
+    this.cachePlayers = new CachePlayers(databaseManager);
+    this.cacheServer = new CacheServer(databaseManager);
+  }
 }

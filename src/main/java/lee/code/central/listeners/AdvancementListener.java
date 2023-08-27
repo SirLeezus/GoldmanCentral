@@ -11,17 +11,17 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 public class AdvancementListener implements Listener {
 
-    @EventHandler
-    public void onPlayerAchievement(PlayerAdvancementDoneEvent e) {
-        final Player player = e.getPlayer();
-        Component advancementMessage = e.message();
-        if (advancementMessage != null) {
-            final TextReplacementConfig textReplacementConfig = TextReplacementConfig.builder()
-                    .matchLiteral(player.getName())
-                    .replacement(player.displayName())
-                    .build();
-            advancementMessage = advancementMessage.replaceText(textReplacementConfig);
-            e.message(Lang.ADVANCEMENT_PREFIX.getComponent(null).append(advancementMessage).append(Component.text("!")).color(NamedTextColor.DARK_GREEN));
-        }
+  @EventHandler
+  public void onPlayerAchievement(PlayerAdvancementDoneEvent e) {
+    final Player player = e.getPlayer();
+    Component advancementMessage = e.message();
+    if (advancementMessage != null) {
+      final TextReplacementConfig textReplacementConfig = TextReplacementConfig.builder()
+        .matchLiteral(player.getName())
+        .replacement(player.displayName())
+        .build();
+      advancementMessage = advancementMessage.replaceText(textReplacementConfig);
+      e.message(Lang.ADVANCEMENT_PREFIX.getComponent(null).append(advancementMessage).append(Component.text("!")).color(NamedTextColor.DARK_GREEN));
     }
+  }
 }

@@ -9,52 +9,51 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CachePlayers extends DatabaseHandler {
+  private final ConcurrentHashMap<UUID, PlayerTable> playersCache = new ConcurrentHashMap<>();
 
-    private final ConcurrentHashMap<UUID, PlayerTable> playersCache = new ConcurrentHashMap<>();
+  public CachePlayers(DatabaseManager databaseManager) {
+    super(databaseManager);
+  }
 
-    public CachePlayers(DatabaseManager databaseManager) {
-        super(databaseManager);
-    }
+  public PlayerTable getPlayerTable(UUID uuid) {
+    return playersCache.get(uuid);
+  }
 
-    public PlayerTable getPlayerTable(UUID uuid) {
-        return playersCache.get(uuid);
-    }
+  public void setPlayerTable(PlayerTable playerTable) {
+    playersCache.put(playerTable.getUniqueId(), playerTable);
+  }
 
-    public void setPlayerTable(PlayerTable playerTable) {
-        playersCache.put(playerTable.getUniqueId(), playerTable);
-    }
+  public boolean hasPlayerData(UUID uuid) {
+    return playersCache.containsKey(uuid);
+  }
 
-    public boolean hasPlayerData(UUID uuid) {
-        return playersCache.containsKey(uuid);
-    }
+  public void createPlayerData(UUID uuid) {
+    final PlayerTable playerTable = new PlayerTable(uuid);
+    setPlayerTable(playerTable);
+    createPlayerDatabase(playerTable);
+  }
 
-    public void createPlayerData(UUID uuid) {
-        final PlayerTable playerTable = new PlayerTable(uuid);
-        setPlayerTable(playerTable);
-        createPlayerDatabase(playerTable);
-    }
+  public boolean isFlying(UUID uuid) {
+    return getPlayerTable(uuid).isFlying();
+  }
 
-    public boolean isFlying(UUID uuid) {
-        return getPlayerTable(uuid).isFlying();
-    }
+  public void setFlying(UUID uuid, boolean isFlying) {
+    final PlayerTable playerTable = getPlayerTable(uuid);
+    playerTable.setFlying(isFlying);
+    updatePlayerDatabase(playerTable);
+  }
 
-    public void setFlying(UUID uuid, boolean isFlying) {
-        final PlayerTable playerTable = getPlayerTable(uuid);
-        playerTable.setFlying(isFlying);
-        updatePlayerDatabase(playerTable);
-    }
+  public ArrayList<UUID> getPlayers() {
+    return new ArrayList<>(playersCache.keySet());
+  }
 
-    public ArrayList<UUID> getPlayers() {
-        return new ArrayList<>(playersCache.keySet());
-    }
+  public boolean isGod(UUID uuid) {
+    return getPlayerTable(uuid).isGod();
+  }
 
-    public boolean isGod(UUID uuid) {
-        return getPlayerTable(uuid).isGod();
-    }
-
-    public void setGod(UUID uuid, boolean result) {
-        final PlayerTable playerTable = getPlayerTable(uuid);
-        playerTable.setGod(result);
-        updatePlayerDatabase(playerTable);
-    }
+  public void setGod(UUID uuid, boolean result) {
+    final PlayerTable playerTable = getPlayerTable(uuid);
+    playerTable.setGod(result);
+    updatePlayerDatabase(playerTable);
+  }
 }
