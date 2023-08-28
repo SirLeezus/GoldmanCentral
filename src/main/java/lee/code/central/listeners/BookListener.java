@@ -22,7 +22,7 @@ public class BookListener implements Listener {
     for (int i = 0; i <= lines.size() - 1; i++) {
       meta.page(i + 1, CoreUtil.parseColorComponent(lines.get(i)));
     }
-    meta.title(CoreUtil.parseColorComponent(meta.getTitle()));
+    if (meta.hasTitle()) meta.title(CoreUtil.parseColorComponent(meta.getTitle()));
     e.setNewBookMeta(meta);
   }
 }
