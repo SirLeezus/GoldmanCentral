@@ -21,7 +21,7 @@ public abstract class MenuGUI implements InventoryHandler {
   protected final List<Integer> paginatedSlots = Arrays.asList(10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43);
   protected int paginatedPage = 0;
   protected int paginatedIndex = 0;
-  protected final int paginatedMaxItemsPerPage = 45;
+  protected final int paginatedMaxItemsPerPage = 28;
   private Inventory inventory;
   public final ItemStack fillerGlass = MenuItem.FILLER_GLASS.createItem();
   private final DelayManager delayManager = new DelayManager();
@@ -39,12 +39,20 @@ public abstract class MenuGUI implements InventoryHandler {
     return inventory;
   }
 
+  public void clearInventory() {
+    inventory.clear();
+  }
+
   public void addButton(int slot, MenuButton button) {
     buttonMap.put(slot, button);
   }
 
   public void removeButton(int slot) {
     buttonMap.remove(slot);
+  }
+
+  public void clearButtons() {
+    buttonMap.clear();
   }
 
   public void decorate(Player player) {
@@ -63,12 +71,6 @@ public abstract class MenuGUI implements InventoryHandler {
   public void addBorderGlass() {
     for (int i : border) {
       inventory.setItem(i, fillerGlass);
-    }
-  }
-
-  public void clearPaginatedSlots() {
-    for (int i : paginatedSlots) {
-      inventory.setItem(i, new ItemStack(Material.AIR));
     }
   }
 

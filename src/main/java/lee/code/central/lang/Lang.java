@@ -155,6 +155,8 @@ public enum Lang {
   ERROR_RANDOM_TELEPORT_FAILED("&cRandom teleport failed, please try again."),
   ERROR_RANDOM_TELEPORT_WORLD("&cThis command can only be ran in the main world."),
   ERROR_ON_COMMAND_DELAY("&cYou'll have to wait another {0} &cbefore you can run this command again."),
+  ERROR_PREVIOUS_PAGE("&7You are already on the first page."),
+  ERROR_NEXT_PAGE("&7You are on the last page."),
 
   ;
   @Getter private final String string;

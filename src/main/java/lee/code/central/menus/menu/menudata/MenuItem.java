@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 @AllArgsConstructor
 public enum MenuItem {
   FILLER_GLASS(Material.BLACK_STAINED_GLASS_PANE, "", null, false, false, null),
+  NEXT_PAGE(Material.PAPER, "&e&lNext Page ->", null, false, false, null),
+  PREVIOUS_PAGE(Material.PAPER, "&e&l<- Prev Page", null, false, false, null),
 
   ;
 
