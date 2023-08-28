@@ -26,7 +26,7 @@ public class MailboxMenu extends MenuGUI {
 
   @Override
   protected Inventory createInventory() {
-    return Bukkit.createInventory(null, 54, Lang.MENU_ARMOR_MAILBOX_TITLE.getComponent(null));
+    return Bukkit.createInventory(null, 54, Lang.MENU_MAILBOX_TITLE.getComponent(null));
   }
 
   @Override

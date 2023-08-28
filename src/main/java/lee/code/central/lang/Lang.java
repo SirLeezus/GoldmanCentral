@@ -108,7 +108,7 @@ public enum Lang {
   MENU_ARMOR_STAND_POSITION("&6&l{0} {1}&7: &e{2}"),
   MENU_ARMOR_STAND_DIRECTION("&6&lDirection&7: &e{0}°"),
   MENU_ARMOR_STAND_EDITOR_TITLE("&2&lArmor Stand Editor"),
-  MENU_ARMOR_MAILBOX_TITLE("&2&lMailbox"),
+  MENU_MAILBOX_TITLE("&2&lMailbox"),
   ERROR_WORTH_NO_ITEM("&cYou need to be holding the item you want to check the value of."),
   ERROR_SELL_NO_ITEM("&cYou need to be holding the item you want to sell."),
   ERROR_NO_VALUE("&cThe item &3{0} &ccannot be sold to the server."),
