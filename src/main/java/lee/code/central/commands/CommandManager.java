@@ -63,6 +63,8 @@ public class CommandManager {
     commands.add(new EnderChestCMD(central));
     commands.add(new SummonCMD(central));
     commands.add(new RandomTeleportCMD(central));
+    commands.add(new MailCMD(central));
+    commands.add(new MailboxCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

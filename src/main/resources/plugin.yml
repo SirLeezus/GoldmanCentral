@@ -159,3 +159,11 @@ commands:
     permission: central.command.randomteleport
     aliases: [rtp]
     usage: "/randomteleport"
+  mail:
+    description: Mail another player a signed book.
+    permission: central.command.book
+    usage: "/mail &f<player>"
+  mailbox:
+    description: Open your mailbox menu.
+    permission: central.command.mailbox
+    usage: "/mailbox"

@@ -22,6 +22,9 @@ public class PlayerTable {
   @DatabaseField(columnName = "god")
   private boolean god;
 
+  @DatabaseField(columnName = "mail")
+  private String mail;
+
   public PlayerTable(UUID uniqueId) {
     this.uniqueId = uniqueId;
   }

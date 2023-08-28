@@ -11,5 +11,4 @@ public interface InventoryHandler {
   void onOpen(InventoryOpenEvent e);
 
   void onClose(InventoryCloseEvent e);
-
 }

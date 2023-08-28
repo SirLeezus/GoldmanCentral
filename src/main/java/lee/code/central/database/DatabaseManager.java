@@ -27,7 +27,6 @@ public class DatabaseManager {
   }
 
   private String getDatabaseURL() {
-    //Setup MongoDB
     if (!central.getDataFolder().exists()) central.getDataFolder().mkdir();
     return "jdbc:sqlite:" + new File(central.getDataFolder(), "database.db");
   }

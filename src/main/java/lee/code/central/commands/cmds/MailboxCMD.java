@@ -2,8 +2,9 @@ package lee.code.central.commands.cmds;
 
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
-import lee.code.central.database.cache.players.CachePlayers;
 import lee.code.central.lang.Lang;
+import lee.code.central.menus.menu.MailboxMenu;
+import lee.code.central.menus.system.MenuPlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,28 +12,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class GodCMD extends CustomCommand {
+public class MailboxCMD extends CustomCommand {
   private final Central central;
 
-  public GodCMD(Central central) {
+  public MailboxCMD(Central central) {
     this.central = central;
   }
 
   @Override
   public String getName() {
-    return "god";
+    return "mailbox";
   }
 
   @Override
   public boolean performAsync() {
-    return true;
+    return false;
   }
 
   @Override
   public boolean performAsyncSynchronized() {
-    return true;
+    return false;
   }
 
   @Override
@@ -43,15 +43,12 @@ public class GodCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
-    final UUID uuid = player.getUniqueId();
-    final CachePlayers cachePlayers = central.getCacheManager().getCachePlayers();
-    if (cachePlayers.isGod(uuid)) {
-      cachePlayers.setGod(uuid, false);
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GOD_SUCCESSFUL.getComponent(new String[]{Lang.OFF.getString()})));
-    } else {
-      cachePlayers.setGod(uuid, true);
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GOD_SUCCESSFUL.getComponent(new String[]{Lang.ON.getString()})));
+    if (!central.getCacheManager().getCachePlayers().getMailData().hasMail(player.getUniqueId())) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MAILBOX_EMPTY.getComponent(null)));
+      return;
     }
+    final MenuPlayerData menuPlayerData = central.getMenuManager().getMenuPlayerData(player.getUniqueId());
+    central.getMenuManager().openMenu(new MailboxMenu(menuPlayerData, central), player);
   }
 
   @Override

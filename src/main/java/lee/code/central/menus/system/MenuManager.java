@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
@@ -49,5 +50,9 @@ public class MenuManager {
       handler.onClose(event);
       unregisterInventory(inventory);
     }
+  }
+
+  public void handleQuit(PlayerQuitEvent event) {
+    playerMenuData.remove(event.getPlayer().getUniqueId());
   }
 }

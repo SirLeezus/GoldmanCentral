@@ -32,6 +32,7 @@ public class MOTDManager {
   }
 
   private void createFile(File file) {
+    if (!central.getDataFolder().exists()) central.getDataFolder().mkdir();
     if (!file.exists()) {
       try {
         file.createNewFile();

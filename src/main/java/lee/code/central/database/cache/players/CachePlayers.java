@@ -1,18 +1,22 @@
-package lee.code.central.database.cache;
+package lee.code.central.database.cache.players;
 
 import lee.code.central.database.DatabaseManager;
+import lee.code.central.database.cache.players.data.MailData;
 import lee.code.central.database.handlers.DatabaseHandler;
 import lee.code.central.database.tables.PlayerTable;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CachePlayers extends DatabaseHandler {
+  @Getter private final MailData mailData;
   private final ConcurrentHashMap<UUID, PlayerTable> playersCache = new ConcurrentHashMap<>();
 
   public CachePlayers(DatabaseManager databaseManager) {
     super(databaseManager);
+    this.mailData = new MailData(this);
   }
 
   public PlayerTable getPlayerTable(UUID uuid) {
@@ -21,6 +25,7 @@ public class CachePlayers extends DatabaseHandler {
 
   public void setPlayerTable(PlayerTable playerTable) {
     playersCache.put(playerTable.getUniqueId(), playerTable);
+    mailData.cacheMail(playerTable);
   }
 
   public boolean hasPlayerData(UUID uuid) {

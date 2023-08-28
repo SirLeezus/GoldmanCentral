@@ -1,7 +1,7 @@
 package lee.code.central.listeners;
 
 import lee.code.central.Central;
-import lee.code.central.database.cache.CachePlayers;
+import lee.code.central.database.cache.players.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.VariableUtil;
