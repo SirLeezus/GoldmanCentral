@@ -28,6 +28,7 @@ public enum Lang {
   PAGE_SPACER_TEXT(" &e| "),
   NEXT_PAGE_HOVER("&6&lNext Page"),
   PREVIOUS_PAGE_HOVER("&6&lPrevious Page"),
+  YOU_HAVE_MAIL("&aYou have mail! Run the command &e/mailbox &ato check!"),
   TABLIST_HEADER("&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&#4dc462&lJourney Towns\n&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"),
   TABLIST_FOOTER("\n&#228B22&lOnline&7: &#4dc462{0}"),
   COMMAND_RESTART_WARNING_START("&eThe server is about to restart!"),

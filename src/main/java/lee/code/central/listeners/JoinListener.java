@@ -45,5 +45,7 @@ public class JoinListener implements Listener {
     Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[]{String.valueOf(CoreUtil.getOnlinePlayers().size())}));
     //Message of the day
     central.getMotdManager().sendMOTD(player);
+    //Mail message
+    if (cachePlayers.getMailData().hasMail(uuid)) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.YOU_HAVE_MAIL.getComponent(null)));
   }
 }
