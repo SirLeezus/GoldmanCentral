@@ -25,6 +25,9 @@ public class PlayerTable {
   @DatabaseField(columnName = "mail")
   private String mail;
 
+  @DatabaseField(columnName = "homes")
+  private String homes;
+
   public PlayerTable(UUID uniqueId) {
     this.uniqueId = uniqueId;
   }

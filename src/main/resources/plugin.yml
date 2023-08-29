@@ -167,3 +167,7 @@ commands:
     description: Open your mailbox menu.
     permission: central.command.mailbox
     usage: "/mailbox"
+  home:
+    description: Add or teleport to a saved home location.
+    permission: central.command.home
+    usage: "/home &f<tp/remove/add/max> <home>"

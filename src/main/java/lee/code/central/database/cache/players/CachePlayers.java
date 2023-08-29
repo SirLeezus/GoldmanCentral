@@ -1,6 +1,7 @@
 package lee.code.central.database.cache.players;
 
 import lee.code.central.database.DatabaseManager;
+import lee.code.central.database.cache.players.data.HomeData;
 import lee.code.central.database.cache.players.data.MailData;
 import lee.code.central.database.handlers.DatabaseHandler;
 import lee.code.central.database.tables.PlayerTable;
@@ -12,11 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CachePlayers extends DatabaseHandler {
   @Getter private final MailData mailData;
+  @Getter private final HomeData homeData;
   private final ConcurrentHashMap<UUID, PlayerTable> playersCache = new ConcurrentHashMap<>();
 
   public CachePlayers(DatabaseManager databaseManager) {
     super(databaseManager);
     this.mailData = new MailData(this);
+    this.homeData = new HomeData(this);
   }
 
   public PlayerTable getPlayerTable(UUID uuid) {

@@ -1,0 +1,12 @@
+home {
+  tp {
+    home brigadier:string single_word;
+  }
+  add {
+    home brigadier:string single_word;
+  }
+  remove {
+    home brigadier:string single_word;
+  }
+  max;
+}
