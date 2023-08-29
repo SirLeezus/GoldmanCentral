@@ -66,6 +66,7 @@ public class CommandManager {
     commands.add(new MailCMD(central));
     commands.add(new MailboxCMD(central));
     commands.add(new HomeCMD(central));
+    commands.add(new HomesCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

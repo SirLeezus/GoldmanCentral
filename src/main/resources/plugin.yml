@@ -171,3 +171,7 @@ commands:
     description: Add or teleport to a saved home location.
     permission: central.command.home
     usage: "/home &f<tp/add/max/remove> <home>"
+  homes:
+    description: Opens a menu with all your homes.
+    permission: central.command.homes
+    usage: "/homes"

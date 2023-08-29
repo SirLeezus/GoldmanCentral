@@ -42,14 +42,14 @@ public class MailboxMenu extends MenuGUI {
       paginatedIndex = paginatedMaxItemsPerPage * paginatedPage + i;
       if (paginatedIndex >= books.size()) break;
       final int targetBookID = books.get(paginatedIndex);
-      addButton(paginatedSlots.get(slot), createBookButton(uuid, mailData.getMailBook(uuid, targetBookID), targetBookID));
+      addButton(paginatedSlots.get(slot), createBookButton(mailData.getMailBook(uuid, targetBookID), targetBookID));
       slot++;
     }
     addPaginatedButtons();
     super.decorate(player);
   }
 
-  private MenuButton createBookButton(UUID uuid, ItemStack book, int bookID) {
+  private MenuButton createBookButton(ItemStack book, int bookID) {
     return new MenuButton().creator(p -> book)
       .consumer(e -> {
         final Player player = (Player) e.getWhoClicked();
@@ -57,7 +57,7 @@ public class MailboxMenu extends MenuGUI {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_BOOK_NO_INVENTORY_SPACE.getComponent(null)));
           return;
         }
-        central.getCacheManager().getCachePlayers().getMailData().removeMail(uuid, bookID);
+        central.getCacheManager().getCachePlayers().getMailData().removeMail(player.getUniqueId(), bookID);
         ItemUtil.giveItem(player, book, 1);
         clearInventory();
         clearButtons();

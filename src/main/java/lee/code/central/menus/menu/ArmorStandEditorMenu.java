@@ -22,7 +22,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 
-
 public class ArmorStandEditorMenu extends MenuGUI {
   private final ArmorStandManager armorStandManager;
   private final ArmorStand armorStand;
