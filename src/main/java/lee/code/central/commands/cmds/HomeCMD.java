@@ -121,7 +121,7 @@ public class HomeCMD extends CustomCommand {
           else player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.MENU_HOME_BED_TELEPORT_FAILED.getComponent(null)));
         });
       }
-      case "max" -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_MAX_SUCCESSFUL.getComponent(new String[]{String.valueOf(homeData.getMaxHomes(player))})));
+      case "max" -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_MAX_SUCCESSFUL.getComponent(new String[]{String.valueOf(homeData.getHomeAmount(uuid)), String.valueOf(homeData.getMaxHomes(player))})));
       default -> player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
     }
   }

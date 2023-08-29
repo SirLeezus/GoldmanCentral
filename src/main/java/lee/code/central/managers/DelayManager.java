@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 public class DelayManager {
   private final Central central;
-
   private final ConcurrentHashMap<UUID, Long> playersOnDelay = new ConcurrentHashMap<>();
 
   public DelayManager(Central central) {

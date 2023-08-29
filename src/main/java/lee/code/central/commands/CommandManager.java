@@ -68,6 +68,7 @@ public class CommandManager {
     commands.add(new HomeCMD(central));
     commands.add(new HomesCMD(central));
     commands.add(new TeleportHereCMD(central));
+    commands.add(new BackCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

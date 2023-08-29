@@ -180,3 +180,7 @@ commands:
     permission: central.command.teleporthere
     aliases: [tphere]
     usage: "/teleporthere &f<player>"
+  back:
+    description: Teleport to your last teleportation location.
+    permission: central.command.back
+    usage: "/back"

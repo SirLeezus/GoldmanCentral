@@ -19,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 
 public class Central extends JavaPlugin {
+  @Getter private BackManager backManager;
   @Getter private MOTDManager motdManager;
   @Getter private DelayManager delayManager;
   @Getter private ArmorStandManager armorStandManager;
@@ -41,6 +42,7 @@ public class Central extends JavaPlugin {
     this.armorStandManager = new ArmorStandManager();
     this.delayManager = new DelayManager(this);
     this.motdManager = new MOTDManager(this);
+    this.backManager = new BackManager();
     this.data = new Data();
 
     databaseManager.initialize(false);
@@ -68,6 +70,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new MenuListener(menuManager), this);
     getServer().getPluginManager().registerEvents(new ArmorStandEditorListener(this), this);
     getServer().getPluginManager().registerEvents(new GodListener(this), this);
+    getServer().getPluginManager().registerEvents(new BackListener(this), this);
   }
 
   private void startSchedules() {

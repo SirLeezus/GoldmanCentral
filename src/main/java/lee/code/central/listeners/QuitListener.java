@@ -23,6 +23,8 @@ public class QuitListener implements Listener {
   public void onPlayerQuit(PlayerQuitEvent e) {
     final Player player = e.getPlayer();
     final UUID uuid = player.getUniqueId();
+    //Remove Back Data
+    central.getBackManager().removeLastBackLocation(uuid);
     //Remove Reply Data
     central.getReplyManager().removeLastMessage(uuid);
     //Flying Check
