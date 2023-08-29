@@ -9,4 +9,5 @@ home {
     home brigadier:string single_word;
   }
   max;
+  bed;
 }

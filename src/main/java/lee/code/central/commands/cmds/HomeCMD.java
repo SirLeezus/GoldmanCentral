@@ -111,6 +111,16 @@ public class HomeCMD extends CustomCommand {
         homeData.addHome(uuid, name, player.getLocation());
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_ADD_SUCCESSFUL.getComponent(new String[]{name})));
       }
+      case "bed" -> {
+        if (player.getBedSpawnLocation() == null) {
+          player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MENU_HOME_BED_INVALID.getComponent(null)));
+          return;
+        }
+        player.teleportAsync(player.getBedSpawnLocation()).thenAccept(result -> {
+          if (result) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.MENU_HOME_BED_TELEPORT_SUCCESSFUL.getComponent(null)));
+          else player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.MENU_HOME_BED_TELEPORT_FAILED.getComponent(null)));
+        });
+      }
       case "max" -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_MAX_SUCCESSFUL.getComponent(new String[]{String.valueOf(homeData.getMaxHomes(player))})));
       default -> player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
     }

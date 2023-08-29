@@ -37,7 +37,7 @@ public class PayCMD extends CustomCommand {
 
   @Override
   public boolean performAsyncSynchronized() {
-    return true;
+    return false;
   }
 
   @Override

@@ -37,7 +37,7 @@ public class MoneyCMD extends CustomCommand {
 
   @Override
   public boolean performAsyncSynchronized() {
-    return true;
+    return false;
   }
 
   @Override

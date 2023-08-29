@@ -32,7 +32,7 @@ public class GodCMD extends CustomCommand {
 
   @Override
   public boolean performAsyncSynchronized() {
-    return true;
+    return false;
   }
 
   @Override
