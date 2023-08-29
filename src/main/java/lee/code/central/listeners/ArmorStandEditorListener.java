@@ -3,7 +3,7 @@ package lee.code.central.listeners;
 import lee.code.central.Central;
 import lee.code.central.lang.Lang;
 import lee.code.central.managers.ArmorStandManager;
-import lee.code.central.menus.menu.ArmorStandEditor;
+import lee.code.central.menus.menu.ArmorStandEditorMenu;
 import lee.code.central.menus.system.MenuPlayerData;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -35,7 +35,7 @@ public class ArmorStandEditorListener implements Listener {
       e.setCancelled(true);
       armorStandManager.setEditingArmorStand(armorStand.getUniqueId());
       final MenuPlayerData menuPlayerData = central.getMenuManager().getMenuPlayerData(player.getUniqueId());
-      central.getMenuManager().openMenu(new ArmorStandEditor(armorStandManager, armorStand, menuPlayerData), player);
+      central.getMenuManager().openMenu(new ArmorStandEditorMenu(armorStandManager, armorStand, menuPlayerData), player);
     }
   }
 
