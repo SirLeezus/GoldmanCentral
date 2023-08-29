@@ -29,6 +29,7 @@ public class CachePlayers extends DatabaseHandler {
   public void setPlayerTable(PlayerTable playerTable) {
     playersCache.put(playerTable.getUniqueId(), playerTable);
     mailData.cacheMail(playerTable);
+    homeData.cacheHomes(playerTable);
   }
 
   public boolean hasPlayerData(UUID uuid) {

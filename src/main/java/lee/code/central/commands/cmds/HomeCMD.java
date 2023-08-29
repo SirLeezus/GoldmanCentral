@@ -46,7 +46,6 @@ public class HomeCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
-    //home <tp/remove/add/max> <home>
     if (args.length < 1) {
       player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;

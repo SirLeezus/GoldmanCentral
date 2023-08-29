@@ -35,7 +35,7 @@ public class HomeData {
 
   public void cacheHomes(PlayerTable playerTable) {
     if (playerTable.getHomes() == null) return;
-    final String[] allHomes = playerTable.getHomes().split(",");
+    final String[] allHomes = playerTable.getHomes().split("!");
     for (String home : allHomes) {
       final String[] homeData = home.split("\\+");
       setHomeCache(playerTable.getUniqueId(), homeData[0], homeData[1]);
@@ -76,17 +76,17 @@ public class HomeData {
     final String locationString = CoreUtil.serializeLocation(location);
     final PlayerTable playerTable = cachePlayers.getPlayerTable(uuid);
     if (playerTable.getHomes() == null) playerTable.setHomes(name + "+" + locationString);
-    else playerTable.setHomes(playerTable.getHomes() + "," + name + "+" + locationString);
+    else playerTable.setHomes(playerTable.getHomes() + "!" + name + "+" + locationString);
     setHomeCache(uuid, name, locationString);
     cachePlayers.updatePlayerDatabase(playerTable);
   }
 
   public void removeHome(UUID uuid, String name) {
     final PlayerTable playerTable = cachePlayers.getPlayerTable(uuid);
-    final Set<String> allHomes = Collections.synchronizedSet(new HashSet<>(List.of(playerTable.getHomes().split(","))));
+    final Set<String> allHomes = Collections.synchronizedSet(new HashSet<>(List.of(playerTable.getHomes().split("!"))));
     allHomes.remove(name + "+" + getHomeLocationString(uuid, name));
     if (allHomes.isEmpty()) playerTable.setHomes(null);
-    else playerTable.setHomes(StringUtils.join(allHomes, ","));
+    else playerTable.setHomes(StringUtils.join(allHomes, "!"));
     removeHomeCache(uuid, name);
     cachePlayers.updatePlayerDatabase(playerTable);
   }
