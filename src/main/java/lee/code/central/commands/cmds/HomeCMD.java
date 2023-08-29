@@ -35,7 +35,7 @@ public class HomeCMD extends CustomCommand {
 
   @Override
   public boolean performAsyncSynchronized() {
-    return true;
+    return false;
   }
 
   @Override
@@ -47,16 +47,20 @@ public class HomeCMD extends CustomCommand {
   @Override
   public void perform(Player player, String[] args, Command command) {
     //home <tp/remove/add/max> <home>
-    if (args.length < 2) {
+    if (args.length < 1) {
       player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
     }
     final UUID uuid = player.getUniqueId();
     final String option = args[0].toLowerCase();
-    final String name = args[1];
     final HomeData homeData = central.getCacheManager().getCachePlayers().getHomeData();
     switch (option) {
       case "tp" -> {
+        if (args.length < 2) {
+          player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
+          return;
+        }
+        final String name = args[1];
         if (!homeData.hasHome(uuid)) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NO_HOMES.getComponent(null)));
           return;
@@ -72,6 +76,11 @@ public class HomeCMD extends CustomCommand {
         });
       }
       case "remove" -> {
+        if (args.length < 2) {
+          player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
+          return;
+        }
+        final String name = args[1];
         if (!homeData.hasHome(uuid)) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NO_HOMES.getComponent(null)));
           return;
@@ -84,11 +93,27 @@ public class HomeCMD extends CustomCommand {
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_REMOVE_SUCCESSFUL.getComponent(new String[]{name})));
       }
       case "add" -> {
-
+        if (args.length < 2) {
+          player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
+          return;
+        }
+        final String name = CoreUtil.removeSpecialCharacters(args[1]);
+        if (homeData.hasHome(uuid)) {
+          if (homeData.isHome(uuid, name)) {
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_IS_HOME.getComponent(new String[]{name})));
+            return;
+          }
+          final int maxHomes = homeData.getMaxHomes(player);
+          if (homeData.getHomeAmount(uuid) + 1 > maxHomes) {
+            player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_MAX_HOMES.getComponent(new String[]{String.valueOf(maxHomes)})));
+            return;
+          }
+        }
+        homeData.addHome(uuid, name, player.getLocation());
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_ADD_SUCCESSFUL.getComponent(new String[]{name})));
       }
-      case "max" -> {
-
-      }
+      case "max" -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_HOME_MAX_SUCCESSFUL.getComponent(new String[]{String.valueOf(homeData.getMaxHomes(player))})));
+      default -> player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
     }
   }
 
@@ -103,7 +128,9 @@ public class HomeCMD extends CustomCommand {
 
   @Override
   public List<String> onTabComplete(CommandSender sender, String[] args) {
-    if (args.length == 1) return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
-    else return new ArrayList<>();
+    if (sender instanceof Player player) {
+      if (args.length == 2 && args[0].equalsIgnoreCase("tp") || args[0].equalsIgnoreCase("remove")) return StringUtil.copyPartialMatches(args[1], central.getCacheManager().getCachePlayers().getHomeData().getHomeNames(player.getUniqueId()), new ArrayList<>());
+    }
+    return new ArrayList<>();
   }
 }

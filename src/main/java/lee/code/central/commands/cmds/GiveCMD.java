@@ -98,8 +98,7 @@ public class GiveCMD extends CustomCommand {
   @Override
   public List<String> onTabComplete(CommandSender sender, String[] args) {
     if (args.length == 1) return StringUtil.copyPartialMatches(args[0], CoreUtil.getOnlinePlayers(), new ArrayList<>());
-    else if (args.length == 2)
-      return StringUtil.copyPartialMatches(args[1], central.getData().getMaterials(), new ArrayList<>());
+    else if (args.length == 2) return StringUtil.copyPartialMatches(args[1], central.getData().getMaterials(), new ArrayList<>());
     else return new ArrayList<>();
   }
 }

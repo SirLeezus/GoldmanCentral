@@ -168,4 +168,26 @@ public class CoreUtil {
     lines.add(click.append(yes.append(Component.text("  ")).append(no)));
     for (Component line : lines) player.sendMessage(line);
   }
+
+  public static int getHighestPermission(Player player, String permission, int maxSearch) {
+    int highestLevel = 0;
+    for (int i = maxSearch; i >= 1; i--) {
+      final String targetPermission = permission + i;
+      if (player.hasPermission(targetPermission) && i > highestLevel) {
+        highestLevel = i;
+      }
+    }
+    return highestLevel;
+  }
+
+  public static String removeSpecialCharacters(String input) {
+    final StringBuilder output = new StringBuilder();
+    final String regex = "[^a-zA-Z0-9]";
+    for (int i = 0; i < input.length(); i++) {
+      final char c = input.charAt(i);
+      if (Character.toString(c).matches(regex)) continue;
+      output.append(c);
+    }
+    return output.toString();
+  }
 }

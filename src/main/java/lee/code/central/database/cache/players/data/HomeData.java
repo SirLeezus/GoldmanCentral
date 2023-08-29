@@ -5,6 +5,7 @@ import lee.code.central.database.tables.PlayerTable;
 import lee.code.central.utils.CoreUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,15 +42,25 @@ public class HomeData {
     }
   }
 
+  public int getMaxHomes(Player player) {
+    if (player.isOp()) return 100;
+    return CoreUtil.getHighestPermission(player, "central.homes.", 100);
+  }
+
   public boolean hasHome(UUID uuid) {
     return homeCache.containsKey(uuid);
+  }
+
+  public int getHomeAmount(UUID uuid) {
+    return homeCache.get(uuid).size();
   }
 
   public boolean isHome(UUID uuid, String name) {
     return homeCache.get(uuid).containsKey(name);
   }
 
-  public List<String> getAllHomeNames(UUID uuid) {
+  public List<String> getHomeNames(UUID uuid) {
+    if (!homeCache.containsKey(uuid)) return new ArrayList<>();
     return new ArrayList<>(homeCache.get(uuid).keySet());
   }
 
