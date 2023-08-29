@@ -175,3 +175,8 @@ commands:
     description: Opens a menu with all your homes.
     permission: central.command.homes
     usage: "/homes"
+  teleporthere:
+    description: Teleport a player to you.
+    permission: central.command.teleporthere
+    aliases: [tphere]
+    usage: "/teleporthere &f<player>"

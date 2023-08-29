@@ -1,0 +1,3 @@
+teleporthere {
+  player brigadier:string single_word;
+}
