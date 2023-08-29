@@ -83,8 +83,7 @@ public class StatCMD extends CustomCommand {
         final Material item = Material.valueOf(itemString);
         player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_STAT_TARGET_SUCCESSFUL.getComponent(new String[]{CoreUtil.capitalize(statString), CoreUtil.capitalize(itemString), CoreUtil.getStatFormat(stat, player.getStatistic(stat, item))})));
       }
-      default ->
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_STAT_SUCCESSFUL.getComponent(new String[]{CoreUtil.capitalize(statString), CoreUtil.getStatFormat(stat, player.getStatistic(stat))})));
+      default -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_STAT_SUCCESSFUL.getComponent(new String[]{CoreUtil.capitalize(statString), CoreUtil.getStatFormat(stat, player.getStatistic(stat))})));
     }
   }
 

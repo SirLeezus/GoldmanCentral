@@ -57,8 +57,7 @@ public class WorldCMD extends CustomCommand {
     final World world = Bukkit.getWorld(worldString);
     final Location location = new Location(world, player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), player.getLocation().getYaw(), player.getLocation().getPitch());
     player.teleportAsync(location).thenAccept(result -> {
-      if (result)
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_WORLD_SUCCESSFUL.getComponent(new String[]{worldString})));
+      if (result) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_WORLD_SUCCESSFUL.getComponent(new String[]{worldString})));
       else player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_WORLD_FAILED.getComponent(null)));
     });
   }

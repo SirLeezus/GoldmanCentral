@@ -75,10 +75,8 @@ public class TeleportAskCMD extends CustomCommand {
           teleportRequestManager.removeActiveRequest(targetID, playerID);
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_PLAYER_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(targetID, targetString)})));
           target.teleportAsync(player.getLocation()).thenAccept(result -> {
-            if (result)
-              target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(playerID, player.getName())})));
-            else
-              target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_FAILED.getComponent(new String[]{ColorAPI.getNameColor(playerID, player.getName())})));
+            if (result) target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(playerID, player.getName())})));
+            else target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_TELEPORT_ASK_ACCEPT_FAILED.getComponent(new String[]{ColorAPI.getNameColor(playerID, player.getName())})));
           });
         }
         case "deny" -> {

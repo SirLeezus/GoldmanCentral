@@ -48,8 +48,7 @@ public class SpawnCMD extends CustomCommand {
       return;
     }
     player.teleportAsync(location).thenAccept(result -> {
-      if (result)
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SPAWN_SUCCESSFUL.getComponent(null)));
+      if (result) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SPAWN_SUCCESSFUL.getComponent(null)));
       else player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SPAWN_FAILED.getComponent(null)));
     });
   }
