@@ -58,6 +58,7 @@ public class GiveCMD extends CustomCommand {
 
   @Override
   public void performSender(CommandSender sender, String[] args, Command command) {
+    //TODO FIX GIVE OR DROP OR ASYNC
     if (args.length < 3) {
       sender.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
