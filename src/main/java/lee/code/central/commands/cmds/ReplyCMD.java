@@ -59,14 +59,14 @@ public class ReplyCMD extends CustomCommand {
       return;
     }
     final UUID targetID = replyManager.getLastMessage(playerID);
-    final OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetID);
-    if (!targetOfflinePlayer.isOnline()) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetOfflinePlayer.getName()})));
+    final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(targetID);
+    if (!offlineTarget.isOnline()) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{offlineTarget.getName()})));
       return;
     }
-    final Player targetPlayer = targetOfflinePlayer.getPlayer();
+    final Player targetPlayer = offlineTarget.getPlayer();
     if (targetPlayer == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetOfflinePlayer.getName()})));
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{offlineTarget.getName()})));
       return;
     }
     central.getReplyManager().setLastMessage(playerID, targetID);
