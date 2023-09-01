@@ -50,7 +50,6 @@ public class StatTopCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
-    //TODO add name colors
     if (args.length < 1) {
       player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
@@ -133,13 +132,15 @@ public class StatTopCMD extends CustomCommand {
       if (index >= sortedPlayers.size()) break;
       final UUID targetID = sortedPlayers.get(index);
       final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(targetID);
-      final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
-      lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[]{
-        String.valueOf(position),
-        ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
-        statFormat
-      }));
-      position++;
+      if (offlinePlayer.hasPlayedBefore()) {
+        final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
+        lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[]{
+          String.valueOf(position),
+          ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
+          statFormat
+        }));
+        position++;
+      }
     }
 
     if (lines.size() == 4) return;

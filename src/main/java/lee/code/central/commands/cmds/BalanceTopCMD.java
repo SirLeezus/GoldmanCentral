@@ -50,7 +50,7 @@ public class BalanceTopCMD extends CustomCommand {
     final ArrayList<UUID> players = new ArrayList<>(sortedBalances.keySet());
     int index;
     int page = 0;
-    int maxDisplayed = 10;
+    final int maxDisplayed = 10;
     if (args.length > 0) {
       if (CoreUtil.isPositiveIntNumber(args[0])) page = Integer.parseInt(args[0]);
     }
@@ -71,9 +71,7 @@ public class BalanceTopCMD extends CustomCommand {
           Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(sortedBalances.get(targetID))})
         }));
         position++;
-        continue;
       }
-      maxDisplayed++;
     }
 
     if (lines.size() == 2) return;
