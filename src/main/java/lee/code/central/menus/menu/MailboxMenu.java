@@ -5,7 +5,7 @@ import lee.code.central.database.cache.players.data.MailData;
 import lee.code.central.lang.Lang;
 import lee.code.central.menus.menu.menudata.MenuItem;
 import lee.code.central.menus.system.MenuButton;
-import lee.code.central.menus.system.MenuGUI;
+import lee.code.central.menus.system.MenuPaginatedGUI;
 import lee.code.central.menus.system.MenuPlayerData;
 import lee.code.central.utils.ItemUtil;
 import org.bukkit.Bukkit;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 import java.util.UUID;
 
-public class MailboxMenu extends MenuGUI {
+public class MailboxMenu extends MenuPaginatedGUI {
   private final Central central;
 
   public MailboxMenu(MenuPlayerData menuPlayerData, Central central) {
@@ -37,11 +37,11 @@ public class MailboxMenu extends MenuGUI {
     final MailData mailData = central.getCacheManager().getCachePlayers().getMailData();
     final List<Integer> books = mailData.getAllMailIDs(uuid);
     int slot = 0;
-    paginatedPage = menuPlayerData.getPage();
-    for (int i = 0; i < paginatedMaxItemsPerPage; i++) {
-      paginatedIndex = paginatedMaxItemsPerPage * paginatedPage + i;
-      if (paginatedIndex >= books.size()) break;
-      final int targetBookID = books.get(paginatedIndex);
+    page = menuPlayerData.getPage();
+    for (int i = 0; i < maxItemsPerPage; i++) {
+      index = maxItemsPerPage * page + i;
+      if (index >= books.size()) break;
+      final int targetBookID = books.get(index);
       addButton(paginatedSlots.get(slot), createBookButton(mailData.getMailBook(uuid, targetBookID), targetBookID));
       slot++;
     }
@@ -69,8 +69,8 @@ public class MailboxMenu extends MenuGUI {
     addButton(51, new MenuButton().creator(p -> MenuItem.NEXT_PAGE.createItem())
       .consumer(e -> {
         final Player player = (Player) e.getWhoClicked();
-        if (!((paginatedIndex + 1) >= central.getCacheManager().getCachePlayers().getMailData().getBookAmount(player.getUniqueId()))) {
-          menuPlayerData.setPage(paginatedPage + 1);
+        if (!((index + 1) >= central.getCacheManager().getCachePlayers().getMailData().getBookAmount(player.getUniqueId()))) {
+          menuPlayerData.setPage(page + 1);
           clearInventory();
           clearButtons();
           decorate(player);
@@ -79,10 +79,10 @@ public class MailboxMenu extends MenuGUI {
     addButton(47, new MenuButton().creator(p -> MenuItem.PREVIOUS_PAGE.createItem())
       .consumer(e -> {
         final Player player = (Player) e.getWhoClicked();
-        if (paginatedPage == 0) {
+        if (page == 0) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
-          menuPlayerData.setPage(paginatedPage - 1);
+          menuPlayerData.setPage(page - 1);
           clearInventory();
           clearButtons();
           decorate(player);

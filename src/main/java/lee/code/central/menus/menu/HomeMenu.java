@@ -6,17 +6,16 @@ import lee.code.central.lang.Lang;
 import lee.code.central.menus.menu.menudata.MenuItem;
 import lee.code.central.menus.menu.menudata.home.HomeItem;
 import lee.code.central.menus.system.MenuButton;
-import lee.code.central.menus.system.MenuGUI;
+import lee.code.central.menus.system.MenuPaginatedGUI;
 import lee.code.central.menus.system.MenuPlayerData;
 import lee.code.central.utils.CoreUtil;
-import lee.code.economy.EcoAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.*;
 
-public class HomeMenu extends MenuGUI {
+public class HomeMenu extends MenuPaginatedGUI {
   private final Central central;
 
   public HomeMenu(MenuPlayerData menuPlayerData, Central central) {
@@ -38,11 +37,11 @@ public class HomeMenu extends MenuGUI {
     final List<String> homes = homeData.getHomeNames(uuid);
     Collections.sort(homes);
     int slot = 0;
-    paginatedPage = menuPlayerData.getPage();
-    for (int i = 0; i < paginatedMaxItemsPerPage; i++) {
-      paginatedIndex = paginatedMaxItemsPerPage * paginatedPage + i;
-      if (paginatedIndex >= homes.size()) break;
-      final String targetHomeName = homes.get(paginatedIndex);
+    page = menuPlayerData.getPage();
+    for (int i = 0; i < maxItemsPerPage; i++) {
+      index = maxItemsPerPage * page + i;
+      if (index >= homes.size()) break;
+      final String targetHomeName = homes.get(index);
       addButton(paginatedSlots.get(slot), createHomeButton(homeData.getHomeLocationString(uuid, targetHomeName), targetHomeName));
       slot++;
     }
@@ -82,8 +81,8 @@ public class HomeMenu extends MenuGUI {
     addButton(51, new MenuButton().creator(p -> MenuItem.NEXT_PAGE.createItem())
       .consumer(e -> {
         final Player player = (Player) e.getWhoClicked();
-        if (!((paginatedIndex + 1) >= central.getCacheManager().getCachePlayers().getHomeData().getHomeAmount(player.getUniqueId()))) {
-          menuPlayerData.setPage(paginatedPage + 1);
+        if (!((index + 1) >= central.getCacheManager().getCachePlayers().getHomeData().getHomeAmount(player.getUniqueId()))) {
+          menuPlayerData.setPage(page + 1);
           clearInventory();
           clearButtons();
           decorate(player);
@@ -92,10 +91,10 @@ public class HomeMenu extends MenuGUI {
     addButton(47, new MenuButton().creator(p -> MenuItem.PREVIOUS_PAGE.createItem())
       .consumer(e -> {
         final Player player = (Player) e.getWhoClicked();
-        if (paginatedPage == 0) {
+        if (page == 0) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
-          menuPlayerData.setPage(paginatedPage - 1);
+          menuPlayerData.setPage(page - 1);
           clearInventory();
           clearButtons();
           decorate(player);

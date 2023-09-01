@@ -8,7 +8,6 @@ import lee.code.central.menus.menu.menudata.armorstand.ArmorStandPosition;
 import lee.code.central.menus.menu.menudata.armorstand.ArmorStandSetting;
 import lee.code.central.menus.system.MenuButton;
 import lee.code.central.menus.system.MenuGUI;
-import lee.code.central.menus.system.MenuPlayerData;
 import lee.code.central.utils.CoreUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,8 +25,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
   private final ArmorStandManager armorStandManager;
   private final ArmorStand armorStand;
 
-  public ArmorStandEditorMenu(ArmorStandManager armorStandManager, ArmorStand armorStand, MenuPlayerData menuPlayerData) {
-    super(menuPlayerData);
+  public ArmorStandEditorMenu(ArmorStandManager armorStandManager, ArmorStand armorStand) {
     this.armorStandManager = armorStandManager;
     this.armorStand = armorStand;
     setInventory();

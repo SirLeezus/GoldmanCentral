@@ -4,7 +4,6 @@ import lee.code.central.Central;
 import lee.code.central.lang.Lang;
 import lee.code.central.managers.ArmorStandManager;
 import lee.code.central.menus.menu.ArmorStandEditorMenu;
-import lee.code.central.menus.system.MenuPlayerData;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,8 +33,7 @@ public class ArmorStandEditorListener implements Listener {
       if (!player.isSneaking()) return;
       e.setCancelled(true);
       armorStandManager.setEditingArmorStand(armorStand.getUniqueId());
-      final MenuPlayerData menuPlayerData = central.getMenuManager().getMenuPlayerData(player.getUniqueId());
-      central.getMenuManager().openMenu(new ArmorStandEditorMenu(armorStandManager, armorStand, menuPlayerData), player);
+      central.getMenuManager().openMenu(new ArmorStandEditorMenu(armorStandManager, armorStand), player);
     }
   }
 
