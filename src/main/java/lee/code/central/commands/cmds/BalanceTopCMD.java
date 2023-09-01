@@ -64,14 +64,12 @@ public class BalanceTopCMD extends CustomCommand {
       if (index >= players.size()) break;
       final UUID targetID = players.get(index);
       final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(targetID);
-      if (offlineTarget.hasPlayedBefore()) {
-        lines.add(Lang.COMMAND_BALANCE_TOP_LINE.getComponent(new String[]{
-          String.valueOf(position),
-          ColorAPI.getNameColor(targetID, offlineTarget.getName()),
-          Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(sortedBalances.get(targetID))})
-        }));
-        position++;
-      }
+      lines.add(Lang.COMMAND_BALANCE_TOP_LINE.getComponent(new String[]{
+        String.valueOf(position),
+        ColorAPI.getNameColor(targetID, offlineTarget.getName()),
+        Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(sortedBalances.get(targetID))})
+      }));
+      position++;
     }
 
     if (lines.size() == 2) return;

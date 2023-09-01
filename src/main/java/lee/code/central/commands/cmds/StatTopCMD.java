@@ -132,15 +132,13 @@ public class StatTopCMD extends CustomCommand {
       if (index >= sortedPlayers.size()) break;
       final UUID targetID = sortedPlayers.get(index);
       final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(targetID);
-      if (offlinePlayer.hasPlayedBefore()) {
-        final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
-        lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[]{
-          String.valueOf(position),
-          ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
-          statFormat
-        }));
-        position++;
-      }
+      final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
+      lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[]{
+        String.valueOf(position),
+        ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
+        statFormat
+      }));
+      position++;
     }
 
     if (lines.size() == 4) return;
