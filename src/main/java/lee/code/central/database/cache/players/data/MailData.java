@@ -52,6 +52,7 @@ public class MailData {
   }
 
   public List<Integer> getAllMailIDs(UUID uuid) {
+    if (!mailCache.containsKey(uuid)) return new ArrayList<>();
     return new ArrayList<>(mailCache.get(uuid).keySet());
   }
 
