@@ -1,12 +1,12 @@
 home {
   tp {
-    home brigadier:string single_word;
+    home brigadier:string greedy_phrase;
   }
   add {
-    home brigadier:string single_word;
+    home brigadier:string greedy_phrase;
   }
   remove {
-    home brigadier:string single_word;
+    home brigadier:string greedy_phrase;
   }
   max;
   bed;

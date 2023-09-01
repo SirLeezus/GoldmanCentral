@@ -59,7 +59,7 @@ public class HomeCMD extends CustomCommand {
           player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
           return;
         }
-        final String name = args[1];
+        final String name = CoreUtil.buildStringFromArgs(args, 1);
         if (!homeData.hasHome(uuid)) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NO_HOMES.getComponent(null)));
           return;
@@ -79,7 +79,7 @@ public class HomeCMD extends CustomCommand {
           player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
           return;
         }
-        final String name = args[1];
+        final String name = CoreUtil.buildStringFromArgs(args, 1);
         if (!homeData.hasHome(uuid)) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NO_HOMES.getComponent(null)));
           return;
@@ -96,7 +96,7 @@ public class HomeCMD extends CustomCommand {
           player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
           return;
         }
-        final String name = CoreUtil.removeSpecialCharacters(args[1]);
+        final String name = CoreUtil.removeSpecialCharacters(CoreUtil.buildStringFromArgs(args, 1));
         if (homeData.hasHome(uuid)) {
           if (homeData.isHome(uuid, name)) {
             player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_IS_HOME.getComponent(new String[]{name})));
