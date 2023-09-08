@@ -1,6 +1,7 @@
 package lee.code.central.listeners;
 
 import lee.code.central.utils.CoreUtil;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,7 +11,6 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-@SuppressWarnings("deprecation")
 public class AnvilListener implements Listener {
 
   @EventHandler
@@ -22,7 +22,8 @@ public class AnvilListener implements Listener {
     if (firstSlot == null || secondSlot != null || resultStack == null) return;
     final ItemStack dupe = firstSlot.clone();
     final ItemMeta dupeMeta = dupe.getItemMeta();
-    final String name = resultStack.getItemMeta().getDisplayName();
+    if (!resultStack.getItemMeta().hasDisplayName()) return;
+    final String name = PlainTextComponentSerializer.plainText().serialize(resultStack.getItemMeta().displayName());
     if (!name.contains("&")) return;
     dupeMeta.displayName(CoreUtil.parseColorComponent(name));
     dupe.setItemMeta(dupeMeta);
