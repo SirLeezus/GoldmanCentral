@@ -70,9 +70,10 @@ public class RandomTeleportCMD extends CustomCommand {
       final Material material = randomLocation.getBlock().getType();
       if (!material.equals(Material.WATER) && !material.equals(Material.LAVA)) {
         final Vector box = randomLocation.getBlock().getBoundingBox().getCenter();
+        final Location location = new Location(randomLocation.getWorld(), box.getX(), box.getY() + 0.5, box.getZ());
+        if (!location.getWorld().getWorldBorder().isInside(location)) continue;
         delayManager.setOnDelay(uuid, 15000);
-        player.teleportAsync(new Location(randomLocation.getWorld(), box.getX(), box.getY() + 0.5, box.getZ()));
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_RANDOM_TELEPORT_SUCCESSFUL.getComponent(null)));
+        player.teleportAsync(location).thenAccept(result -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_RANDOM_TELEPORT_SUCCESSFUL.getComponent(null))));
         return;
       }
     }
