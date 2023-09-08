@@ -6,9 +6,8 @@ import lee.code.central.database.cache.players.CachePlayers;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -56,15 +55,10 @@ public class MailCMD extends CustomCommand {
       return;
     }
     final CachePlayers cachePlayers = central.getCacheManager().getCachePlayers();
-    final String targetName = args[0];
-    final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(targetName);
-    if (offlineTarget == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetName})));
-      return;
-    }
-    final UUID targetID = offlineTarget.getUniqueId();
-    if (!cachePlayers.hasPlayerData(targetID)) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[]{targetName})));
+    final String targetString = args[0];
+    final UUID targetID = PlayerDataAPI.getUniqueId(targetString);
+    if (targetID == null) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[]{targetString})));
       return;
     }
     final ItemStack handItem = player.getInventory().getItemInMainHand();
@@ -95,17 +89,14 @@ public class MailCMD extends CustomCommand {
       return;
     }
     if (cachePlayers.getMailData().getBookAmount(targetID) + 1 > 100) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MAIL_BOOK_MAX.getComponent(new String[]{ColorAPI.getNameColor(targetID, offlineTarget.getName())})));
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MAIL_BOOK_MAX.getComponent(new String[]{ColorAPI.getNameColor(targetID, targetString)})));
       return;
     }
     handItem.setAmount(1);
     cachePlayers.getMailData().addMail(targetID, handItem);
     player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MAIL_SUCCESSFUL.getComponent(new String[] {ColorAPI.getNameColor(targetID, offlineTarget.getName())})));
-    if (!offlineTarget.isOnline()) return;
-    final Player onlineTarget = offlineTarget.getPlayer();
-    if (onlineTarget == null) return;
-    onlineTarget.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MAIL_TARGET_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(player.getUniqueId(), player.getName())})));
+    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MAIL_SUCCESSFUL.getComponent(new String[] {ColorAPI.getNameColor(targetID, targetString)})));
+    PlayerDataAPI.sendPlayerMessageIfOnline(targetID, Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MAIL_TARGET_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(player.getUniqueId(), player.getName())})));
   }
 
   @Override

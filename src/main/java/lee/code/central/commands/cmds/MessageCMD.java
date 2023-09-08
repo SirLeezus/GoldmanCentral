@@ -5,8 +5,8 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
+import lee.code.playerdata.PlayerDataAPI;
 import net.kyori.adventure.text.event.ClickEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -51,14 +51,10 @@ public class MessageCMD extends CustomCommand {
       player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
     }
-    final String playerString = args[0];
-    if (!CoreUtil.getOnlinePlayers().contains(playerString)) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{playerString})));
-      return;
-    }
-    final Player targetPlayer = Bukkit.getPlayer(playerString);
+    final String targetString = args[0];
+    final Player targetPlayer = PlayerDataAPI.getOnlinePlayer(targetString);
     if (targetPlayer == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{playerString})));
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
       return;
     }
     if (targetPlayer.equals(player)) {

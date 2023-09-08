@@ -6,8 +6,7 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -53,13 +52,8 @@ public class PayCMD extends CustomCommand {
       return;
     }
     final String targetString = args[0];
-    final OfflinePlayer target = Bukkit.getOfflinePlayerIfCached(targetString);
-    if (target == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetString})));
-      return;
-    }
-    final UUID targetID = target.getUniqueId();
-    if (!EcoAPI.hasPlayerData(targetID)) {
+    final UUID targetID = PlayerDataAPI.getUniqueId(targetString);
+    if (targetID == null) {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[]{targetString})));
       return;
     }
@@ -91,16 +85,12 @@ public class PayCMD extends CustomCommand {
     EcoAPI.addBalance(targetID, amount);
     player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_SUCCESSFUL.getComponent(new String[]{
       Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)}),
-      ColorAPI.getNameColor(targetID, target.getName())
+      ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID))
     })));
-    if (target.isOnline()) {
-      final Player onlineTarget = target.getPlayer();
-      if (onlineTarget == null) return;
-      onlineTarget.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_TARGET_SUCCESSFUL.getComponent(new String[]{
-        Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)}),
-        ColorAPI.getNameColor(player.getUniqueId(), player.getName())
-      })));
-    }
+    PlayerDataAPI.sendPlayerMessageIfOnline(targetID, Lang.PREFIX.getComponent(null).append(Lang.COMMAND_PAY_TARGET_SUCCESSFUL.getComponent(new String[]{
+      Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)}),
+      ColorAPI.getNameColor(player.getUniqueId(), player.getName())
+    })));
   }
 
   @Override

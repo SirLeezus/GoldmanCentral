@@ -5,7 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -49,19 +49,15 @@ public class SmiteCMD extends CustomCommand {
   public void perform(Player player, String[] args, Command command) {
     final Location location;
     if (args.length > 0) {
-      final String targetName = args[0];
-      if (!CoreUtil.getOnlinePlayers().contains(targetName)) {
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetName})));
-        return;
-      }
-      final Player targetPlayer = Bukkit.getPlayer(targetName);
+      final String targetString = args[0];
+      final Player targetPlayer = PlayerDataAPI.getOnlinePlayer(targetString);
       if (targetPlayer == null) {
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetName})));
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
         return;
       }
       location = targetPlayer.getLocation();
       location.getWorld().strikeLightning(location);
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SMITE_TARGET_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(targetPlayer.getUniqueId(), targetName)})));
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SMITE_TARGET_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(targetPlayer.getUniqueId(), targetString)})));
     } else {
       final Block block = player.getTargetBlockExact(100);
       if (block == null) {

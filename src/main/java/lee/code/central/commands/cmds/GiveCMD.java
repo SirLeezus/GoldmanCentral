@@ -6,7 +6,7 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
 import lee.code.colors.ColorAPI;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -58,19 +58,14 @@ public class GiveCMD extends CustomCommand {
 
   @Override
   public void performSender(CommandSender sender, String[] args, Command command) {
-    //TODO FIX GIVE OR DROP OR ASYNC
     if (args.length < 3) {
       sender.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
     }
-    final String playerString = args[0];
-    if (!CoreUtil.getOnlinePlayers().contains(playerString)) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{playerString})));
-      return;
-    }
-    final Player player = Bukkit.getPlayer(playerString);
-    if (player == null) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{playerString})));
+    final String targetString = args[0];
+    final Player target = PlayerDataAPI.getOnlinePlayer(targetString);
+    if (target == null) {
+      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
       return;
     }
     final String materialString = args[1].toUpperCase();
@@ -87,13 +82,13 @@ public class GiveCMD extends CustomCommand {
     int amount = Integer.parseInt(amountString);
     if (amount > 1000) amount = 1000;
     final ItemStack item = new ItemStack(material);
-    if (!ItemUtil.canReceiveItems(player, item, amount)) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[]{playerString})));
+    if (!ItemUtil.canReceiveItems(target, item, amount)) {
+      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[]{targetString})));
       return;
     }
-    ItemUtil.giveItem(player, new ItemStack(material), amount);
-    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[]{CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString)})));
-    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(player.getUniqueId(), playerString), CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString)})));
+    ItemUtil.giveItem(target, new ItemStack(material), amount);
+    target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[]{CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString)})));
+    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[]{ColorAPI.getNameColor(target.getUniqueId(), targetString), CoreUtil.parseValue(amount), CoreUtil.capitalize(materialString)})));
   }
 
   @Override

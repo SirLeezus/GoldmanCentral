@@ -54,6 +54,9 @@ dependencies {
 
   //protocol-lib
   compileOnly 'com.comphenix.protocol:ProtocolLib:5.1.0'
+
+  //goldman playerdata
+  compileOnly 'lee.code.playerdata:playerdata:1.0.0'
 }
 
 shadowJar {

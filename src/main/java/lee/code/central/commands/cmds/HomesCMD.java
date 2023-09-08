@@ -4,7 +4,6 @@ import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.menus.menu.HomeMenu;
-import lee.code.central.menus.system.MenuPlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -47,8 +46,7 @@ public class HomesCMD extends CustomCommand {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NO_HOMES.getComponent(null)));
       return;
     }
-    final MenuPlayerData menuPlayerData = central.getMenuManager().getMenuPlayerData(player.getUniqueId());
-    central.getMenuManager().openMenu(new HomeMenu(menuPlayerData, central), player);
+    central.getMenuManager().openMenu(new HomeMenu(central), player);
   }
 
   @Override

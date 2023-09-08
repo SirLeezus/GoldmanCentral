@@ -7,7 +7,6 @@ import lee.code.central.menus.menu.menudata.MenuItem;
 import lee.code.central.menus.menu.menudata.home.HomeItem;
 import lee.code.central.menus.system.MenuButton;
 import lee.code.central.menus.system.MenuPaginatedGUI;
-import lee.code.central.menus.system.MenuPlayerData;
 import lee.code.central.utils.CoreUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,8 +17,7 @@ import java.util.*;
 public class HomeMenu extends MenuPaginatedGUI {
   private final Central central;
 
-  public HomeMenu(MenuPlayerData menuPlayerData, Central central) {
-    super(menuPlayerData);
+  public HomeMenu(Central central) {
     this.central = central;
     setInventory();
   }
@@ -37,7 +35,6 @@ public class HomeMenu extends MenuPaginatedGUI {
     final List<String> homes = homeData.getHomeNames(uuid);
     Collections.sort(homes);
     int slot = 0;
-    page = menuPlayerData.getPage();
     for (int i = 0; i < maxItemsPerPage; i++) {
       index = maxItemsPerPage * page + i;
       if (index >= homes.size()) break;
@@ -45,15 +42,14 @@ public class HomeMenu extends MenuPaginatedGUI {
       addButton(paginatedSlots.get(slot), createHomeButton(homeData.getHomeLocationString(uuid, targetHomeName), targetHomeName));
       slot++;
     }
-    addBedButton();
-    addPaginatedButtons();
+    addBedButton(player);
+    addPaginatedButtons(player);
     super.decorate(player);
   }
 
-  private void addBedButton() {
+  private void addBedButton(Player player) {
     addButton(49, new MenuButton().creator(p -> HomeItem.HOME_BED.createItem())
       .consumer(e -> {
-        final Player player = (Player) e.getWhoClicked();
         if (player.getBedSpawnLocation() == null) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MENU_HOME_BED_INVALID.getComponent(null)));
           return;
@@ -77,12 +73,11 @@ public class HomeMenu extends MenuPaginatedGUI {
       });
   }
 
-  private void addPaginatedButtons() {
+  private void addPaginatedButtons(Player player) {
     addButton(51, new MenuButton().creator(p -> MenuItem.NEXT_PAGE.createItem())
       .consumer(e -> {
-        final Player player = (Player) e.getWhoClicked();
         if (!((index + 1) >= central.getCacheManager().getCachePlayers().getHomeData().getHomeAmount(player.getUniqueId()))) {
-          menuPlayerData.setPage(page + 1);
+          page += 1;
           clearInventory();
           clearButtons();
           decorate(player);
@@ -90,11 +85,10 @@ public class HomeMenu extends MenuPaginatedGUI {
       }));
     addButton(47, new MenuButton().creator(p -> MenuItem.PREVIOUS_PAGE.createItem())
       .consumer(e -> {
-        final Player player = (Player) e.getWhoClicked();
         if (page == 0) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
-          menuPlayerData.setPage(page - 1);
+          page -= 1;
           clearInventory();
           clearButtons();
           decorate(player);

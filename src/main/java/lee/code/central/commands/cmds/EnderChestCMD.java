@@ -5,7 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -46,14 +46,10 @@ public class EnderChestCMD extends CustomCommand {
   @Override
   public void perform(Player player, String[] args, Command command) {
     if (args.length > 0) {
-      final String playerString = args[0];
-      if (!CoreUtil.getOnlinePlayers().contains(playerString)) {
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{playerString})));
-        return;
-      }
-      final Player target = Bukkit.getPlayer(playerString);
+      final String targetString = args[0];
+      final Player target = PlayerDataAPI.getOnlinePlayer(targetString);
       if (target == null) {
-        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{playerString})));
+        player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
         return;
       }
       player.openInventory(target.getEnderChest());

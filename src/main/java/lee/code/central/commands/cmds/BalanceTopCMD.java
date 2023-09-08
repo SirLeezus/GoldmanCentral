@@ -6,9 +6,8 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
+import lee.code.playerdata.PlayerDataAPI;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -63,10 +62,9 @@ public class BalanceTopCMD extends CustomCommand {
       index = maxDisplayed * page + i;
       if (index >= players.size()) break;
       final UUID targetID = players.get(index);
-      final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(targetID);
       lines.add(Lang.COMMAND_BALANCE_TOP_LINE.getComponent(new String[]{
         String.valueOf(position),
-        ColorAPI.getNameColor(targetID, offlineTarget.getName()),
+        ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID)),
         Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(sortedBalances.get(targetID))})
       }));
       position++;

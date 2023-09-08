@@ -5,7 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -61,14 +61,10 @@ public class SpawnerCMD extends CustomCommand {
       sender.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
       return;
     }
-    final String playerString = args[0];
-    if (!CoreUtil.getOnlinePlayers().contains(playerString)) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{playerString})));
-      return;
-    }
-    final Player player = Bukkit.getPlayer(playerString);
-    if (player == null) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{playerString})));
+    final String targetString = args[0];
+    final Player target = PlayerDataAPI.getOnlinePlayer(targetString);
+    if (target == null) {
+      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
       return;
     }
     final String entityTypeString = args[1].toUpperCase();
@@ -85,13 +81,13 @@ public class SpawnerCMD extends CustomCommand {
     int amount = Integer.parseInt(amountString);
     if (amount > 1000) amount = 1000;
     final ItemStack item = ItemUtil.createSpawner(entityType);
-    if (!ItemUtil.canReceiveItems(player, item, amount)) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[]{playerString})));
+    if (!ItemUtil.canReceiveItems(target, item, amount)) {
+      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_INVENTORY_SPACE.getComponent(new String[]{targetString})));
       return;
     }
-    ItemUtil.giveItem(player, item, amount);
-    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[]{CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[]{CoreUtil.capitalize(entityTypeString)})})));
-    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[]{playerString, CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[]{CoreUtil.capitalize(entityTypeString)})})));
+    ItemUtil.giveItem(target, item, amount);
+    target.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_TARGET_SUCCESSFUL.getComponent(new String[]{CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[]{CoreUtil.capitalize(entityTypeString)})})));
+    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_GIVE_SUCCESSFUL.getComponent(new String[]{targetString, CoreUtil.parseValue(amount), Lang.SPAWNER_NAME.getString(new String[]{CoreUtil.capitalize(entityTypeString)})})));
   }
 
   @Override

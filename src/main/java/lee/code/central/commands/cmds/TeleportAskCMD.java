@@ -6,7 +6,7 @@ import lee.code.central.lang.Lang;
 import lee.code.central.managers.TeleportRequestManager;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
-import org.bukkit.Bukkit;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -52,13 +52,9 @@ public class TeleportAskCMD extends CustomCommand {
       return;
     }
     final String targetString = args[0];
-    if (!CoreUtil.getOnlinePlayers().contains(targetString)) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
-      return;
-    }
-    final Player target = Bukkit.getPlayer(targetString);
+    final Player target = PlayerDataAPI.getOnlinePlayer(targetString);
     if (target == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetString})));
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{targetString})));
       return;
     }
     final UUID targetID = target.getUniqueId();

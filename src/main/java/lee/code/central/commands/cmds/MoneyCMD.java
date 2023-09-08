@@ -6,8 +6,7 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
 import lee.code.economy.EcoAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -63,13 +62,8 @@ public class MoneyCMD extends CustomCommand {
       return;
     }
     final String targetString = args[0];
-    final OfflinePlayer target = Bukkit.getOfflinePlayerIfCached(targetString);
-    if (target == null) {
-      sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{targetString})));
-      return;
-    }
-    final UUID targetID = target.getUniqueId();
-    if (!EcoAPI.hasPlayerData(targetID)) {
+    final UUID targetID = PlayerDataAPI.getUniqueId(targetString);
+    if (targetID == null) {
       sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_PLAYER_DATA.getComponent(new String[]{targetString})));
       return;
     }
@@ -84,7 +78,7 @@ public class MoneyCMD extends CustomCommand {
       case "set" -> {
         EcoAPI.setBalance(targetID, amount);
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_SET_SUCCESSFUL.getComponent(new String[]{
-          ColorAPI.getNameColor(targetID, target.getName()),
+          ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID)),
           Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)})
         })));
       }
@@ -92,14 +86,14 @@ public class MoneyCMD extends CustomCommand {
         EcoAPI.addBalance(targetID, amount);
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_ADDED_SUCCESSFUL.getComponent(new String[]{
           Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)}),
-          ColorAPI.getNameColor(targetID, target.getName())
+          ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID))
         })));
       }
       case "remove" -> {
         EcoAPI.removeBalance(targetID, amount);
         sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_MONEY_REMOVED_SUCCESSFUL.getComponent(new String[]{
           Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(amount)}),
-          ColorAPI.getNameColor(targetID, target.getName())
+          ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID))
         })));
       }
       default -> sender.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));

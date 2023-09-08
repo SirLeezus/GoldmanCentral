@@ -6,6 +6,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
+import lee.code.playerdata.PlayerDataAPI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -131,11 +132,10 @@ public class StatTopCMD extends CustomCommand {
       index = maxDisplayed * page + i;
       if (index >= sortedPlayers.size()) break;
       final UUID targetID = sortedPlayers.get(index);
-      final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(targetID);
       final String statFormat = CoreUtil.getStatFormat(statistic, sortedStats.get(targetID));
       lines.add(Lang.COMMAND_STAT_TOP_LINE.getComponent(new String[]{
         String.valueOf(position),
-        ColorAPI.getNameColor(targetID, offlinePlayer.getName()),
+        ColorAPI.getNameColor(targetID, PlayerDataAPI.getName(targetID)),
         statFormat
       }));
       position++;

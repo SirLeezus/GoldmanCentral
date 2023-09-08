@@ -6,9 +6,8 @@ import lee.code.central.lang.Lang;
 import lee.code.central.managers.ReplyManager;
 import lee.code.central.utils.CoreUtil;
 import lee.code.colors.ColorAPI;
+import lee.code.playerdata.PlayerDataAPI;
 import net.kyori.adventure.text.event.ClickEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -59,23 +58,18 @@ public class ReplyCMD extends CustomCommand {
       return;
     }
     final UUID targetID = replyManager.getLastMessage(playerID);
-    final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(targetID);
-    if (!offlineTarget.isOnline()) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{offlineTarget.getName()})));
-      return;
-    }
-    final Player targetPlayer = offlineTarget.getPlayer();
-    if (targetPlayer == null) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_FOUND.getComponent(new String[]{offlineTarget.getName()})));
+    final Player target = PlayerDataAPI.getOnlinePlayer(targetID);
+    if (target == null) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PLAYER_NOT_ONLINE.getComponent(new String[]{PlayerDataAPI.getName(targetID)})));
       return;
     }
     central.getReplyManager().setLastMessage(playerID, targetID);
     final String message = CoreUtil.buildStringFromArgs(args, 0);
     player.sendMessage(Lang.COMMAND_MESSAGE_SENT_SUCCESSFUL.getComponent(new String[]{
-      ColorAPI.getNameColor(targetID, targetPlayer.getName()),
+      ColorAPI.getNameColor(targetID, target.getName()),
       message
-    }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + targetPlayer.getName() + " ")));
-    targetPlayer.sendMessage(Lang.COMMAND_MESSAGE_RECEIVED_SUCCESSFUL.getComponent(new String[]{
+    }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + target.getName() + " ")));
+    target.sendMessage(Lang.COMMAND_MESSAGE_RECEIVED_SUCCESSFUL.getComponent(new String[]{
       ColorAPI.getNameColor(playerID, player.getName()),
       message
     }).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + player.getName() + " ")));
