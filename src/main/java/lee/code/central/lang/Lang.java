@@ -11,7 +11,7 @@ public enum Lang {
   USAGE("&6&lUsage: &e{0}"),
   DEATH_PREFIX("&c&lDeath &6➔ &r"),
   WARNING("&4&lWarning &6➔ &r"),
-  SPAWNER_NAME("&e{0} Spawner"),
+  SPAWNER_NAME("&eSpawner"),
   DEATH_HOVER("&2&lPlayer&7: {display-name}\n&2&lTotal Deaths&7: &c{1}"),
   ADVANCEMENT_PREFIX("&a&lAdvancement &6➔ &r"),
   VALUE_FORMAT("&6${0}"),
