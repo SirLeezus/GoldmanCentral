@@ -57,6 +57,9 @@ dependencies {
 
   //goldman playerdata
   compileOnly 'lee.code.playerdata:playerdata:1.0.0'
+
+  //goldman shops
+  compileOnly 'lee.code.shops:shops:1.0.0'
 }
 
 shadowJar {

@@ -6,6 +6,8 @@ import lee.code.central.enums.ItemValue;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
+import lee.code.central.utils.VariableUtil;
+import lee.code.shops.ShopsAPI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,8 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class WorthCMD extends CustomCommand {
   private final Central central;
@@ -47,6 +48,37 @@ public class WorthCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
+    if (args.length > 0 && args[0].equalsIgnoreCase("list")) {
+      final Map<ItemStack, Double> sortedItems = ShopsAPI.getAllItemSellValues();
+      final ArrayList<ItemStack> items = new ArrayList<>(sortedItems.keySet());
+      int index;
+      int page = 0;
+      final int maxDisplayed = 10;
+      if (args.length > 1) {
+        if (CoreUtil.isPositiveIntNumber(args[1])) page = Integer.parseInt(args[1]);
+      }
+      int position = page * maxDisplayed + 1;
+      final ArrayList<Component> lines = new ArrayList<>();
+      lines.add(Lang.COMMAND_WORTH_LIST_TITLE.getComponent(null));
+      lines.add(Component.text(" "));
+
+      for (int i = 0; i < maxDisplayed; i++) {
+        index = maxDisplayed * page + i;
+        if (index >= items.size()) break;
+        final ItemStack targetItem = items.get(index);
+        lines.add(VariableUtil.parseItemVariables(Lang.COMMAND_WORTH_LIST_LINE.getComponent(new String[]{
+          String.valueOf(position),
+          Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(sortedItems.get(targetItem))})
+        }), targetItem));
+        position++;
+      }
+
+      if (lines.size() == 2) return;
+      lines.add(Component.text(" "));
+      lines.add(CoreUtil.createPageSelectionComponent("/worth list", page));
+      for (Component line : lines) player.sendMessage(line);
+      return;
+    }
     final ItemStack handItem = player.getInventory().getItemInMainHand();
     final Material handMaterial = handItem.getType();
     if (handMaterial.equals(Material.AIR)) {

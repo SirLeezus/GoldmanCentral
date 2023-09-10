@@ -1,1 +1,5 @@
-worth;
+worth {
+  list {
+    page brigadier:integer;
+  }
+}
