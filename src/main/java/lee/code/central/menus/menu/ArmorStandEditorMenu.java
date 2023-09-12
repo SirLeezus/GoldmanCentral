@@ -40,7 +40,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
   public void decorate(Player player) {
     addFillerGlass();
     for (ArmorStandItem armorStandItem : ArmorStandItem.values()) {
-      addButton(armorStandItem.getSlot(), createButton(armorStandItem));
+      addButton(armorStandItem.getSlot(), createButton(player, armorStandItem));
     }
     super.decorate(player);
   }
@@ -50,7 +50,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
     armorStandManager.removeEditingArmorStand(armorStand.getUniqueId());
   }
 
-  private MenuButton createButton(ArmorStandItem armorStandItem) {
+  private MenuButton createButton(Player player, ArmorStandItem armorStandItem) {
     if (armorStandItem.getArmorStandSetting() != null) {
       return new MenuButton().creator(p -> armorStandItem.createSetting(checkArmorStandSetting(armorStandItem.getArmorStandSetting())))
         .consumer(e -> {
@@ -58,6 +58,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
           updateArmorStandSetting(armorStandItem.getArmorStandSetting(), !currentResult);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
+          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createSetting(!currentResult);
           item.setItemMeta(newItem.getItemMeta());
           item.setType(newItem.getType());
@@ -71,6 +72,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
           updateArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate(), amount);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
+          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createPosition(CoreUtil.parseShortDecimalValue(checkArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate())));
           item.setItemMeta(newItem.getItemMeta());
           item.setType(newItem.getType());
@@ -84,6 +86,7 @@ public class ArmorStandEditorMenu extends MenuGUI {
           updateArmorStandDirection(amount);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
+          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation());
           item.setItemMeta(newItem.getItemMeta());
         });
@@ -92,7 +95,8 @@ public class ArmorStandEditorMenu extends MenuGUI {
         .consumer(e -> {
           if (e.getCurrentItem() == null) return;
           if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) return;
-          equipmentChange((Player) e.getWhoClicked(), armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
+          getMenuSoundManager().playClickSound(player);
+          equipmentChange(player, armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
         });
     }
     return null;

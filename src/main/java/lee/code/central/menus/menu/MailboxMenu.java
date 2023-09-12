@@ -53,6 +53,7 @@ public class MailboxMenu extends MenuPaginatedGUI {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_BOOK_NO_INVENTORY_SPACE.getComponent(null)));
           return;
         }
+        getMenuSoundManager().playRedeemBookSound(player);
         central.getCacheManager().getCachePlayers().getMailData().removeMail(player.getUniqueId(), bookID);
         ItemUtil.giveItem(player, book, 1);
         clearInventory();
@@ -66,6 +67,7 @@ public class MailboxMenu extends MenuPaginatedGUI {
       .consumer(e -> {
         if (!((index + 1) >= central.getCacheManager().getCachePlayers().getMailData().getBookAmount(player.getUniqueId()))) {
           page += 1;
+          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);
@@ -77,6 +79,7 @@ public class MailboxMenu extends MenuPaginatedGUI {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
           page -= 1;
+          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);
