@@ -28,6 +28,7 @@ public class HeadDropListener implements Listener {
       else if (item.getType().equals(Material.WITHER_SKELETON_SKULL)) iterator.remove();
       else if (item.getType().equals(Material.ZOMBIE_HEAD)) iterator.remove();
       else if (item.getType().equals(Material.DRAGON_HEAD)) iterator.remove();
+      else if (item.getType().equals(Material.PIGLIN_HEAD)) iterator.remove();
     }
     final Player killer = e.getEntity().getKiller();
     final int rng = killer.getGameMode().equals(GameMode.CREATIVE) ? 1000 : HeadUtil.headDropRNG();

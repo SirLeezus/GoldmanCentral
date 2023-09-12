@@ -7,6 +7,7 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
 import lee.code.economy.EcoAPI;
+import lee.code.shops.ShopsAPI;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -59,7 +60,7 @@ public class SellCMD extends CustomCommand {
     }
     final String name = handItem.getType().name();
     final int amount = handItem.getAmount();
-    final double worth = ItemValue.valueOf(name).getValue();
+    final double worth = ShopsAPI.getItemSellValue(handItem);
     final double finalWorth = worth * amount;
     ItemUtil.removePlayerItems(player, handItem, amount, true);
     EcoAPI.addBalance(player.getUniqueId(), finalWorth);

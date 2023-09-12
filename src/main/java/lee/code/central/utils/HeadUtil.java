@@ -37,6 +37,8 @@ public class HeadUtil {
       return new ItemStack(Material.ZOMBIE_HEAD);
     } else if (entity instanceof Warden) {
       return EntityHead.valueOf(entity.getType().name()).getHead();
+    } else if (entity instanceof Piglin) {
+      return new ItemStack(Material.PIGLIN_HEAD);
     } else {
       return getCustomEntityHead(entity);
     }

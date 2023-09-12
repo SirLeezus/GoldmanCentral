@@ -79,18 +79,16 @@ public class WorthCMD extends CustomCommand {
       for (Component line : lines) player.sendMessage(line);
       return;
     }
-    final ItemStack handItem = player.getInventory().getItemInMainHand();
+    final ItemStack handItem = new ItemStack(player.getInventory().getItemInMainHand());
+    final int handAmount = handItem.getAmount();
+    handItem.setAmount(1);
     final Material handMaterial = handItem.getType();
     if (handMaterial.equals(Material.AIR)) {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_WORTH_NO_ITEM.getComponent(null)));
       return;
     }
-    if (!central.getData().getSellableMaterials().contains(handMaterial.name())) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_VALUE.getComponent(new String[]{CoreUtil.capitalize(handMaterial.name())})));
-      return;
-    }
-    final double worth = ItemValue.valueOf(handMaterial.name()).getValue();
-    final double handWorth = worth * handItem.getAmount();
+    final double worth = ShopsAPI.getItemSellValue(handItem);
+    final double handWorth = worth * handAmount;
     final double inventoryAmount = worth * ItemUtil.getItemAmount(player, handItem);
 
     final List<Component> lines = new ArrayList<>();
