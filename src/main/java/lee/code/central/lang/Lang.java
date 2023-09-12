@@ -43,7 +43,7 @@ public enum Lang {
   COMMAND_WORTH_LIST_LINE("&3{0}&7. &e{display-name-item} &7| {1}"),
   COMMAND_BALANCE_TOP_LINE("&3{0}&7. {1} &7| {2}"),
   COMMAND_STAT_TOP_LINE("&3{0}&7. {1} &7| &2{2}"),
-  COMMAND_WORTH_LIST_TITLE("&a----------- &e[ &2&lWorth List &e] &a-----------"),
+  COMMAND_WORTH_LIST_TITLE("&a---------- &e[ &2&lWorth List &e] &a-----------"),
   COMMAND_BALANCE_TOP_TITLE("&a----- &e[ &2&lBalance Leaderboard &e] &a-----"),
   COMMAND_STAT_TOP_TITLE("&a------ &e[ &2&lStats Leaderboard &e] &a------"),
   COMMAND_STAT_TOP_STAT("&e&lStat&7: &6{0}"),
