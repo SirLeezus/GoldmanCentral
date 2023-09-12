@@ -46,6 +46,7 @@ public class CommandManager {
     commands.add(new MoneyCMD(central));
     commands.add(new WorthCMD(central));
     commands.add(new SellCMD(central));
+    commands.add(new SellAllCMD(central));
     commands.add(new PayCMD(central));
     commands.add(new SpawnCMD(central));
     commands.add(new SetSpawnCMD(central));
