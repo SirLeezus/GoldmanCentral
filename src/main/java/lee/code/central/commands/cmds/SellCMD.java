@@ -2,10 +2,10 @@ package lee.code.central.commands.cmds;
 
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
-import lee.code.central.enums.ItemValue;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
+import lee.code.central.utils.VariableUtil;
 import lee.code.economy.EcoAPI;
 import lee.code.shops.ShopsAPI;
 import org.bukkit.Material;
@@ -48,27 +48,25 @@ public class SellCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
-    final ItemStack handItem = player.getInventory().getItemInMainHand();
-    final Material handMaterial = handItem.getType();
-    if (handMaterial.equals(Material.AIR)) {
+    final ItemStack handItem = new ItemStack(player.getInventory().getItemInMainHand());
+    final int amount = handItem.getAmount();
+    handItem.setAmount(1);
+    if (handItem.getType().equals(Material.AIR)) {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SELL_NO_ITEM.getComponent(null)));
       return;
     }
-    if (!central.getData().getSellableMaterials().contains(handMaterial.name())) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_NO_VALUE.getComponent(new String[]{CoreUtil.capitalize(handMaterial.name())})));
-      return;
-    }
-    final String name = handItem.getType().name();
-    final int amount = handItem.getAmount();
     final double worth = ShopsAPI.getItemSellValue(handItem);
     final double finalWorth = worth * amount;
+    if (finalWorth <= 0) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SELL_NO_VALUE.getComponent(null)));
+      return;
+    }
     ItemUtil.removePlayerItems(player, handItem, amount, true);
     EcoAPI.addBalance(player.getUniqueId(), finalWorth);
-    player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SELL_SUCCESSFUL.getComponent(new String[]{
+    player.sendMessage(VariableUtil.parseItemVariables(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_SELL_SUCCESSFUL.getComponent(new String[]{
       CoreUtil.parseValue(amount),
-      CoreUtil.capitalize(name),
       Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(finalWorth)})
-    })));
+    })), handItem));
   }
 
   @Override
