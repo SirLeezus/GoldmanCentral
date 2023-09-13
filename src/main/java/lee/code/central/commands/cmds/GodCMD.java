@@ -27,7 +27,7 @@ public class GodCMD extends CustomCommand {
 
   @Override
   public boolean performAsync() {
-    return true;
+    return false;
   }
 
   @Override

@@ -30,7 +30,7 @@ public class HomeCMD extends CustomCommand {
 
   @Override
   public boolean performAsync() {
-    return true;
+    return false;
   }
 
   @Override
