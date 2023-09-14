@@ -1,6 +1,8 @@
 package lee.code.central.managers;
 
 import lee.code.central.Central;
+import lee.code.central.lang.Lang;
+import lee.code.central.utils.CoreUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
@@ -47,5 +49,9 @@ public class MobLimitManager {
       10,
       TimeUnit.SECONDS
     );
+  }
+
+  public void sendPlayerLimitMessage(Player player, EntityType entityType) {
+    player.sendActionBar(Lang.ERROR_MOB_LIMIT_REACHED.getComponent(new String[]{String.valueOf(maxMobPerChunk), CoreUtil.capitalize(entityType.name())}));
   }
 }
