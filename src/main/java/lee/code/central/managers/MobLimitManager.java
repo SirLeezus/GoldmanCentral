@@ -46,7 +46,7 @@ public class MobLimitManager {
         }
       },
       0,
-      10,
+      60,
       TimeUnit.SECONDS
     );
   }
