@@ -10,6 +10,7 @@ import lee.code.central.listeners.*;
 import lee.code.central.managers.*;
 import lee.code.central.menus.system.MenuListener;
 import lee.code.central.menus.system.MenuManager;
+import lee.code.central.managers.MobLimitManager;
 import lombok.Getter;
 import me.lucko.commodore.CommodoreProvider;
 import me.lucko.commodore.file.CommodoreFileReader;
@@ -28,6 +29,7 @@ public class Central extends JavaPlugin {
   @Getter private ReplyManager replyManager;
   @Getter private CacheManager cacheManager;
   @Getter private CommandManager commandManager;
+  @Getter private MobLimitManager mobLimitManager;
   @Getter private Data data;
   private DatabaseManager databaseManager;
 
@@ -42,6 +44,7 @@ public class Central extends JavaPlugin {
     this.armorStandManager = new ArmorStandManager();
     this.delayManager = new DelayManager(this);
     this.motdManager = new MOTDManager(this);
+    this.mobLimitManager = new MobLimitManager(this);
     this.backManager = new BackManager();
     this.data = new Data();
 
@@ -71,6 +74,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new ArmorStandEditorListener(this), this);
     getServer().getPluginManager().registerEvents(new GodListener(this), this);
     getServer().getPluginManager().registerEvents(new BackListener(this), this);
+    getServer().getPluginManager().registerEvents(new MobLimitListener(this), this);
   }
 
   private void startSchedules() {
