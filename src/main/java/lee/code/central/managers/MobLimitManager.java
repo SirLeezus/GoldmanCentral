@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MobLimitManager {
   private final Central central;
-  private final int maxMobPerChunk = 5;
+  private final int maxMobPerChunk = 25;
 
   public MobLimitManager(Central central) {
     this.central = central;
