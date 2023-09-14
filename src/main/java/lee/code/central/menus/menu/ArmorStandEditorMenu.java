@@ -54,11 +54,11 @@ public class ArmorStandEditorMenu extends MenuGUI {
     if (armorStandItem.getArmorStandSetting() != null) {
       return new MenuButton().creator(p -> armorStandItem.createSetting(checkArmorStandSetting(armorStandItem.getArmorStandSetting())))
         .consumer(e -> {
+          getMenuSoundManager().playClickSound(player);
           final boolean currentResult = checkArmorStandSetting(armorStandItem.getArmorStandSetting());
           updateArmorStandSetting(armorStandItem.getArmorStandSetting(), !currentResult);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
-          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createSetting(!currentResult);
           item.setItemMeta(newItem.getItemMeta());
           item.setType(newItem.getType());
@@ -66,13 +66,13 @@ public class ArmorStandEditorMenu extends MenuGUI {
     } else if (armorStandItem.getArmorStandPosition() != null) {
       return new MenuButton().creator(p -> armorStandItem.createPosition(CoreUtil.parseShortDecimalValue(checkArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate()))))
         .consumer(e -> {
+          getMenuSoundManager().playClickSound(player);
           double amount = 0.01;
           if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) amount = 0.10;
           if (e.getClick().isLeftClick()) amount = -amount;
           updateArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate(), amount);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
-          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createPosition(CoreUtil.parseShortDecimalValue(checkArmorStandPosition(armorStandItem.getArmorStandPosition(), armorStandItem.getArmorStandCoordinate())));
           item.setItemMeta(newItem.getItemMeta());
           item.setType(newItem.getType());
@@ -80,22 +80,22 @@ public class ArmorStandEditorMenu extends MenuGUI {
     } else if (armorStandItem.isDirection()) {
       return new MenuButton().creator(p -> armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation()))
         .consumer(e -> {
+          getMenuSoundManager().playClickSound(player);
           double amount = 1;
           if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) amount = 10;
           if (e.getClick().isLeftClick()) amount = -amount;
           updateArmorStandDirection(amount);
           final ItemStack item = e.getCurrentItem();
           if (item == null) return;
-          getMenuSoundManager().playClickSound(player);
           final ItemStack newItem = armorStandItem.createDirection(CoreUtil.parseShortDecimalValue(armorStand.getLocation().getYaw()), armorStand.getLocation());
           item.setItemMeta(newItem.getItemMeta());
         });
     } else if (armorStandItem.getEquipmentSlot() != null) {
       return new MenuButton().creator(p -> armorStandItem.createSlot(armorStand.getEquipment().getItem(armorStandItem.getEquipmentSlot())))
         .consumer(e -> {
+          getMenuSoundManager().playClickSound(player);
           if (e.getCurrentItem() == null) return;
           if (e.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) return;
-          getMenuSoundManager().playClickSound(player);
           equipmentChange(player, armorStandItem, armorStandItem.getEquipmentSlot(), e.getCurrentItem(), e.getCursor());
         });
     }

@@ -49,11 +49,11 @@ public class MailboxMenu extends MenuPaginatedGUI {
   private MenuButton createBookButton(Player player, ItemStack book, int bookID) {
     return new MenuButton().creator(p -> book)
       .consumer(e -> {
+        getMenuSoundManager().playRedeemBookSound(player);
         if (!ItemUtil.canReceiveItems(player, book, 1)) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_BOOK_NO_INVENTORY_SPACE.getComponent(null)));
           return;
         }
-        getMenuSoundManager().playRedeemBookSound(player);
         central.getCacheManager().getCachePlayers().getMailData().removeMail(player.getUniqueId(), bookID);
         ItemUtil.giveItem(player, book, 1);
         clearInventory();
@@ -65,9 +65,9 @@ public class MailboxMenu extends MenuPaginatedGUI {
   private void addPaginatedButtons(Player player) {
     addButton(51, new MenuButton().creator(p -> MenuItem.NEXT_PAGE.createItem())
       .consumer(e -> {
+        getMenuSoundManager().playClickSound(player);
         if (!((index + 1) >= central.getCacheManager().getCachePlayers().getMailData().getBookAmount(player.getUniqueId()))) {
           page += 1;
-          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);
@@ -75,11 +75,11 @@ public class MailboxMenu extends MenuPaginatedGUI {
       }));
     addButton(47, new MenuButton().creator(p -> MenuItem.PREVIOUS_PAGE.createItem())
       .consumer(e -> {
+        getMenuSoundManager().playClickSound(player);
         if (page == 0) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
           page -= 1;
-          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);

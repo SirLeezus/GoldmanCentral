@@ -50,11 +50,11 @@ public class HomeMenu extends MenuPaginatedGUI {
   private void addBedButton(Player player) {
     addButton(49, new MenuButton().creator(p -> HomeItem.HOME_BED.createItem())
       .consumer(e -> {
+        getMenuSoundManager().playClickSound(player);
         if (player.getBedSpawnLocation() == null) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_MENU_HOME_BED_INVALID.getComponent(null)));
           return;
         }
-        getMenuSoundManager().playClickSound(player);
         player.teleportAsync(player.getBedSpawnLocation()).thenAccept(result -> {
           if (result) player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.MENU_HOME_BED_TELEPORT_SUCCESSFUL.getComponent(null)));
           else player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.MENU_HOME_BED_TELEPORT_FAILED.getComponent(null)));
@@ -77,9 +77,9 @@ public class HomeMenu extends MenuPaginatedGUI {
   private void addPaginatedButtons(Player player) {
     addButton(51, new MenuButton().creator(p -> MenuItem.NEXT_PAGE.createItem())
       .consumer(e -> {
+        getMenuSoundManager().playClickSound(player);
         if (!((index + 1) >= central.getCacheManager().getCachePlayers().getHomeData().getHomeAmount(player.getUniqueId()))) {
           page += 1;
-          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);
@@ -87,11 +87,11 @@ public class HomeMenu extends MenuPaginatedGUI {
       }));
     addButton(47, new MenuButton().creator(p -> MenuItem.PREVIOUS_PAGE.createItem())
       .consumer(e -> {
+        getMenuSoundManager().playClickSound(player);
         if (page == 0) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_PREVIOUS_PAGE.getComponent(null)));
         } else {
           page -= 1;
-          getMenuSoundManager().playClickSound(player);
           clearInventory();
           clearButtons();
           decorate(player);
