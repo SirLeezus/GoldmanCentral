@@ -27,4 +27,10 @@ public class CacheServer extends DatabaseHandler {
     serverTable.setSpawn(CoreUtil.serializeLocation(location));
     updateServerDatabase(serverTable);
   }
+
+  public int addAndGetUniqueJoins() {
+    serverTable.setUniqueJoins(serverTable.getUniqueJoins() + 1);
+    updateServerDatabase(serverTable);
+    return serverTable.getUniqueJoins();
+  }
 }

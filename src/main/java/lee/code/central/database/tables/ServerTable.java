@@ -3,10 +3,12 @@ package lee.code.central.database.tables;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@NoArgsConstructor
 @DatabaseTable(tableName = "server")
 public class ServerTable {
   @DatabaseField(generatedId = true)
@@ -15,7 +17,6 @@ public class ServerTable {
   @DatabaseField(columnName = "spawn")
   private String spawn;
 
-  public ServerTable() {
-
-  }
+  @DatabaseField(columnName = "unique_joins")
+  private int uniqueJoins;
 }
