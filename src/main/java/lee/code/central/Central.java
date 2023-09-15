@@ -30,6 +30,7 @@ public class Central extends JavaPlugin {
   @Getter private CacheManager cacheManager;
   @Getter private CommandManager commandManager;
   @Getter private MobLimitManager mobLimitManager;
+  @Getter private StarterLootManager starterLootManager;
   @Getter private Data data;
   private DatabaseManager databaseManager;
 
@@ -45,6 +46,7 @@ public class Central extends JavaPlugin {
     this.delayManager = new DelayManager(this);
     this.motdManager = new MOTDManager(this);
     this.mobLimitManager = new MobLimitManager(this);
+    this.starterLootManager = new StarterLootManager();
     this.backManager = new BackManager();
     this.data = new Data();
 

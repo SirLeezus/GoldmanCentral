@@ -33,7 +33,10 @@ public class JoinListener implements Listener {
     //Player Data
     if (!cacheManager.getCachePlayers().hasPlayerData(uuid)) cacheManager.getCachePlayers().createPlayerData(uuid);
     //first time playing check
-    if (!player.hasPlayedBefore()) Bukkit.getServer().sendMessage(Lang.PREFIX.getComponent(null).append(Lang.UNIQUE_JOINS.getComponent(new String[]{ColorAPI.getNameColor(uuid, player.getName()), CoreUtil.parseValue(cacheManager.getCacheServer().addAndGetUniqueJoins())})));
+    if (!player.hasPlayedBefore()) {
+      Bukkit.getServer().sendMessage(Lang.PREFIX.getComponent(null).append(Lang.UNIQUE_JOINS.getComponent(new String[]{ColorAPI.getNameColor(uuid, player.getName()), CoreUtil.parseValue(cacheManager.getCacheServer().addAndGetUniqueJoins())})));
+      central.getStarterLootManager().giveItems(player);
+    }
     //Is Flying Check
     if (cacheManager.getCachePlayers().isFlying(uuid)) {
       player.setAllowFlight(true);
