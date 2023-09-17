@@ -37,7 +37,7 @@ public class Central extends JavaPlugin {
   @Override
   public void onEnable() {
     this.databaseManager = new DatabaseManager(this);
-    this.cacheManager = new CacheManager(this, databaseManager);
+    this.cacheManager = new CacheManager(databaseManager);
     this.commandManager = new CommandManager(this);
     this.replyManager = new ReplyManager();
     this.teleportRequestManager = new TeleportRequestManager(this);

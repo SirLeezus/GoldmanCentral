@@ -106,8 +106,7 @@ public class CoreUtil {
 
   public static boolean isPositiveIntNumber(String numbers) {
     final String intMax = String.valueOf(Integer.MAX_VALUE);
-    if (numbers.length() > intMax.length() || (numbers.length() == intMax.length() && numbers.compareTo(intMax) > 0))
-      return false;
+    if (numbers.length() > intMax.length() || (numbers.length() == intMax.length() && numbers.compareTo(intMax) > 0)) return false;
     return numberIntPattern.matcher(numbers).matches();
   }
 
