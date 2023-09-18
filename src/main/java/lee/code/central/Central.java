@@ -11,6 +11,7 @@ import lee.code.central.managers.*;
 import lee.code.central.menus.system.MenuListener;
 import lee.code.central.menus.system.MenuManager;
 import lee.code.central.managers.MobLimitManager;
+import lee.code.central.utils.ScheduleUtil;
 import lombok.Getter;
 import me.lucko.commodore.CommodoreProvider;
 import me.lucko.commodore.file.CommodoreFileReader;
@@ -24,6 +25,7 @@ public class Central extends JavaPlugin {
   @Getter private MOTDManager motdManager;
   @Getter private DelayManager delayManager;
   @Getter private ArmorStandManager armorStandManager;
+  @Getter private VanishManager vanishManager;
   @Getter private MenuManager menuManager;
   @Getter private TeleportRequestManager teleportRequestManager;
   @Getter private ReplyManager replyManager;
@@ -47,9 +49,9 @@ public class Central extends JavaPlugin {
     this.motdManager = new MOTDManager(this);
     this.mobLimitManager = new MobLimitManager(this);
     this.starterLootManager = new StarterLootManager();
+    this.vanishManager = new VanishManager(this);
     this.backManager = new BackManager();
     this.data = new Data();
-
     databaseManager.initialize(false);
     registerCommands();
     registerListeners();
@@ -77,10 +79,11 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new GodListener(this), this);
     getServer().getPluginManager().registerEvents(new BackListener(this), this);
     getServer().getPluginManager().registerEvents(new MobLimitListener(this), this);
+    getServer().getPluginManager().registerEvents(new VanishListener(this), this);
   }
 
   private void startSchedules() {
-
+    new ScheduleUtil(this);
   }
 
   private void registerCommands() {

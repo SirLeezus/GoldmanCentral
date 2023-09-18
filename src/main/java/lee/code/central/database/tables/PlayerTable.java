@@ -28,6 +28,9 @@ public class PlayerTable {
   @DatabaseField(columnName = "homes")
   private String homes;
 
+  @DatabaseField(columnName = "vanished")
+  private boolean vanished;
+
   public PlayerTable(UUID uniqueId) {
     this.uniqueId = uniqueId;
   }

@@ -41,6 +41,7 @@ public enum Lang {
   COMMAND_TELEPORT_ASK_DENY_HOVER("&cClick to deny &6{0}'s &cteleport request!"),
   COMMAND_MESSAGE_SENT_SUCCESSFUL("&9[&eYou &9-> {0}&9] &#00DCFF{1}"),
   COMMAND_MESSAGE_RECEIVED_SUCCESSFUL("&9[{0} &9-> &eYou&9] &#00DCFF{1}"),
+  COMMAND_VANISH_SUCCESSFUL("&aYou successfully toggled vanish {0}&a!"),
   COMMAND_WORTH_LIST_LINE("&3{0}&7. &e{display-name-item} &7| {1}"),
   COMMAND_BALANCE_TOP_LINE("&3{0}&7. {1} &7| {2}"),
   COMMAND_STAT_TOP_LINE("&3{0}&7. {1} &7| &2{2}"),

@@ -188,3 +188,7 @@ commands:
     description: Teleport to your last teleportation location.
     permission: central.command.back
     usage: "/back"
+  vanish:
+    description: Toggle vanish for yourself.
+    permission: central.command.vanish
+    usage: "/vanish"

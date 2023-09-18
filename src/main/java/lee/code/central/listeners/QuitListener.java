@@ -32,6 +32,9 @@ public class QuitListener implements Listener {
     //Update Tab list
     Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[]{String.valueOf(CoreUtil.getOnlinePlayers().size() - 1)}));
     //Set Quit Message
-    e.quitMessage(VariableUtil.parseVariables(player, Lang.PLAYER_QUIT.getComponent(null)));
+    if (central.getVanishManager().isVanished(player)) e.quitMessage(null);
+    else e.quitMessage(VariableUtil.parseVariables(player, Lang.PLAYER_QUIT.getComponent(null)));
+    //Remove local vanish data
+    central.getVanishManager().removeVanishData(uuid);
   }
 }

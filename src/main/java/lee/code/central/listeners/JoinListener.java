@@ -4,6 +4,7 @@ import lee.code.central.Central;
 import lee.code.central.database.CacheManager;
 import lee.code.central.database.cache.players.CachePlayers;
 import lee.code.central.lang.Lang;
+import lee.code.central.managers.VanishManager;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.VariableUtil;
 import lee.code.colors.ColorAPI;
@@ -28,6 +29,7 @@ public class JoinListener implements Listener {
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onPlayerJoin(PlayerJoinEvent e) {
     final CacheManager cacheManager = central.getCacheManager();
+    final VanishManager vanishManager = central.getVanishManager();
     final Player player = e.getPlayer();
     final UUID uuid = player.getUniqueId();
     //Player Data
@@ -47,7 +49,11 @@ public class JoinListener implements Listener {
     final AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
     if (attribute != null) attribute.setBaseValue(23.4);
     //Set Join Message
-    e.joinMessage(VariableUtil.parseVariables(player, Lang.PLAYER_JOIN.getComponent(null)));
+    if (vanishManager.isVanished(player)) e.joinMessage(null);
+    else e.joinMessage(VariableUtil.parseVariables(player, Lang.PLAYER_JOIN.getComponent(null)));
+    //Vanish check
+    if (vanishManager.isVanished(player)) vanishManager.addVanished(player, false);
+    else vanishManager.hideVanishedPlayersFromPlayer(player);
     //Send Tab List
     Bukkit.getServer().sendPlayerListHeaderAndFooter(Lang.TABLIST_HEADER.getComponent(null), Lang.TABLIST_FOOTER.getComponent(new String[]{String.valueOf(CoreUtil.getOnlinePlayers().size())}));
     //Message of the day

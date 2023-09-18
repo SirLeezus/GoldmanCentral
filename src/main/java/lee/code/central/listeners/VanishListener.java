@@ -6,17 +6,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public class GodListener implements Listener {
+public class VanishListener implements Listener {
   private final Central central;
 
-  public GodListener(Central central) {
+  public VanishListener(Central central) {
     this.central = central;
   }
 
   @EventHandler
-  public void onGodHit(EntityDamageEvent e) {
+  public void onVanishHit(EntityDamageEvent e) {
     if (e.getEntity() instanceof Player player) {
-      if (central.getCacheManager().getCachePlayers().isGod(player.getUniqueId())) {
+      if (central.getCacheManager().getCachePlayers().isVanished(player.getUniqueId())) {
         e.setCancelled(true);
       }
     }

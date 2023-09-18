@@ -65,4 +65,14 @@ public class CachePlayers extends DatabaseHandler {
     playerTable.setGod(result);
     updatePlayerDatabase(playerTable);
   }
+
+  public boolean isVanished(UUID uuid) {
+    return getPlayerTable(uuid).isVanished();
+  }
+
+  public void setVanished(UUID uuid, boolean result) {
+    final PlayerTable playerTable = getPlayerTable(uuid);
+    playerTable.setVanished(result);
+    updatePlayerDatabase(playerTable);
+  }
 }
