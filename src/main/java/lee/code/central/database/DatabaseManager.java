@@ -15,10 +15,12 @@ import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class DatabaseManager {
   private final Central central;
-  private Dao<PlayerTable, String> playerDao;
+  private final Object synchronizedThreadLock = new Object();
+  private Dao<PlayerTable, UUID> playerDao;
   private Dao<ServerTable, Integer> serverDao;
   private ConnectionSource connectionSource;
 
@@ -82,53 +84,63 @@ public class DatabaseManager {
     }
   }
 
-  public synchronized void createPlayerTable(PlayerTable playerTable) {
-    Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
-      try {
-        playerDao.createIfNotExists(playerTable);
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    });
+  public void createPlayerTable(PlayerTable playerTable) {
+    synchronized (synchronizedThreadLock) {
+      Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+        try {
+          playerDao.createIfNotExists(playerTable);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 
-  public synchronized void updatePlayerTable(PlayerTable playerTable) {
-    Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
-      try {
-        playerDao.update(playerTable);
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    });
+  public void updatePlayerTable(PlayerTable playerTable) {
+    synchronized (synchronizedThreadLock) {
+      Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+        try {
+          playerDao.update(playerTable);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 
-  public synchronized void deletePlayerTable(PlayerTable playerTable) {
-    Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
-      try {
-        playerDao.delete(playerTable);
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    });
+  public void deletePlayerTable(PlayerTable playerTable) {
+    synchronized (synchronizedThreadLock) {
+      Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+        try {
+          playerDao.delete(playerTable);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 
-  private synchronized void createServerTable(ServerTable serverTable) {
-    Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
-      try {
-        serverDao.createIfNotExists(serverTable);
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    });
+  private void createServerTable(ServerTable serverTable) {
+    synchronized (synchronizedThreadLock) {
+      Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+        try {
+          serverDao.createIfNotExists(serverTable);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 
-  public synchronized void updateServerTable(ServerTable serverTable) {
-    Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
-      try {
-        serverDao.update(serverTable);
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    });
+  public void updateServerTable(ServerTable serverTable) {
+    synchronized (synchronizedThreadLock) {
+      Bukkit.getAsyncScheduler().runNow(central, scheduledTask -> {
+        try {
+          serverDao.update(serverTable);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      });
+    }
   }
 }
