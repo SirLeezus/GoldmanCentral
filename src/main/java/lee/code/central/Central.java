@@ -80,6 +80,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new BackListener(this), this);
     getServer().getPluginManager().registerEvents(new MobLimitListener(this), this);
     getServer().getPluginManager().registerEvents(new VanishListener(this), this);
+    getServer().getPluginManager().registerEvents(new TrampleListener(), this);
   }
 
   private void startSchedules() {
