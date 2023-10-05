@@ -11,9 +11,9 @@ import org.bukkit.event.block.SignChangeEvent;
 import java.util.List;
 
 public class SignListener implements Listener {
-  @EventHandler(priority = EventPriority.MONITOR)
+
+  @EventHandler(priority = EventPriority.LOWEST)
   public void onSignChange(SignChangeEvent e) {
-    if (e.isCancelled()) return;
     final List<Component> lines = e.lines();
     if (lines.isEmpty()) return;
     final String firstLine = PlainTextComponentSerializer.plainText().serialize(lines.get(0));
