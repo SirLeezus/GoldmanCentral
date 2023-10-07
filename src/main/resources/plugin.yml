@@ -192,3 +192,7 @@ commands:
     description: Toggle vanish for yourself.
     permission: central.command.vanish
     usage: "/vanish"
+  playtime:
+    description: Check your playtime.
+    permission: central.command.playtime
+    usage: "/playtime"

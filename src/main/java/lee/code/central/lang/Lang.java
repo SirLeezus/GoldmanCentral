@@ -89,6 +89,7 @@ public enum Lang {
   COMMAND_GLOW_SUCCESSFUL("&aYour glow was successfully toggled {0}&a."),
   COMMAND_PAY_SUCCESSFUL("&aYou successfully sent {0} &ato the player &6{1}&a!"),
   COMMAND_PAY_TARGET_SUCCESSFUL("&aYou have been sent {0} &afrom the player &6{1}&a!"),
+  COMMAND_PLAY_TIME_SUCCESSFUL("&aYour playtime is&7: {0}"),
   COMMAND_WEATHER_CLEAR("&aThe weather has been &3cleared&a!"),
   COMMAND_WEATHER_RAIN("&aThe weather has been changed to &3rain&a."),
   COMMAND_WEATHER_THUNDER("&aThe weather has been changed to &3thunderstorm&a."),
