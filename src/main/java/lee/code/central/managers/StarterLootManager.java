@@ -1,7 +1,7 @@
 package lee.code.central.managers;
 
-import lee.code.shops.utils.CoreUtil;
-import lee.code.shops.utils.ItemUtil;
+import lee.code.central.utils.CoreUtil;
+import lee.code.central.utils.ItemUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
