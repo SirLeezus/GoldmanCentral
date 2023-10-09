@@ -18,6 +18,10 @@ public class CacheServer extends DatabaseHandler {
     this.serverTable = serverTable;
   }
 
+  public boolean hasSpawn() {
+    return serverTable.getSpawn() != null;
+  }
+
   public Location getSpawn() {
     if (serverTable.getSpawn() == null) return null;
     return CoreUtil.parseLocation(serverTable.getSpawn());
