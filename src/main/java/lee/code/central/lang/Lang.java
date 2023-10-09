@@ -95,6 +95,7 @@ public enum Lang {
   COMMAND_WEATHER_RAIN("&aThe weather has been changed to &3rain&a."),
   COMMAND_WEATHER_THUNDER("&aThe weather has been changed to &3thunderstorm&a."),
   COMMAND_SEEN_SUCCESSFUL("&aThe last time the player &6{0} &ajoined was &3{1}&a."),
+  COMMAND_PING_SUCCESSFUL("&aYour ping to the server is &3{0}ms&a."),
   COMMAND_MONEY_SET_SUCCESSFUL("&aYou successfully set &6{0}'s &abalance to {1}&a!"),
   COMMAND_MONEY_ADDED_SUCCESSFUL("&aYou successfully added {0} &ato &6{1}'s &abalance!"),
   COMMAND_MONEY_REMOVED_SUCCESSFUL("&aYou successfully removed {0} &afrom &6{1}'s &abalance!"),

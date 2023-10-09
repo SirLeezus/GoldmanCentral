@@ -72,6 +72,7 @@ public class CommandManager {
     commands.add(new BackCMD(central));
     commands.add(new VanishCMD(central));
     commands.add(new PlayTimeCMD(central));
+    commands.add(new PingCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

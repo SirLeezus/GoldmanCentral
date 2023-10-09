@@ -196,3 +196,7 @@ commands:
     description: Check your playtime or a target player's playtime.
     permission: central.command.playtime
     usage: "/playtime &f<player>"
+  ping:
+    description: Check your ping to the server.
+    permission: central.command.ping
+    usage: "/ping"
