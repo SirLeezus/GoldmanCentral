@@ -20,6 +20,7 @@ public class SleepListener implements Listener {
 
   @EventHandler
   public void onBedSleep(PlayerInteractEvent e) {
+    //TODO add delay
     if (!e.hasBlock()) return;
     if (e.getClickedBlock() == null) return;
     if (!(e.getClickedBlock().getBlockData() instanceof Bed)) return;

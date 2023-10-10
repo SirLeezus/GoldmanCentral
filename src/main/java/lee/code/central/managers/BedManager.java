@@ -6,6 +6,10 @@ import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Statistic;
+import org.bukkit.advancement.Advancement;
+import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
 
 import java.util.Set;
@@ -29,6 +33,8 @@ public class BedManager {
     }
     playersSleeping.add(player.getUniqueId());
     checkSkipNight();
+    checkAdvancement(player);
+    addSleepStat(player);
   }
 
   public void removeSleeper(UUID uuid) {
@@ -81,5 +87,16 @@ public class BedManager {
         this.scheduledTask = null;
       }
     }, 0, 5, TimeUnit.SECONDS);
+  }
+
+  private void checkAdvancement(Player player) {
+    final Advancement advancement = Bukkit.getAdvancement(NamespacedKey.minecraft("adventure/sleep_in_bed"));
+    if (advancement == null) return;
+    final AdvancementProgress progress = player.getAdvancementProgress(advancement);
+    for (String criteria : progress.getRemainingCriteria()) progress.awardCriteria(criteria);
+  }
+
+  private void addSleepStat(Player player) {
+    player.setStatistic(Statistic.SLEEP_IN_BED, player.getStatistic(Statistic.SLEEP_IN_BED) + 1);
   }
 }
