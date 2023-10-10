@@ -37,6 +37,7 @@ public enum Lang {
   BED_TIME_SKIP_NEEDED("&aPlayers Queued Sleeping&7: &3{0}&7/&3{1}"),
   COMMAND_TELEPORT_POS_SUCCESSFUL("&aYou successfully teleported to location &3(&e&lX&7:&6{0}&7&e&lY&7:&6{1}&7&e&lZ&7:&6{2}&3)&a!"),
   COMMAND_TELEPORT_POS_FAILED("&cFailed to teleport to &3(&e&lX&7:&6{0}&7&e&lY&7:&6{1}&7&e&lZ&7:&6{2}&3)&c."),
+  COMMAND_SORT_SUCCESSFUL("&aYou successfully sorted the container in front of you!"),
   COMMAND_TELEPORT_SUCCESSFUL("&aYou successfully teleported to player &6{0}&a!"),
   COMMAND_TELEPORT_FAILED("&cFailed to teleport to player &6{0}&c."),
   COMMAND_DELETE_WARP_SUCCESSFUL("&aYou successfully deleted warp &3{0}&a."),
@@ -198,6 +199,8 @@ public enum Lang {
   ERROR_SLEEP_DURING_DAY("&cYou can only sleep at night!"),
   ERROR_SET_WARP_NAME_EXISTS("&cThe warp name &3{0} &calready exists."),
   ERROR_WARP_DOES_NOT_EXIST("&cThe warp &3{0} &cdoes not exist."),
+  ERROR_SORT_NOT_SUPPORTED_BLOCK("&cThe block &3{0} &cis not a supported block that can be sorted."),
+  ERROR_SORT_COULD_NOT_FIND_BLOCK("&cCould not find a block to sort."),
   ;
   @Getter private final String string;
 

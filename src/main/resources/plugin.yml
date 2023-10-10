@@ -222,3 +222,7 @@ commands:
     permission: central.command.teleportpos
     usage: "/teleportpos &f<x> <y> <z>"
     aliases: [tppos]
+  sort:
+    description: Sort the container you're looking at.
+    permission: central.command.sort
+    usage: "/sort"
