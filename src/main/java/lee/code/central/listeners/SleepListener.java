@@ -20,13 +20,14 @@ public class SleepListener implements Listener {
 
   @EventHandler
   public void onBedSleep(PlayerInteractEvent e) {
-    //TODO add delay
     if (!e.hasBlock()) return;
     if (e.getClickedBlock() == null) return;
     if (!(e.getClickedBlock().getBlockData() instanceof Bed)) return;
     final Player player = e.getPlayer();
     if (!(player.getWorld().getEnvironment().equals(World.Environment.NORMAL))) return;
     e.setCancelled(true);
+    if (central.getDelayManager().isOnDelay(player.getUniqueId(), "bed")) return;
+    central.getDelayManager().setOnDelay(player.getUniqueId(), "bed", 500);
     if (player.isSneaking()) {
       player.setBedSpawnLocation(e.getClickedBlock().getLocation());
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.BED_SET_SPAWN_SUCCESS.getComponent(null)));

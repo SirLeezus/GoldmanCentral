@@ -51,8 +51,8 @@ public class RandomTeleportCMD extends CustomCommand {
   public void perform(Player player, String[] args, Command command) {
     final DelayManager delayManager = central.getDelayManager();
     final UUID uuid = player.getUniqueId();
-    if (delayManager.isOnDelay(uuid)) {
-      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ON_COMMAND_DELAY.getComponent(new String[]{delayManager.getRemainingTime(uuid)})));
+    if (delayManager.isOnDelay(uuid, "rtp")) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_ON_COMMAND_DELAY.getComponent(new String[]{delayManager.getRemainingTime(uuid, "rtp")})));
       return;
     }
     final World world = player.getWorld();
@@ -72,7 +72,7 @@ public class RandomTeleportCMD extends CustomCommand {
         final Vector box = randomLocation.getBlock().getBoundingBox().getCenter();
         final Location location = new Location(randomLocation.getWorld(), box.getX(), box.getY() + 0.5, box.getZ());
         if (!location.getWorld().getWorldBorder().isInside(location)) continue;
-        delayManager.setOnDelay(uuid, 15000);
+        delayManager.setOnDelay(uuid, "rtp", 15000);
         player.teleportAsync(location).thenAccept(result -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_RANDOM_TELEPORT_SUCCESSFUL.getComponent(null))));
         return;
       }

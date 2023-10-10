@@ -55,7 +55,7 @@ public class BedManager {
     final int online = Bukkit.getOnlinePlayers().size();
     final int sleeping = playersSleeping.size();
     final double percentageNotSleeping = ((double)(online - sleeping) / online) * 100.0;
-    if (percentageNotSleeping >= 50 || percentageNotSleeping == 0) {
+    if (percentageNotSleeping >= 90 || percentageNotSleeping == 0) {
       Bukkit.getWorlds().get(0).setTime(1000);
       playersSleeping.clear();
       Bukkit.getServer().sendMessage(Lang.PREFIX.getComponent(null).append(Lang.BED_TIME_SKIP_SUCCESS.getComponent(null)));
