@@ -1,0 +1,7 @@
+teleportpos {
+  x brigadier:double {
+    y brigadier:double {
+      z brigadier:double;
+    }
+  }
+}

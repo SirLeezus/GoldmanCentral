@@ -21,7 +21,8 @@ import java.util.stream.Collectors;
 public class CoreUtil {
   private final static DecimalFormat amountFormatter = new DecimalFormat("#,###.##");
   private static final DecimalFormat shortDecimalFormatter = new DecimalFormat("#.##");
-  private final static Pattern numberDoublePattern = Pattern.compile("^(?=.*[1-9])(\\d*\\.?\\d*)$");
+  private final static Pattern numberPositiveDoublePattern = Pattern.compile("^(?=.*[1-9])(\\d*\\.?\\d*)$");
+  private final static Pattern numberDoublePattern = Pattern.compile("[-+]?\\d+(\\.\\d+)?");
   private final static Pattern numberIntPattern = Pattern.compile("^[1-9]\\d*$");
   private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa");
 
@@ -101,6 +102,10 @@ public class CoreUtil {
   }
 
   public static boolean isPositiveDoubleNumber(String numbers) {
+    return numberPositiveDoublePattern.matcher(numbers).matches();
+  }
+
+  public static boolean isDoubleNumber(String numbers) {
     return numberDoublePattern.matcher(numbers).matches();
   }
 

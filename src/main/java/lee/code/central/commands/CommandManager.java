@@ -76,6 +76,8 @@ public class CommandManager {
     commands.add(new WarpCMD(central));
     commands.add(new SetWarpCMD(central));
     commands.add(new DeleteWarpCMD(central));
+    commands.add(new TeleportCMD(central));
+    commands.add(new TeleportPosCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

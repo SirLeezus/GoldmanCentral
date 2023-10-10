@@ -212,3 +212,13 @@ commands:
     description: Delete a warp that was created.
     permission: central.command.deletewarp
     usage: "/deletewarp &f<name>"
+  teleport:
+    description: Teleport to a online player.
+    permission: central.command.teleport
+    usage: "/teleport &f<player>"
+    aliases: [tp]
+  teleportpos:
+    description: Teleport to a target position in the world you're in.
+    permission: central.command.teleportpos
+    usage: "/teleportpos &f<x> <y> <z>"
+    aliases: [tppos]
