@@ -32,6 +32,9 @@ public enum Lang {
   YOU_HAVE_MAIL("&aYou have mail! Run the command &e/mailbox &ato check!"),
   TABLIST_HEADER("&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n&#4dc462&lJourney Towns\n&#228B22▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"),
   TABLIST_FOOTER("\n&#228B22&lOnline&7: &#4dc462{0}"),
+  BED_SET_SPAWN_SUCCESS("&aYou successfully set your new bed spawn!"),
+  BED_TIME_SKIP_SUCCESS("&aHalf or more online players queued sleeping, night time has been skipped!"),
+  BED_TIME_SKIP_NEEDED("&aPlayers Queued Sleeping&7: &3{0}&7/&3{1}"),
   COMMAND_RESTART_WARNING_START("&eThe server is about to restart!"),
   COMMAND_RESTART_WARNING_END("&eThe server is restarting!"),
   COMMAND_RESTART_TIME("&2&lRestarting in &e&l{0}&6&ls"),
@@ -184,6 +187,7 @@ public enum Lang {
   ERROR_PREVIOUS_PAGE("&7You are already on the first page."),
   ERROR_NEXT_PAGE("&7You are on the last page."),
   ERROR_MOB_LIMIT_REACHED("&cThis chunk already has a max of {0} {1}s&c."),
+  ERROR_SLEEP_DURING_DAY("&cYou can only sleep at night!"),
   ;
   @Getter private final String string;
 

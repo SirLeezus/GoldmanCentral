@@ -33,6 +33,7 @@ public class Central extends JavaPlugin {
   @Getter private CommandManager commandManager;
   @Getter private MobLimitManager mobLimitManager;
   @Getter private StarterLootManager starterLootManager;
+  @Getter private BedManager bedManager;
   @Getter private Data data;
   private DatabaseManager databaseManager;
 
@@ -52,6 +53,7 @@ public class Central extends JavaPlugin {
     this.vanishManager = new VanishManager(this);
     this.backManager = new BackManager();
     this.data = new Data();
+    this.bedManager = new BedManager(this);
     databaseManager.initialize(false);
     registerCommands();
     registerListeners();
@@ -83,6 +85,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new TrampleListener(), this);
     getServer().getPluginManager().registerEvents(new ItemFrameListener(), this);
     getServer().getPluginManager().registerEvents(new RespawnListener(this), this);
+    getServer().getPluginManager().registerEvents(new SleepListener(this), this);
   }
 
   private void startSchedules() {
