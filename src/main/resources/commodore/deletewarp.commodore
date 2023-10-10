@@ -1,0 +1,3 @@
+deletewarp {
+  name brigadier:string greedy_phrase;
+}

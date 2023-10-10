@@ -19,4 +19,7 @@ public class ServerTable {
 
   @DatabaseField(columnName = "unique_joins")
   private int uniqueJoins;
+
+  @DatabaseField(columnName = "warps")
+  private String warps;
 }

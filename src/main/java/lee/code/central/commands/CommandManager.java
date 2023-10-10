@@ -73,6 +73,9 @@ public class CommandManager {
     commands.add(new VanishCMD(central));
     commands.add(new PlayTimeCMD(central));
     commands.add(new PingCMD(central));
+    commands.add(new WarpCMD(central));
+    commands.add(new SetWarpCMD(central));
+    commands.add(new DeleteWarpCMD(central));
   }
 
   public void perform(CommandSender sender, String[] args, CustomCommand customCommand, Command command) {

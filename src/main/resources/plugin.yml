@@ -200,3 +200,15 @@ commands:
     description: Check your ping to the server.
     permission: central.command.ping
     usage: "/ping"
+  warp:
+    description: Teleport to a target warp name.
+    permission: central.command.warp
+    usage: "/warp &f<name>"
+  setwarp:
+    description: Set a new warp location.
+    permission: central.command.setwarp
+    usage: "/setwarp &f<name>"
+  deletewarp:
+    description: Delete a warp that was created.
+    permission: central.command.deletewarp
+    usage: "/deletewarp &f<name>"

@@ -1,6 +1,7 @@
 package lee.code.central.database.cache.server;
 
 import lee.code.central.database.DatabaseManager;
+import lee.code.central.database.cache.server.data.WarpData;
 import lee.code.central.database.handlers.DatabaseHandler;
 import lee.code.central.database.tables.ServerTable;
 import lee.code.central.utils.CoreUtil;
@@ -9,13 +10,16 @@ import org.bukkit.Location;
 
 public class CacheServer extends DatabaseHandler {
   @Getter private ServerTable serverTable = null;
+  @Getter private final WarpData warpData;
 
   public CacheServer(DatabaseManager databaseManager) {
     super(databaseManager);
+    this.warpData = new WarpData(this);
   }
 
   public void setServerTable(ServerTable serverTable) {
     this.serverTable = serverTable;
+    warpData.cacheWarps(serverTable);
   }
 
   public boolean hasSpawn() {

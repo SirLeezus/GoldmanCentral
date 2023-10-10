@@ -35,6 +35,10 @@ public enum Lang {
   BED_SET_SPAWN_SUCCESS("&aYou successfully set your new bed spawn!"),
   BED_TIME_SKIP_SUCCESS("&aHalf or more online players queued sleeping, night time has been skipped!"),
   BED_TIME_SKIP_NEEDED("&aPlayers Queued Sleeping&7: &3{0}&7/&3{1}"),
+  COMMAND_DELETE_WARP_SUCCESSFUL("&aYou successfully deleted warp &3{0}&a."),
+  COMMAND_SET_WARP_SUCCESSFUL("&aYou successfully created the warp &3{0}&a."),
+  COMMAND_WARP_SUCCESSFUL("&aYou successfully teleported to warp &3{0}&a!"),
+  COMMAND_WARP_FAILED("&cFailed to teleport to warp &3{0}&c."),
   COMMAND_RESTART_WARNING_START("&eThe server is about to restart!"),
   COMMAND_RESTART_WARNING_END("&eThe server is restarting!"),
   COMMAND_RESTART_TIME("&2&lRestarting in &e&l{0}&6&ls"),
@@ -188,6 +192,8 @@ public enum Lang {
   ERROR_NEXT_PAGE("&7You are on the last page."),
   ERROR_MOB_LIMIT_REACHED("&cThis chunk already has a max of {0} {1}s&c."),
   ERROR_SLEEP_DURING_DAY("&cYou can only sleep at night!"),
+  ERROR_SET_WARP_NAME_EXISTS("&cThe warp name &3{0} &calready exists."),
+  ERROR_WARP_DOES_NOT_EXIST("&cThe warp &3{0} &cdoes not exist."),
   ;
   @Getter private final String string;
 
