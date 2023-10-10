@@ -86,6 +86,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new ItemFrameListener(), this);
     getServer().getPluginManager().registerEvents(new RespawnListener(this), this);
     getServer().getPluginManager().registerEvents(new SleepListener(this), this);
+    getServer().getPluginManager().registerEvents(new DragonListener(), this);
   }
 
   private void startSchedules() {
