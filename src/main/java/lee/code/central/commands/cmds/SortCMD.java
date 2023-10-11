@@ -5,6 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.ContainerSortBuilder;
 import lee.code.central.utils.CoreUtil;
+import lee.code.towns.TownsAPI;
 import org.bukkit.block.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -45,7 +46,6 @@ public class SortCMD extends CustomCommand {
 
   @Override
   public void perform(Player player, String[] args, Command command) {
-    //TODO add a way to check if claimed
     final Block block = player.getTargetBlockExact(5);
     if (block == null) {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SORT_COULD_NOT_FIND_BLOCK.getComponent(null)));
@@ -53,6 +53,10 @@ public class SortCMD extends CustomCommand {
     }
     if (!isSupportedContainer(block.getState()) || !(block.getState() instanceof Container container)) {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SORT_NOT_SUPPORTED_BLOCK.getComponent(new String[]{CoreUtil.capitalize(block.getType().name())})));
+      return;
+    }
+    if (!TownsAPI.canInteract(player.getUniqueId(), block.getChunk())) {
+      player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_SORT_INTERACTION_FAILED.getComponent(null)));
       return;
     }
     final ContainerSortBuilder sortBuilder = new ContainerSortBuilder();

@@ -200,6 +200,7 @@ public enum Lang {
   ERROR_SET_WARP_NAME_EXISTS("&cThe warp name &3{0} &calready exists."),
   ERROR_WARP_DOES_NOT_EXIST("&cThe warp &3{0} &cdoes not exist."),
   ERROR_SORT_NOT_SUPPORTED_BLOCK("&cThe block &3{0} &cis not a supported block that can be sorted."),
+  ERROR_SORT_INTERACTION_FAILED("&cYou do not have permission to interact with the block you're looking at."),
   ERROR_SORT_COULD_NOT_FIND_BLOCK("&cCould not find a block to sort."),
   ;
   @Getter private final String string;

@@ -60,6 +60,9 @@ dependencies {
 
   //goldman shops
   compileOnly 'lee.code.shops:shops:1.0.0'
+
+  //goldman towns
+  compileOnly 'lee.code.towns:towns:1.0.0'
 }
 
 shadowJar {
