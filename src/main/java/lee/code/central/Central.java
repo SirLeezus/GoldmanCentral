@@ -34,6 +34,7 @@ public class Central extends JavaPlugin {
   @Getter private MobLimitManager mobLimitManager;
   @Getter private StarterLootManager starterLootManager;
   @Getter private BedManager bedManager;
+  @Getter private PvPManager pvpManager;
   @Getter private Data data;
   private DatabaseManager databaseManager;
 
@@ -54,6 +55,7 @@ public class Central extends JavaPlugin {
     this.backManager = new BackManager();
     this.data = new Data();
     this.bedManager = new BedManager(this);
+    this.pvpManager = new PvPManager(this);
     databaseManager.initialize(false);
     registerCommands();
     registerListeners();
@@ -87,6 +89,7 @@ public class Central extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new RespawnListener(this), this);
     getServer().getPluginManager().registerEvents(new SleepListener(this), this);
     getServer().getPluginManager().registerEvents(new DragonListener(), this);
+    getServer().getPluginManager().registerEvents(new PvPListener(this), this);
   }
 
   private void startSchedules() {

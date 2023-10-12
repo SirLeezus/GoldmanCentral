@@ -202,6 +202,8 @@ public enum Lang {
   ERROR_SORT_NOT_SUPPORTED_BLOCK("&cThe block &3{0} &cis not a supported block that can be sorted."),
   ERROR_SORT_INTERACTION_FAILED("&cYou do not have permission to interact with the block you're looking at."),
   ERROR_SORT_COULD_NOT_FIND_BLOCK("&cCould not find a block to sort."),
+  ERROR_PVP_COMMAND("&cYou can't run commands for another {0} &cbecause you're in PvP mode."),
+  ERROR_PVP_TELEPORT("&cYou can't use items that teleport you for another {0} &cbecause you're in PvP mode."),
   ;
   @Getter private final String string;
 
