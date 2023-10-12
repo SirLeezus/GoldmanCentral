@@ -35,7 +35,7 @@ public class ItemUtil {
     final ItemStack item = new ItemStack(material);
     final ItemMeta itemMeta = item.getItemMeta();
     if (itemMeta == null) return item;
-    if (skin != null) applyHeadSkin(itemMeta, skin);
+    if (skin != null) applyHeadSkin(itemMeta, skin, "null");
     if (lore != null) setItemLore(itemMeta, lore);
     if (name != null) itemMeta.displayName(CoreUtil.parseColorComponent(name));
     if (modelData != 0) itemMeta.setCustomModelData(modelData);
@@ -43,10 +43,10 @@ public class ItemUtil {
     return item;
   }
 
-  public static void applyHeadSkin(ItemMeta itemMeta, String base64) {
+  public static void applyHeadSkin(ItemMeta itemMeta, String base64, String name) {
     try {
       final SkullMeta skullMeta = (SkullMeta) itemMeta;
-      final GameProfile profile = new GameProfile(UUID.fromString("ffffffff-ffff-ffff-ffff-ffffffffffff"), "null");
+      final GameProfile profile = new GameProfile(UUID.fromString("ffffffff-ffff-ffff-ffff-ffffffffffff"), name);
       profile.getProperties().put("textures", new Property("textures", base64));
       if (skullMeta != null) {
         final Method mtd = skullMeta.getClass().getDeclaredMethod("setProfile", GameProfile.class);
