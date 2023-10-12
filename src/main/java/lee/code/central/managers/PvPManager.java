@@ -38,7 +38,7 @@ public class PvPManager {
   }
 
   private ScheduledTask scheduleTask(UUID uuid) {
-    final long delay = 10 * 1000;
+    final long delay = 15 * 1000;
     if (playersPvPing.containsKey(uuid)) {
       playersPvPing.get(uuid).cancel();
     }
