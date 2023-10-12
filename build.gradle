@@ -21,6 +21,10 @@ repositories {
     name = "protocollib"
     url = "https://repo.dmulloy2.net/repository/public/"
   }
+  maven {
+    name = "worldguard"
+    url = "https://maven.enginehub.org/repo/"
+  }
 }
 
 artifacts {
@@ -63,6 +67,9 @@ dependencies {
 
   //goldman towns
   compileOnly 'lee.code.towns:towns:1.0.0'
+
+  //world guard
+  compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.0'
 }
 
 shadowJar {
