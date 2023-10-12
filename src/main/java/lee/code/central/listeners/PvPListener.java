@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -45,5 +46,11 @@ public class PvPListener implements Listener {
   public void onLogoutWhileInPvP(PlayerQuitEvent e) {
     if (!central.getPvpManager().isPvPing(e.getPlayer().getUniqueId())) return;
     e.getPlayer().setHealth(0);
+  }
+
+  @EventHandler
+  public void onPvPDeath(PlayerDeathEvent e) {
+    if (!central.getPvpManager().isPvPing(e.getPlayer().getUniqueId())) return;
+    central.getPvpManager().removePlayer(e.getPlayer().getUniqueId());
   }
 }
