@@ -2,7 +2,6 @@ package lee.code.central.commands.cmds;
 
 import lee.code.central.Central;
 import lee.code.central.commands.CustomCommand;
-import lee.code.central.enums.ItemValue;
 import lee.code.central.lang.Lang;
 import lee.code.central.utils.CoreUtil;
 import lee.code.central.utils.ItemUtil;
@@ -94,7 +93,7 @@ public class WorthCMD extends CustomCommand {
     final List<Component> lines = new ArrayList<>();
     lines.add(Lang.COMMAND_WORTH_HEADER.getComponent(null));
     lines.add(Component.text(" "));
-    lines.add(Lang.COMMAND_WORTH_ITEM.getComponent(new String[]{CoreUtil.capitalize(handMaterial.name())}));
+    lines.add(VariableUtil.parseItemVariables(Lang.COMMAND_WORTH_ITEM.getComponent(null), handItem));
     lines.add(Lang.COMMAND_WORTH_WORTH.getComponent(new String[]{Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(worth)})}));
     lines.add(Lang.COMMAND_WORTH_INVENTORY.getComponent(new String[]{Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(inventoryAmount)})}));
     lines.add(Lang.COMMAND_WORTH_HAND.getComponent(new String[]{Lang.VALUE_FORMAT.getString(new String[]{CoreUtil.parseValue(handWorth)})}));

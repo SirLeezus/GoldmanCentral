@@ -117,7 +117,7 @@ public enum Lang {
   COMMAND_HOME_REMOVE_SUCCESSFUL("&aYou successfully removed your saved home &3{0}&a!"),
   COMMAND_HOME_MAX_SUCCESSFUL("&aYour max home amount is &3{0}&7/&3{1}&a!"),
   COMMAND_WORTH_HEADER("&a----- &e[ &2&lWorth &e] &a-----"),
-  COMMAND_WORTH_ITEM("&3&lItem&7: &b{0}"),
+  COMMAND_WORTH_ITEM("&3&lItem&7: &b{display-name-item}"),
   COMMAND_WORTH_WORTH("&3&lWorth&7: {0}"),
   COMMAND_WORTH_INVENTORY("&3&lInventory&7: {0}"),
   COMMAND_WORTH_HAND("&3&lHand&7: {0}"),
