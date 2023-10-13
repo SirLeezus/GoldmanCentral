@@ -1,0 +1,11 @@
+help {
+  central {
+    page brigadier:integer;
+  }
+  towns;
+  shops;
+  locks;
+  resourceworlds;
+  vault;
+  trails;
+}

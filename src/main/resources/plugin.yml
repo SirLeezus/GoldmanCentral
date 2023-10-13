@@ -73,7 +73,7 @@ commands:
   worth:
     description: Check the worth of the item you're holding.
     permission: central.command.worth
-    usage: "/worth"
+    usage: "/worth &f<list>"
   sell:
     description: Sell the item you're holding to the server.
     permission: central.command.sell
@@ -114,7 +114,7 @@ commands:
     description: Server balance leaderboard.
     permission: central.command.balancetop
     aliases: [baltop]
-    usage: "/balancetop <page>"
+    usage: "/balancetop &f<page>"
   stat:
     description: Check one of your stats.
     permission: central.command.stats
@@ -227,3 +227,7 @@ commands:
     description: Sort the container you're looking at.
     permission: central.command.sort
     usage: "/sort"
+  help:
+    description: List of all plugin commands.
+    permission: central.command.help
+    usage: "/help &f<plugin>"
