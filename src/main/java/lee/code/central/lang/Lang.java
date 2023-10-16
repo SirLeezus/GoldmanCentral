@@ -35,6 +35,8 @@ public enum Lang {
   BED_SET_SPAWN_SUCCESS("&aYou successfully set your new bed spawn!"),
   BED_TIME_SKIP_SUCCESS("&aHalf or more online players queued sleeping, night time has been skipped!"),
   BED_TIME_SKIP_NEEDED("&aPlayers Queued Sleeping&7: &3{0}&7/&3{1}"),
+  COMMAND_PATROL_SUCCESSFUL("&aYou successfully teleported to the player &6{0}&a."),
+  COMMAND_PATROL_FAILED("&cFailed to teleport to player &6{0}&c."),
   COMMAND_TELEPORT_POS_SUCCESSFUL("&aYou successfully teleported to location &3(&e&lX&7:&6{0}&7&e&lY&7:&6{1}&7&e&lZ&7:&6{2}&3)&a!"),
   COMMAND_TELEPORT_POS_FAILED("&cFailed to teleport to &3(&e&lX&7:&6{0}&7&e&lY&7:&6{1}&7&e&lZ&7:&6{2}&3)&c."),
   COMMAND_SORT_SUCCESSFUL("&aYou successfully sorted the container in front of you!"),
@@ -231,6 +233,7 @@ public enum Lang {
   ERROR_SORT_COULD_NOT_FIND_BLOCK("&cCould not find a block to sort."),
   ERROR_PVP_COMMAND("&cYou can't run commands for another {0} &cbecause you're in PvP mode."),
   ERROR_PVP_TELEPORT("&cYou can't use items that teleport you for another {0} &cbecause you're in PvP mode."),
+  ERROR_PATROL_ONE_PLAYER("&cYou are the only player online."),
   ;
   @Getter private final String string;
 

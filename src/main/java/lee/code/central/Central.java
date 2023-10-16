@@ -38,6 +38,7 @@ public class Central extends JavaPlugin {
   @Getter private StarterLootManager starterLootManager;
   @Getter private BedManager bedManager;
   @Getter private PvPManager pvpManager;
+  @Getter private PatrolManager patrolManager;
   @Getter private Data data;
   private DatabaseManager databaseManager;
 
@@ -59,6 +60,7 @@ public class Central extends JavaPlugin {
     this.data = new Data();
     this.bedManager = new BedManager(this);
     this.pvpManager = new PvPManager(this);
+    this.patrolManager = new PatrolManager();
     databaseManager.initialize(false);
     registerCommands();
     registerListeners();

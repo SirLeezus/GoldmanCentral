@@ -230,4 +230,8 @@ commands:
   help:
     description: List of all plugin commands.
     permission: central.command.help
-    usage: "/help &f<plugin>"
+    usage: "/help &f<option>"
+  patrol:
+    description: Patrol all online players.
+    permission: central.command.patrol
+    usage: "/patrol"

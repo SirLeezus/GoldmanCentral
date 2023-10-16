@@ -79,6 +79,7 @@ public class CommandManager {
     commands.add(new TeleportCMD(central));
     commands.add(new TeleportPosCMD(central));
     commands.add(new SortCMD(central));
+    commands.add(new PatrolCMD(central));
     commands.add(new HelpCMD(central));
   }
 
