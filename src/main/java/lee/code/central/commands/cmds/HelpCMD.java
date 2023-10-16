@@ -89,7 +89,7 @@ public class HelpCMD extends CustomCommand {
           return;
         }
         case "resourceworlds" -> {
-          Bukkit.getScheduler().runTask(central, () -> player.chat("/resourceworlds help"));
+          Bukkit.getScheduler().runTask(central, () -> player.chat("/resourceworld help"));
           return;
         }
         case "pets" -> {
@@ -136,7 +136,7 @@ public class HelpCMD extends CustomCommand {
     lines.add(Lang.COMMAND_HELP_LINE_2.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/t help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_3.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/shop help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_4.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/lock help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_5.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/resourceworlds help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_5.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/resourceworld help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_6.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/vault help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_7.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/pets help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_8.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/trails help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
