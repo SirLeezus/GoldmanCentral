@@ -108,6 +108,18 @@ public class HelpCMD extends CustomCommand {
           Bukkit.getScheduler().runTask(central, () -> player.chat("/lock help"));
           return;
         }
+        case "variables" -> {
+          final List<Component> lines = new ArrayList<>();
+          lines.add(Lang.COMMAND_HELP_VARIABLES_TITLE.getComponent(null));
+          lines.add(Component.text(""));
+          lines.add(Lang.COMMAND_HELP_VARIABLES_LINE_1.getComponent(null));
+          lines.add(Lang.COMMAND_HELP_VARIABLES_LINE_2.getComponent(null));
+          lines.add(Lang.COMMAND_HELP_VARIABLES_LINE_3.getComponent(null));
+          lines.add(Component.text(""));
+          lines.add(Lang.COMMAND_HELP_VARIABLES_FOOTER.getComponent(null));
+          for (Component line : lines) player.sendMessage(line);
+          return;
+        }
         case "vanilla" -> {
           final List<Component> lines = new ArrayList<>();
           lines.add(Lang.COMMAND_HELP_VANILLA_TITLE.getComponent(null));
@@ -136,11 +148,12 @@ public class HelpCMD extends CustomCommand {
     lines.add(Lang.COMMAND_HELP_LINE_2.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/t help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_3.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/shop help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Lang.COMMAND_HELP_LINE_4.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/lock help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_5.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/resourceworld help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_6.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/vault help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_7.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/pets help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_8.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/trails help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
-    lines.add(Lang.COMMAND_HELP_LINE_9.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/help vanilla")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_5.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/trails help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_6.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/pets help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_7.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/vault help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_8.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/resourceworld help")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_9.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/help variables")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
+    lines.add(Lang.COMMAND_HELP_LINE_10.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/help vanilla")).hoverEvent(Lang.COMMAND_HELP_HOVER.getComponent(null)));
     lines.add(Component.text(""));
     lines.add(Lang.COMMAND_HELP_FOOTER.getComponent(null));
     for (Component line : lines) player.sendMessage(line);

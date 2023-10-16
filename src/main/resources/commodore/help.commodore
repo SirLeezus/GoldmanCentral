@@ -9,4 +9,5 @@ help {
   vault;
   trails;
   vanilla;
+  variables;
 }
