@@ -5,6 +5,7 @@ import lee.code.central.commands.CustomCommand;
 import lee.code.central.lang.Lang;
 import lee.code.central.managers.DelayManager;
 import lee.code.central.utils.CoreUtil;
+import lee.code.towns.TownsAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -72,7 +73,9 @@ public class RandomTeleportCMD extends CustomCommand {
         final Vector box = randomLocation.getBlock().getBoundingBox().getCenter();
         final Location location = new Location(randomLocation.getWorld(), box.getX(), box.getY() + 0.5, box.getZ());
         if (!location.getWorld().getWorldBorder().isInside(location)) continue;
-        delayManager.setOnDelay(uuid, "rtp", 15000);
+        if (TownsAPI.isClaimed(location.getChunk())) continue;
+        if (CoreUtil.isWorldGuardClaimed(location)) continue;
+        if (!player.isOp()) delayManager.setOnDelay(uuid, "rtp", 15000);
         player.teleportAsync(location).thenAccept(result -> player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.COMMAND_RANDOM_TELEPORT_SUCCESSFUL.getComponent(null))));
         return;
       }
