@@ -40,21 +40,6 @@ public class StarterLootManager {
         "To create your own town use the command &6/rtp &0to teleport to the wild and after run the command &6/t create <name>&0."
     ));
     pages.add(CoreUtil.parseColorComponent(
-      "&2&lRules\n\n" +
-        "&6- &0No griefing players\n\n" +
-        "&6- &0Be respectful to other players\n\n" +
-        "&6- &0Do not create server lag\n\n" +
-        "&6- &0No hacked clients\n\n" +
-        "&cAny rule broken can result in a ban."
-    ));
-    pages.add(CoreUtil.parseColorComponent(
-      "&2&lVanilla Changes\n\n" +
-        "&6- &0Weapon/Tool swing delay removed\n\n" +
-        "&6- &0Armor stands can be modified by sneak-clicking them\n\n" +
-        "&6- &0Item frames will act as filters on hoppers\n\n" +
-        "&6- &0Max unique entity is 25 per chunk"
-    ));
-    pages.add(CoreUtil.parseColorComponent(
       "&2&lServer Settings\n\n" +
         "&6- &0Keep Inventory&7: &a&lON\n\n" +
         "&6- &0Explosions&7: &a&lON\n\n" +
@@ -66,7 +51,7 @@ public class StarterLootManager {
       "&2&lTowns\n\n" +
         "&0To view a full list of town commands run the command &6/t help&0. " +
         "This plugin allows you to create a town in which will protect your land. " +
-        "The more citizens and playtime you have the more chunks your town can claim."
+        "The more citizens you have the more chunks your town can claim."
     ));
     pages.add(CoreUtil.parseColorComponent(
       "&2&lEconomy\n\n" +
@@ -83,20 +68,7 @@ public class StarterLootManager {
       "&2&lVault\n\n" +
         "&0If you run &6/vault &0you'll open your own personal vault. " +
         "Vaults allow you to store an unlimited amount of the same item. " +
-        "The default rank has two vault pages."
-    ));
-    pages.add(CoreUtil.parseColorComponent(
-      "&2&lPets\n\n" +
-        "&0Pets can be captured by killing a mob with a lead. " +
-        "Your pet will follow you when called and is rideable. " +
-        "To learn more run the command &6/pets&0."
-    ));
-    pages.add(CoreUtil.parseColorComponent(
-      "&2&lTrails\n\n" +
-        "&0Trails are particles that follow you around. " +
-        "Every hour you play you earn one trail spin. " +
-        "When you use a trail spin you can earn a new trail or trail style. " +
-        "Use the command &6/trails &0to learn more."
+        "The default rank has one vault page."
     ));
     pages.add(CoreUtil.parseColorComponent(
       "&2&lColors\n\n" +
@@ -110,11 +82,33 @@ public class StarterLootManager {
         "You'll be able to set a max of 5 homes."
     ));
     pages.add(CoreUtil.parseColorComponent(
+      "&2&lLocks\n\n" +
+        "&0You can lock any container by placing a sign on it and typing &6[lock] &0on the first line. " +
+        "After the lock sign is created only you and trusted lock players can open that container."
+    ));
+    pages.add(CoreUtil.parseColorComponent(
+      "&2&lResource Worlds\n\n" +
+        "&0This server has three resource worlds which reset every 24 hours. " +
+        "You can teleport to these worlds by running the command &6/resourceworld&a."
+    ));
+    pages.add(CoreUtil.parseColorComponent(
       "&2&lLeaderboards\n\n" +
         "&0List of leaderboard commands:\n\n" +
         "&0- &6/baltop\n\n" +
         "&0- &6/stattop\n\n" +
         "&0- &6/t top\n\n"
+    ));
+    pages.add(CoreUtil.parseColorComponent(
+      "&2&lPets\n\n" +
+        "&0Pets can be captured with a &5Pet Capture Lead&0. " +
+        "Your pet will follow you when called and is rideable. " +
+        "To learn more run the command &6/pets help&0."
+    ));
+    pages.add(CoreUtil.parseColorComponent(
+      "&2&lTrails\n\n" +
+        "&0Trails are particles that follow you around. " +
+        "These are exclusively for premium rank players. " +
+        "To learn more run the command &6/trails help&0."
     ));
     pages.add(CoreUtil.parseColorComponent(
       "&2&lPremium Ranks\n\n" +

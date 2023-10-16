@@ -38,6 +38,7 @@ public class JoinListener implements Listener {
     if (!player.hasPlayedBefore()) {
       Bukkit.getServer().sendMessage(Lang.PREFIX.getComponent(null).append(Lang.UNIQUE_JOINS.getComponent(new String[]{ColorAPI.getNameColor(uuid, player.getName()), CoreUtil.parseValue(cacheManager.getCacheServer().addAndGetUniqueJoins())})));
       central.getStarterLootManager().giveItems(player);
+      if (cacheManager.getCacheServer().hasSpawn()) player.teleportAsync(cacheManager.getCacheServer().getSpawn());
     }
     //Is Flying Check
     if (cacheManager.getCachePlayers().isFlying(uuid)) {
