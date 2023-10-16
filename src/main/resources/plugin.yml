@@ -235,3 +235,7 @@ commands:
     description: Patrol all online players.
     permission: central.command.patrol
     usage: "/patrol"
+  rules:
+    description: Server rules you have to follow.
+    permission: central.command.rules
+    usage: "/rules"

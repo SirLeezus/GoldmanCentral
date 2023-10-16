@@ -134,6 +134,7 @@ public class HelpCMD extends CustomCommand {
           lines.add(Lang.COMMAND_HELP_VANILLA_LINE_8.getComponent(null));
           lines.add(Lang.COMMAND_HELP_VANILLA_LINE_9.getComponent(null));
           lines.add(Lang.COMMAND_HELP_VANILLA_LINE_10.getComponent(null));
+          lines.add(Lang.COMMAND_HELP_VANILLA_LINE_11.getComponent(null));
           lines.add(Component.text(""));
           lines.add(Lang.COMMAND_HELP_VANILLA_FOOTER.getComponent(null));
           for (Component line : lines) player.sendMessage(line);
