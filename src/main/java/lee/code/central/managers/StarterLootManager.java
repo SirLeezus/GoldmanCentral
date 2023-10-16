@@ -23,7 +23,6 @@ public class StarterLootManager {
     inventory.setLeggings(ItemUtil.createArmorWithTrim(new ItemStack(Material.LEATHER_LEGGINGS), TrimPattern.SHAPER, TrimMaterial.EMERALD));
     inventory.setBoots(ItemUtil.createArmorWithTrim(new ItemStack(Material.LEATHER_BOOTS), TrimPattern.SHAPER, TrimMaterial.EMERALD));
     inventory.addItem(new ItemStack(Material.STONE_SWORD));
-    inventory.addItem(new ItemStack(Material.STONE_PICKAXE));
     inventory.addItem(new ItemStack(Material.COOKED_PORKCHOP, 15));
     inventory.setItemInOffHand(createHelpBook());
   }
