@@ -52,6 +52,7 @@ public class HomeData {
   }
 
   public int getHomeAmount(UUID uuid) {
+    if (!homeCache.containsKey(uuid)) return 0;
     return homeCache.get(uuid).size();
   }
 
