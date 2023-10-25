@@ -2,6 +2,7 @@ package lee.code.central.managers;
 
 import lee.code.central.Central;
 import lee.code.central.utils.CoreUtil;
+import lee.code.central.utils.VariableUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
@@ -24,7 +25,7 @@ public class MOTDManager {
     try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
       String line;
       while ((line = bufferedReader.readLine()) != null) {
-        lines.add(CoreUtil.parseColorComponent(line));
+        lines.add(VariableUtil.parseVariables(CoreUtil.parseColorComponent(line)));
       }
     } catch (IOException e) {
       e.printStackTrace();
