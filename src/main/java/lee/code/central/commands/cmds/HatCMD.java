@@ -49,8 +49,7 @@ public class HatCMD extends CustomCommand {
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HAT_AIR.getComponent(null)));
       return;
     }
-    final boolean replace = headItem != null && !headItem.getType().isAir();
-    if (replace) player.getInventory().setItemInMainHand(headItem);
+    if (headItem != null && !headItem.getType().isAir()) player.getInventory().setItemInMainHand(headItem);
     else player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
     player.getInventory().setHelmet(handItem);
   }
