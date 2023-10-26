@@ -81,6 +81,7 @@ public class CommandManager {
     commands.add(new SortCMD(central));
     commands.add(new PatrolCMD(central));
     commands.add(new RulesCMD(central));
+    commands.add(new HatCMD(central));
     commands.add(new HelpCMD(central));
   }
 

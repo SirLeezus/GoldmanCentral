@@ -239,3 +239,7 @@ commands:
     description: Server rules you have to follow.
     permission: central.command.rules
     usage: "/rules"
+  hat:
+    description: Replaces your helmet slot with your hand item.
+    permission: central.command.hat
+    usage: "/hat"

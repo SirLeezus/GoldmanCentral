@@ -253,6 +253,7 @@ public enum Lang {
   ERROR_PVP_COMMAND("&cYou can't run commands for another {0} &cbecause you're in PvP mode."),
   ERROR_PVP_TELEPORT("&cYou can't use items that teleport you for another {0} &cbecause you're in PvP mode."),
   ERROR_PATROL_ONE_PLAYER("&cYou are the only player online."),
+  ERROR_HAT_AIR("&cYou need to be holding the item you want to wear as a hat."),
   ;
   @Getter private final String string;
 
