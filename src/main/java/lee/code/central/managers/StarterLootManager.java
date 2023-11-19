@@ -111,12 +111,12 @@ public class StarterLootManager {
     ));
     pages.add(CoreUtil.parseColorComponent(
       "&2&lPremium Ranks\n\n" +
-        "&0You can subscribe to a rank with the command &6/buy&0. " +
-        "All subs help keep the server running! <3\n\n" +
+        "&0You can buy a rank with the command &6/buy&0. " +
+        "All purchases help keep the server running! <3\n\n" +
         "&6&lLegend\n" +
-        "&2$4.99USD/Month\n\n" +
+        "&2$29.99\n\n" +
         "&5&lElite\n" +
-        "&2$9.99USD/Month"
+        "&2$49.99USD/Month"
     ));
     bookMeta.pages(pages);
     book.setItemMeta(bookMeta);

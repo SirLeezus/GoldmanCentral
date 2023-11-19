@@ -243,3 +243,11 @@ commands:
     description: Replaces your helmet slot with your hand item.
     permission: central.command.hat
     usage: "/hat"
+  buy:
+    description: Link to our online shop.
+    permission: central.command.buy
+    usage: "/buy"
+  motd:
+    description: Message of the day.
+    permission: central.command.motd
+    usage: "/motd"

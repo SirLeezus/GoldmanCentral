@@ -16,6 +16,7 @@ public enum Lang {
   DEATH_HOVER("&2&lPlayer&7: {display-name}\n&2&lTotal Deaths&7: &c{1}"),
   ADVANCEMENT_PREFIX("&a&lAdvancement &6➔ &r"),
   VALUE_FORMAT("&6${0}"),
+  LINK_FORMAT("&b{0}"),
   DISCORD("https://discord.gg/KjrgxdvdtB"),
   MAP("https://map.journey-mc.net"),
   STORE("https://journey.buycraft.net"),

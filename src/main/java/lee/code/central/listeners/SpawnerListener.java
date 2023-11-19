@@ -21,8 +21,9 @@ public class SpawnerListener implements Listener {
     if (e.isCancelled()) return;
     if (e.getBlock().getState() instanceof CreatureSpawner creatureSpawner) {
       final ItemStack handItem = e.getPlayer().getInventory().getItemInMainHand();
-      if (!handItem.containsEnchantment(Enchantment.SILK_TOUCH) && !e.getPlayer().getGameMode().equals(GameMode.CREATIVE))
-        return;
+      if (!handItem.containsEnchantment(Enchantment.SILK_TOUCH) && !e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) return;
+      if (creatureSpawner.getSpawnedType() == null) return;
+      e.setExpToDrop(0);
       final ItemStack spawner = ItemUtil.createSpawner(creatureSpawner.getSpawnedType());
       e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), spawner);
     }
@@ -36,6 +37,7 @@ public class SpawnerListener implements Listener {
       final BlockStateMeta handSpawnerMeta = (BlockStateMeta) handSpawner.getItemMeta();
       if (handSpawnerMeta == null) return;
       final CreatureSpawner handCreatureSpawner = (CreatureSpawner) handSpawnerMeta.getBlockState();
+      if (handCreatureSpawner.getSpawnedType() == null) return;
       creatureSpawner.setSpawnedType(handCreatureSpawner.getSpawnedType());
       creatureSpawner.update();
     }
