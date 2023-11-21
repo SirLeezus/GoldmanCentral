@@ -92,6 +92,7 @@ public enum Lang {
   COMMAND_HELP_VANILLA_LINE_9("&39&7. &eAll entities have a chance of dropping a head."),
   COMMAND_HELP_VANILLA_LINE_10("&310&7. &eYou can sit on slabs, stairs and carpet by right-clicking them with your hand."),
   COMMAND_HELP_VANILLA_LINE_11("&311&7. &eYou can pickup spawners with the silk touch enchantment."),
+  COMMAND_HELP_VANILLA_LINE_12("&312&7. &eYou can shear a item frame to toggle visibility."),
   COMMAND_HELP_VANILLA_FOOTER("&a----------------------------------------------------"),
   COMMAND_HELP_HOVER("&6Click for more info!"),
   COMMAND_HELP_TITLE("&a------- &e[ &2&lHelp &e] &a-------"),

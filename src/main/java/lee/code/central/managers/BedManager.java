@@ -97,5 +97,6 @@ public class BedManager {
 
   private void addSleepStat(Player player) {
     player.setStatistic(Statistic.SLEEP_IN_BED, player.getStatistic(Statistic.SLEEP_IN_BED) + 1);
+    player.setStatistic(Statistic.TIME_SINCE_REST, 0);
   }
 }
