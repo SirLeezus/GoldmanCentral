@@ -199,6 +199,7 @@ public enum Lang {
   ERROR_HOME_NO_HOMES("&cYou currently don't have any homes saved."),
   ERROR_HOME_NOT_HOME("&cThe input &3{0} &cis not a saved home name."),
   ERROR_HOME_IS_HOME("&cYou already have a home with the name &3{0}&c."),
+  ERROR_HOME_NAME_BLANK("&cThe home name input was blank, please pick a home name using normal letters and numbers."),
   ERROR_HOME_MAX_HOMES("&cYou have reached your max home amount of &3{0}&c."),
   ERROR_ONE_COMMAND_AT_A_TIME("&cYou're currently processing another command, please wait for it to finish."),
   ERROR_ENCHANT_NO_HAND_ITEM("&cYou're currently not holding a item to enchant."),
