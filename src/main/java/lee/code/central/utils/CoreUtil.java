@@ -44,6 +44,11 @@ public class CoreUtil {
     return amountFormatter.format(value);
   }
 
+  public static String shortenString(String text, int max) {
+    if (text.length() > max) return text.substring(0, max);
+    else return text;
+  }
+
   public static String serializeColorComponentJson(String text) {
     final GsonComponentSerializer serializer = GsonComponentSerializer.gson();
     final Component component = parseColorComponent(text);
