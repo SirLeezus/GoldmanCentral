@@ -96,7 +96,7 @@ public class HomeCMD extends CustomCommand {
           player.sendMessage(Lang.USAGE.getComponent(new String[]{command.getUsage()}));
           return;
         }
-        final String name = CoreUtil.shortenString(CoreUtil.removeSpecialCharacters(CoreUtil.buildStringFromArgs(args, 1)), 30);
+        final String name = CoreUtil.shortenString(CoreUtil.removeSpecialCharacters(CoreUtil.buildStringFromArgs(args, 1)), 30).trim();
         if (name.isBlank()) {
           player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.ERROR_HOME_NAME_BLANK.getComponent(null)));
           return;
