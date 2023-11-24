@@ -6,6 +6,7 @@ import lee.code.central.enums.PlaceLimitMaterial;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -17,14 +18,16 @@ public class MobLimitListener implements Listener {
     this.central = central;
   }
 
-  @EventHandler
+  @EventHandler (priority = EventPriority.MONITOR)
   public void onMobPreSpawn(PreCreatureSpawnEvent e) {
+    if (e.isCancelled()) return;
     if (e.getReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM)) return;
     e.setCancelled(central.getMobLimitManager().hasReachedMobLimit(e.getSpawnLocation().getChunk(), e.getType()));
   }
 
-  @EventHandler
+  @EventHandler (priority = EventPriority.MONITOR)
   public void onMobSpawn(CreatureSpawnEvent e) {
+    if (e.isCancelled()) return;
     if (e.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM)) return;
     e.setCancelled(central.getMobLimitManager().hasReachedMobLimit(e.getEntity().getChunk(), e.getEntityType()));
   }
