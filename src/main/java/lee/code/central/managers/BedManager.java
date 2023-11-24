@@ -8,6 +8,7 @@ import lee.code.playerdata.PlayerDataAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Statistic;
+import org.bukkit.World;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
@@ -56,7 +57,10 @@ public class BedManager {
     final int sleeping = playersSleeping.size();
     final double percentageSleeping = ((double) sleeping / online) * 100.0;
     if (percentageSleeping >= 50 || percentageSleeping == 0) {
-      Bukkit.getWorlds().get(0).setTime(1000);
+      final World world = Bukkit.getWorlds().get(0);
+      world.setTime(1000);
+      world.setStorm(false);
+      world.setThundering(false);
       playersSleeping.clear();
       Bukkit.getServer().sendMessage(Lang.PREFIX.getComponent(null).append(Lang.BED_TIME_SKIP_SUCCESS.getComponent(null)));
       return;
