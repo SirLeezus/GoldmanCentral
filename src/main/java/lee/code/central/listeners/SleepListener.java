@@ -30,10 +30,9 @@ public class SleepListener implements Listener {
     e.setCancelled(true);
     if (central.getDelayManager().isOnDelay(player.getUniqueId(), "bed")) return;
     central.getDelayManager().setOnDelay(player.getUniqueId(), "bed", 500);
-    if (player.isSneaking()) {
+    if (player.isSneaking() || player.getBedSpawnLocation() == null) {
       player.setBedSpawnLocation(e.getClickedBlock().getLocation());
       player.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.BED_SET_SPAWN_SUCCESS.getComponent(null)));
-      return;
     }
     if (central.getBedManager().isNight()) central.getBedManager().addSleeper(player);
     else player.sendActionBar(Lang.ERROR_SLEEP_DURING_DAY.getComponent(null));
