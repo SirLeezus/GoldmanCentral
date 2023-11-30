@@ -29,7 +29,7 @@ public class MobLimitManager {
   }
 
   public boolean hasReachedMobLimit(Chunk chunk, EntityType type) {
-    return countMobsInChunk(chunk, type) >= maxMobPerChunk;
+    return countMobsInChunk(chunk, type) >= maxMobPerChunk || chunk.getEntities().length >= 100;
   }
 
   public void startMobLimiter() {

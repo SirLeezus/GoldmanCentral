@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class MobLimitListener implements Listener {
@@ -41,6 +42,15 @@ public class MobLimitListener implements Listener {
     if (central.getMobLimitManager().hasReachedMobLimit(e.getPlayer().getLocation().getChunk(), entityType)) {
       e.setCancelled(true);
       central.getMobLimitManager().sendPlayerLimitMessage(e.getPlayer(), entityType);
+    }
+  }
+
+  @EventHandler (priority = EventPriority.MONITOR)
+  public void onEntityUsePortal(EntityPortalEvent e) {
+    if (e.isCancelled()) return;
+    if (e.getTo() == null) return;
+    if (central.getMobLimitManager().hasReachedMobLimit(e.getTo().getChunk(), e.getEntity().getType())) {
+      e.setCancelled(true);
     }
   }
 }
