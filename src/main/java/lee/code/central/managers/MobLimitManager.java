@@ -22,17 +22,37 @@ public class MobLimitManager {
     startMobLimiter();
   }
 
-  public int countMobsInChunk(Chunk chunk, EntityType type) {
+  private int countMobsInChunk(Chunk chunk, EntityType type) {
     int count = 0;
-    for (Entity e : chunk.getEntities()) if (type.equals(e.getType()) && !e.isDead() && !(e instanceof Player)) count++;
+    for (Entity target : chunk.getEntities()) if (type.equals(target.getType())) count++;
     return count;
   }
 
-  public boolean hasReachedMobLimit(Chunk chunk, EntityType type) {
-    return countMobsInChunk(chunk, type) >= maxMobPerChunk || chunk.getEntities().length >= 100;
+  private int getTotalMobs(Chunk chunk) {
+    int amount = 0;
+    for (Entity target : chunk.getEntities()) {
+      if (target.getType().equals(EntityType.DROPPED_ITEM)) continue;
+      if (target.getType().equals(EntityType.ARMOR_STAND)) continue;
+      if (target.getType().equals(EntityType.ITEM_FRAME)) continue;
+      if (target.getType().equals(EntityType.GLOW_ITEM_FRAME)) continue;
+      if (target.getType().equals(EntityType.BOAT)) continue;
+      if (target.getType().equals(EntityType.CHEST_BOAT)) continue;
+      if (target.getType().equals(EntityType.PLAYER)) continue;
+      if (target.customName() != null) continue;
+      amount++;
+    }
+    return amount;
   }
 
-  public void startMobLimiter() {
+  public boolean hasReachedTotalMobLimit(Chunk chunk, EntityType type) {
+    return countMobsInChunk(chunk, type) >= maxMobPerChunk || getTotalMobs(chunk) >= 100;
+  }
+
+  public boolean hasReachedMobLimit(Chunk chunk, EntityType type) {
+    return countMobsInChunk(chunk, type) >= maxMobPerChunk;
+  }
+
+  private void startMobLimiter() {
     Bukkit.getAsyncScheduler().runAtFixedRate(central, (scheduledTask) -> {
         for (World world : Bukkit.getWorlds()) {
           for (Chunk chunk : world.getLoadedChunks()) {

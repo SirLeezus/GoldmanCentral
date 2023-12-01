@@ -23,14 +23,23 @@ public class MobLimitListener implements Listener {
   public void onMobPreSpawn(PreCreatureSpawnEvent e) {
     if (e.isCancelled()) return;
     if (e.getReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM)) return;
-    e.setCancelled(central.getMobLimitManager().hasReachedMobLimit(e.getSpawnLocation().getChunk(), e.getType()));
+    e.setCancelled(central.getMobLimitManager().hasReachedTotalMobLimit(e.getSpawnLocation().getChunk(), e.getType()));
   }
 
   @EventHandler (priority = EventPriority.MONITOR)
   public void onMobSpawn(CreatureSpawnEvent e) {
     if (e.isCancelled()) return;
     if (e.getSpawnReason().equals(CreatureSpawnEvent.SpawnReason.CUSTOM)) return;
-    e.setCancelled(central.getMobLimitManager().hasReachedMobLimit(e.getEntity().getChunk(), e.getEntityType()));
+    e.setCancelled(central.getMobLimitManager().hasReachedTotalMobLimit(e.getEntity().getChunk(), e.getEntityType()));
+  }
+
+  @EventHandler (priority = EventPriority.MONITOR)
+  public void onEntityUsePortal(EntityPortalEvent e) {
+    if (e.isCancelled()) return;
+    if (e.getTo() == null) return;
+    if (central.getMobLimitManager().hasReachedTotalMobLimit(e.getTo().getChunk(), e.getEntity().getType())) {
+      e.setCancelled(true);
+    }
   }
 
   @EventHandler
@@ -42,15 +51,6 @@ public class MobLimitListener implements Listener {
     if (central.getMobLimitManager().hasReachedMobLimit(e.getPlayer().getLocation().getChunk(), entityType)) {
       e.setCancelled(true);
       central.getMobLimitManager().sendPlayerLimitMessage(e.getPlayer(), entityType);
-    }
-  }
-
-  @EventHandler (priority = EventPriority.MONITOR)
-  public void onEntityUsePortal(EntityPortalEvent e) {
-    if (e.isCancelled()) return;
-    if (e.getTo() == null) return;
-    if (central.getMobLimitManager().hasReachedMobLimit(e.getTo().getChunk(), e.getEntity().getType())) {
-      e.setCancelled(true);
     }
   }
 }
