@@ -52,7 +52,7 @@ public class BuyCMD extends CustomCommand {
 
   @Override
   public void performSender(CommandSender sender, String[] args, Command command) {
-    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.LINK_FORMAT.getComponent(new String[]{Lang.STORE.getString()})).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.STORE.getString())));
+    sender.sendMessage(Lang.PREFIX.getComponent(null).append(Lang.LINK_FORMAT.getComponent(new String[]{Lang.STORE.getString()})).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.STORE.getString())).hoverEvent(Lang.LINK_HOVER.getComponent(null)));
   }
 
   @Override

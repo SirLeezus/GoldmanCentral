@@ -17,6 +17,7 @@ public enum Lang {
   ADVANCEMENT_PREFIX("&a&lAdvancement &6➔ &r"),
   VALUE_FORMAT("&6${0}"),
   LINK_FORMAT("&b{0}"),
+  LINK_HOVER("&bClick to open website!"),
   DISCORD("https://discord.gg/KjrgxdvdtB"),
   MAP("https://map.journey-mc.net"),
   STORE("https://journey.buycraft.net"),

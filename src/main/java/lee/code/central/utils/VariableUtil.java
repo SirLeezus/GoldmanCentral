@@ -19,14 +19,13 @@ public class VariableUtil {
 
   public static Component parseVariables(Player player, Component component) {
     component = component.replaceText(createTextReplacementConfig(displayNamePattern, player.displayName()));
-    component = component.replaceText(createTextReplacementConfig(discordPattern, Lang.DISCORD.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.DISCORD.getString()))));
     return component;
   }
 
   public static Component parseVariables(Component component) {
-    component = component.replaceText(createTextReplacementConfig(discordPattern, Lang.DISCORD.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.DISCORD.getString()))));
-    component = component.replaceText(createTextReplacementConfig(storePattern, Lang.STORE.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.STORE.getString()))));
-    component = component.replaceText(createTextReplacementConfig(mapPattern, Lang.MAP.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.MAP.getString()))));
+    component = component.replaceText(createTextReplacementConfig(discordPattern, Lang.DISCORD.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.DISCORD.getString())).hoverEvent(Lang.LINK_HOVER.getComponent(null))));
+    component = component.replaceText(createTextReplacementConfig(storePattern, Lang.STORE.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.STORE.getString())).hoverEvent(Lang.LINK_HOVER.getComponent(null))));
+    component = component.replaceText(createTextReplacementConfig(mapPattern, Lang.MAP.getComponent(null).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, Lang.MAP.getString())).hoverEvent(Lang.LINK_HOVER.getComponent(null))));
     return component;
   }
 
