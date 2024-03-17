@@ -88,7 +88,7 @@ public class StarterLootManager {
     pages.add(CoreUtil.parseColorComponent(
       "&2&lResource Worlds\n\n" +
         "&0This server has three resource worlds which reset every 24 hours. " +
-        "You can teleport to these worlds by running the command &6/resourceworld&a."
+        "You can teleport to these worlds by running the command &6/resourceworld&0."
     ));
     pages.add(CoreUtil.parseColorComponent(
       "&2&lLeaderboards\n\n" +
