@@ -116,7 +116,7 @@ public class StarterLootManager {
         "&6&lLegend\n" +
         "&2$29.99\n\n" +
         "&5&lElite\n" +
-        "&2$49.99USD/Month"
+        "&2$49.99"
     ));
     bookMeta.pages(pages);
     book.setItemMeta(bookMeta);
