@@ -23,7 +23,7 @@ public class DelayManager {
 
   public void setOnDelay(UUID uuid, String key, long delay) {
     if (playersOnDelay.containsKey(uuid)) {
-      playersOnDelay.get(uuid).put(key, delay);
+      playersOnDelay.get(uuid).put(key, System.currentTimeMillis() + delay);
     } else {
       final ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
       map.put(key, System.currentTimeMillis() + delay);

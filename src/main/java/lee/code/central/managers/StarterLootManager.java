@@ -27,6 +27,10 @@ public class StarterLootManager {
     inventory.setItemInOffHand(createHelpBook());
   }
 
+  public void giveBook(Player player) {
+    ItemUtil.giveItemOrDrop(player, createHelpBook(), 1);
+  }
+
   private ItemStack createHelpBook() {
     final ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
     final BookMeta bookMeta = (BookMeta) book.getItemMeta();

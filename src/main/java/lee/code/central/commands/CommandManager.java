@@ -84,6 +84,7 @@ public class CommandManager {
     commands.add(new HatCMD(central));
     commands.add(new BuyCMD(central));
     commands.add(new MotdCMD(central));
+    commands.add(new GuideCMD(central));
     commands.add(new HelpCMD(central));
   }
 

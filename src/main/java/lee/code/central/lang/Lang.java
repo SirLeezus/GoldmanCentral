@@ -111,6 +111,7 @@ public enum Lang {
   COMMAND_WORTH_LIST_TITLE("&a---------- &e[ &2&lWorth List &e] &a----------"),
   COMMAND_BALANCE_TOP_TITLE("&a---- &e[ &2&lBalance Leaderboard &e] &a----"),
   COMMAND_STAT_TOP_TITLE("&a----- &e[ &2&lStats Leaderboard &e] &a-----"),
+  COMMAND_GUIDE_SUCCESSFUL("&eYou have been given the &2&lJourney Towns &eserver guide book!"),
   COMMAND_STAT_TOP_STAT("&e&lStat&7: &6{0}"),
   COMMAND_BALANCE_SUCCESSFUL("&aYour balance&7: {0}"),
   COMMAND_STAT_SUCCESSFUL("&aChecking stat &3&l{0}&7: &2{1}"),

@@ -251,3 +251,7 @@ commands:
     description: Message of the day.
     permission: central.command.motd
     usage: "/motd"
+  guide:
+    description: Gives you the latest copy of the server guide book.
+    permission: central.command.guide
+    usage: "/guide"
